@@ -4,11 +4,12 @@
   "type": "module",
   "scripts": {
     "build": "webpack",
-    "deploy": "npm run build && wrangler deploy"
+    "deploy": "npm run build && npx wrangler deploy"
   },
   "devDependencies": {
+    "html-loader": "^4.2.0",
     "webpack": "^5.105.4",
     "webpack-cli": "^7.0.2",
-    "html-loader": "^4.2.0"
+    "wrangler": "^4.78.0"
   }
 }
