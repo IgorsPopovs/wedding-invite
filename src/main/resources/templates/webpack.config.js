@@ -2,18 +2,20 @@ const path = require('path');
 
 module.exports = {
   mode: 'production',
-  entry: './src/index.js',        // главный файл
+  entry: './src/index.js',
   output: {
-    filename: 'index.js',
     path: path.resolve(__dirname, 'dist'),
+    filename: 'index.js',
   },
   module: {
     rules: [
       {
         test: /\.html$/i,
-        use: 'raw-loader',       // чтобы импортировать HTML как строку
+        loader: 'html-loader',
       },
     ],
   },
-  target: 'webworker',           // для Cloudflare Workers
+  experiments: {
+    topLevelAwait: true,
+  },
 };
