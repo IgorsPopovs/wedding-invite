@@ -1,4 +1,3 @@
-// webpack.config.js
 import path from 'path';
 import CopyWebpackPlugin from 'copy-webpack-plugin';
 
@@ -11,7 +10,11 @@ export default {
     publicPath: '/',
   },
   experiments: { outputModule: true },
-  module: { rules: [{ test: /\.html$/i, loader: 'html-loader' }] },
+  module: {
+    rules: [
+      { test: /\.html$/i, loader: 'html-loader' },
+    ],
+  },
   mode: 'production',
   target: 'webworker',
   plugins: [
@@ -19,6 +22,7 @@ export default {
       patterns: [
         { from: './src/public/index.html', to: 'index.html' },
         { from: './src/public', to: 'public' },
+        { from: './src/js', to: 'js' },
       ],
     }),
   ],
