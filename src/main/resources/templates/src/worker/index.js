@@ -13,13 +13,11 @@ export default {
     }
 
     return new Response(
-      `<html>
-        <body>
-          <img src="/bride-photo.png" />
-          <img src="/groom-photo.png" />
-        </body>
-      </html>`,
+      `<html><body>
+        <img src="/bride-photo.png">
+        <img src="/groom-photo.png">
+      </body></html>`,
       { headers: { 'Content-Type': 'text/html; charset=utf-8' } }
     );
   }
-}
+};

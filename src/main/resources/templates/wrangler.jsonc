@@ -1,13 +1,9 @@
 {
   "name": "wedding-invite",
+  "main": "./src/worker/index.js",
   "compatibility_date": "2025-09-27",
-  "compatibility_flags": ["nodejs_compat"],
-  "main": "./dist/worker.js",
   "assets": {
     "directory": "./src/public",
     "binding": "ASSETS"
-  },
-  "observability": {
-    "enabled": true
   }
 }
