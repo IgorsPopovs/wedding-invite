@@ -1,0 +1,1 @@
+var e={d:(t,o)=>{for(var r in o)e.o(o,r)&&!e.o(t,r)&&Object.defineProperty(t,r,{enumerable:!0,get:o[r]})},o:(e,t)=>Object.prototype.hasOwnProperty.call(e,t)},t={};e.d(t,{A:()=>o});const o={fetch:async(e,t)=>t.ASSETS.fetch(e)},r=t.A;export{r as default};

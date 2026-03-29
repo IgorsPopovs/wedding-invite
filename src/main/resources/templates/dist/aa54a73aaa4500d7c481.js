@@ -1,0 +1,1 @@
+console.log("Frontend JS loaded"),document.addEventListener("DOMContentLoaded",()=>{document.querySelectorAll("img").forEach(e=>{e.style.border="2px solid #000"})});
