@@ -7,9 +7,9 @@
     "deploy": "npm run build && npx wrangler deploy"
   },
   "devDependencies": {
+    "copy-webpack-plugin": "^14.0.0",
+    "html-loader": "^4.2.0",
     "webpack": "^5.105.4",
-    "webpack-cli": "^7.0.2",
-    "html-loader": "^4.2.0"
-  },
-  "dependencies": {}
+    "webpack-cli": "^7.0.2"
+  }
 }

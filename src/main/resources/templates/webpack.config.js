@@ -1,40 +1,25 @@
 // webpack.config.js
 import path from 'path';
+import CopyWebpackPlugin from 'copy-webpack-plugin';
 
 export default {
   entry: './src/worker/index.js',
   output: {
     filename: 'worker.js',
     path: path.resolve('./dist'),
-    libraryTarget: 'module',  // <-- важное для ES Module
+    libraryTarget: 'module',
     publicPath: '/',
   },
-  experiments: {
-    outputModule: true,       // <-- включаем поддержку ES Module
-  },
-  module: {
-    rules: [
-      {
-        test: /\.html$/i,
-        loader: 'html-loader',
-      },
-    ],
-  },
+  experiments: { outputModule: true },
+  module: { rules: [{ test: /\.html$/i, loader: 'html-loader' }] },
   mode: 'production',
-  target: 'webworker',         // <-- для Workers
-    plugins: [
-      // ... your existing plugins
-      new CopyWebpackPlugin({
-        patterns: [
-          {
-            from: './src/index.html',  // Your HTML file
-            to: 'index.html',  // Output location
-          },
-          {
-            from: './src/public',  // Your images and other static files
-            to: 'public',
-          },
-        ],
-      }),
-    ],
+  target: 'webworker',
+  plugins: [
+    new CopyWebpackPlugin({
+      patterns: [
+        { from: './src/public/index.html', to: 'index.html' },
+        { from: './src/public', to: 'public' },
+      ],
+    }),
+  ],
 };
