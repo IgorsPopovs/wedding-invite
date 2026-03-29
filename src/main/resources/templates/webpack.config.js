@@ -1,11 +1,15 @@
+// webpack.config.js
 import path from 'path';
 
 export default {
   entry: './src/worker/index.js',
-  target: 'webworker',        // критично для CF Worker
   output: {
     filename: 'worker.js',
     path: path.resolve('./dist'),
+    libraryTarget: 'module',  // <-- важное для ES Module
+  },
+  experiments: {
+    outputModule: true,       // <-- включаем поддержку ES Module
   },
   module: {
     rules: [
@@ -13,10 +17,8 @@ export default {
         test: /\.html$/i,
         loader: 'html-loader',
       },
-      {
-        test: /\.(png|jpe?g|gif)$/i,
-        type: 'asset/resource',
-      },
     ],
   },
+  mode: 'production',
+  target: 'webworker',         // <-- для Workers
 };
