@@ -1,7 +1,5 @@
 export default {
-  async fetch(request, env, ctx) {
-    return new Response(await Deno.readTextFile('./index.html'), {
-      headers: { 'content-type': 'text/html; charset=utf-8' }
-    });
+  async fetch(request, env) {
+    return env.ASSETS.fetch(request);
   }
 };
