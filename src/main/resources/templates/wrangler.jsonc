@@ -8,7 +8,7 @@
   },
   "main": "./index.js",
   "assets": {
-    "directory": "./",
+    "directory": "./assets",
     "binding": "ASSETS"
   }
 }
