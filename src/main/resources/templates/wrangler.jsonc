@@ -1,11 +1,5 @@
 {
-  "$schema": "./node_modules/wrangler/config-schema.json",
-  "name": "wedding-invite",
-  "compatibility_date": "2025-09-27",
-  "compatibility_flags": ["nodejs_compat"],
-  "main": "./index.js",
-  "assets": {
-    "directory": "./assets",
-    "binding": "ASSETS"
-  }
+  "name": "my-worker",
+  "main": "dist/index.js",
+  "compatibility_date": "2026-03-29"
 }
