@@ -7,6 +7,7 @@ export default {
     filename: 'worker.js',
     path: path.resolve('./dist'),
     libraryTarget: 'module',  // <-- важное для ES Module
+    publicPath: '',
   },
   experiments: {
     outputModule: true,       // <-- включаем поддержку ES Module
