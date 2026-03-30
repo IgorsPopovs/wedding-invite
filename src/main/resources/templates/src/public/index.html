@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html lang="ru">
 <head>
 <meta charset="UTF-8">
@@ -8,723 +7,683 @@
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=EB+Garamond:ital,wght@0,400;1,400&family=Jost:wght@200;300;400&family=Marck+Script&family=Caveat:wght@400;600&display=swap" rel="stylesheet">
 <style>
 /* ══════════════════════════════════════
-RESET & BASE
+   RESET & BASE
 ══════════════════════════════════════ */
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
 
 :root {
-–fig: #7b1f3a;
-–fig-light: #a8385a;
-–wisteria: #b8a5c8;
-–champagne: #e8d4b8;
-–cream: #faf7f3;
-–white: #ffffff;
-–text-dark: #2a1a1f;
-–text-mid: #4a3540;
-–photo-bg: #a89898;
-–map-bg: #d4cec6;
+  --fig:        #7b1f3a;
+  --fig-light:  #a8385a;
+  --wisteria:   #b8a5c8;
+  --champagne:  #e8d4b8;
+  --cream:      #faf7f3;
+  --white:      #ffffff;
+  --text-dark:  #2a1a1f;
+  --text-mid:   #4a3540;
+  --photo-bg:   #a89898;
+  --map-bg:     #d4cec6;
 
-–sp-xs: clamp(6px, 1.5vw, 10px);
-–sp-sm: clamp(10px, 2.5vw, 16px);
-–sp-md: clamp(16px, 4vw, 28px);
-–sp-lg: clamp(24px, 6vw, 40px);
-–sp-xl: clamp(32px, 8vw, 56px);
+  /* fluid spacing scale — works on any screen */
+  --sp-xs:  clamp(6px,  1.5vw, 10px);
+  --sp-sm:  clamp(10px, 2.5vw, 16px);
+  --sp-md:  clamp(16px, 4vw,   28px);
+  --sp-lg:  clamp(24px, 6vw,   40px);
+  --sp-xl:  clamp(32px, 8vw,   56px);
 
-–fs-xs: clamp(10px, 2.5vw, 13px);
-–fs-sm: clamp(13px, 3.2vw, 16px);
-–fs-body: clamp(14px, 3.6vw, 17px);
-–fs-sub: clamp(16px, 4.2vw, 20px);
-–fs-h2: clamp(22px, 6vw, 32px);
-–fs-h1: clamp(26px, 7vw, 38px);
-–fs-name: clamp(18px, 4.8vw, 24px);
+  /* fluid type scale */
+  --fs-xs:   clamp(10px, 2.5vw, 13px);
+  --fs-sm:   clamp(13px, 3.2vw, 16px);
+  --fs-body: clamp(14px, 3.6vw, 17px);
+  --fs-sub:  clamp(16px, 4.2vw, 20px);
+  --fs-h2:   clamp(22px, 6vw,   32px);
+  --fs-h1:   clamp(26px, 7vw,   38px);
+  --fs-name: clamp(18px, 4.8vw, 24px);
 }
 
 body {
-background: #a89eb0;
-font-family: ‘EB Garamond’, Georgia, serif;
-color: var(–text-dark);
-min-height: 100vh;
-display: flex;
-justify-content: center;
-align-items: flex-start;
-padding: clamp(16px, 4vw, 48px) clamp(0px, 2vw, 24px);
-}
-
-.card {
-background: var(–white);
-width: 100%;
-max-width: min(440px, 100%);
-box-shadow: 0 8px 48px rgba(0,0,0,0.32);
-display: flex;
-flex-direction: column;
-}
-
-@media (min-width: 520px) {
-body { padding: 48px 24px; }
-.card { max-width: 440px; }
-}
-
-.page {
-padding: var(–sp-lg) var(–sp-md);
-display: flex;
-flex-direction: column;
-align-items: center;
-text-align: center;
-gap: var(–sp-md);
+  background: #a89eb0;
+  font-family: 'EB Garamond', Georgia, serif;
+  color: var(--text-dark);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: clamp(16px, 4vw, 48px) clamp(0px, 2vw, 24px);
 }
 
 /* ══════════════════════════════════════
-POLAROIDS
+   CARD — fills phone, caps on desktop
 ══════════════════════════════════════ */
-.polaroid-row {
-position: relative;
-width: 100%;
-min-height: clamp(255px, 68vw, 315px);
-margin-top: clamp(8px, 2vw, 14px);
+.card {
+  background: var(--white);
+  width: 100%;
+  max-width: min(440px, 100%);
+  box-shadow: 0 8px 48px rgba(0,0,0,0.32);
+  display: flex;
+  flex-direction: column;
 }
 
-.pw {
-display: flex;
-flex-direction: column;
-position: absolute;
+/* on wider screens centre properly */
+@media (min-width: 520px) {
+  body { padding: 48px 24px; }
+  .card { max-width: 440px; }
 }
-.pw:nth-child(1) {
-left: clamp(12px, 2vw, 18px);
-top: clamp(30px, 8vw, 46px);
-z-index: 2;
+
+/* ══════════════════════════════════════
+   PAGE SECTIONS
+══════════════════════════════════════ */
+.page {
+  padding: var(--sp-lg) var(--sp-md);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: var(--sp-md);
 }
+
+/* ══════════════════════════════════════
+   POLAROIDS
+══════════════════════════════════════ */
+.polaroid-row {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  width: 100%;
+  /* no gap — overlap controlled by negative margin */
+}
+
+.pw { display: flex; flex-direction: column; }
+.pw:nth-child(1) { align-items: flex-start; z-index: 2; }
 .pw:nth-child(2) {
-right: clamp(6px, 1vw, 12px);
-top: clamp(12px, 3vw, 20px);
-z-index: 1;
+  align-items: flex-end;
+  margin-left: clamp(-28px, -7vw, -16px);
+  margin-bottom: clamp(8px, 2.5vw, 14px);
+  z-index: 1;
 }
 
 .label-row {
-position: absolute;
-display: flex;
-align-items: flex-start;
-gap: 4px;
-z-index: 5;
-pointer-events: none;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: clamp(3px, 1vw, 6px);
 }
-.pw:nth-child(1) .label-row {
-top: clamp(-16px, -4vw, -8px);
-left: clamp(-18px, -3vw, -8px);
-}
-.pw:nth-child(2) .label-row {
-top: clamp(-30px, -7vw, -16px);
-right: clamp(2px, 1vw, 10px);
-flex-direction: column;
-align-items: center;
-gap: 0;
-}
+.pw:nth-child(1) .label-row { padding-left: clamp(4px, 1.5vw, 8px); }
+.pw:nth-child(2) .label-row { flex-direction: row-reverse; padding-right: clamp(4px, 1.5vw, 8px); }
 
 .label-text {
-font-family: ‘Caveat’, ‘Marck Script’, cursive;
-font-size: clamp(26px, 6.8vw, 38px);
-color: var(–fig);
-line-height: 0.92;
-letter-spacing: 0.01em;
-text-shadow: 0 1px 0 rgba(123,31,58,0.08);
+  font-family: 'Marck Script', 'Cormorant Garamond', serif;
+  font-size: clamp(22px, 5.4vw, 30px);
+  color: var(--fig);
+  line-height: 0.95;
+  letter-spacing: 0.01em;
+  transform: rotate(-4deg);
 }
-.pw:nth-child(1) .label-text { display: none; }
-.pw:nth-child(2) .label-text { transform: rotate(-4deg); }
+.pw:nth-child(2) .label-text { transform: rotate(3deg); }
 
 .label-arrow {
-width: clamp(28px, 8vw, 42px);
-height: auto;
-color: var(–fig);
-line-height: 1;
+  width: clamp(26px, 7vw, 38px);
+  height: auto;
+  color: var(--fig);
+  line-height: 1;
+  transform: rotate(-8deg);
 }
-.pw:nth-child(1) .label-arrow { transform: rotate(-26deg); }
-.pw:nth-child(2) .label-arrow {
-width: clamp(42px, 11vw, 56px);
-margin-top: -2px;
-transform: rotate(4deg);
-}
+.pw:nth-child(2) .label-arrow { transform: scaleX(-1) rotate(-10deg); }
 
-.hand-arrow { width: 100%; height: auto; overflow: visible; }
+.hand-arrow {
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
 .hand-arrow path {
-stroke: currentColor;
-stroke-width: 2.7;
-stroke-linecap: round;
-stroke-linejoin: round;
-fill: none;
+  stroke: currentColor;
+  stroke-width: 2.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  fill: none;
 }
 
 .polaroid {
-position: relative;
-background: #f6f2ec;
-padding: clamp(8px, 2.2vw, 12px) clamp(8px, 2.2vw, 12px) clamp(26px, 7vw, 34px);
-box-shadow: 0 10px 28px rgba(0,0,0,0.16), 0 2px 6px rgba(0,0,0,0.08);
-width: clamp(134px, 39vw, 172px);
-border: 1px solid rgba(80, 60, 60, 0.05);
+  background: #f3ede6;
+  /* padding: top sides bottom — bottom is the big white space */
+  padding: clamp(7px, 2vw, 11px) clamp(7px, 2vw, 11px) clamp(28px, 8vw, 38px);
+  box-shadow: 2px 4px 18px rgba(0,0,0,0.22);
+  width: clamp(130px, 38vw, 170px);
 }
-.polaroid::before {
-content: ‘’;
-position: absolute;
-inset: 0;
-background:
-radial-gradient(circle at 18% 14%, rgba(255,255,255,0.58), transparent 20%),
-linear-gradient(180deg, rgba(255,255,255,0.12), rgba(255,255,255,0));
-mix-blend-mode: screen;
-opacity: 0.55;
-pointer-events: none;
-}
-.polaroid::after {
-content: ‘’;
-position: absolute;
-inset: 0;
-background-image:
-radial-gradient(rgba(60,40,40,0.055) 0.5px, transparent 0.6px),
-radial-gradient(rgba(255,255,255,0.18) 0.5px, transparent 0.6px);
-background-position: 0 0, 8px 9px;
-background-size: 11px 11px, 13px 13px;
-opacity: 0.18;
-mix-blend-mode: multiply;
-pointer-events: none;
-}
-.pw:nth-child(1) .polaroid { transform: rotate(-7deg); }
-.pw:nth-child(2) .polaroid { transform: rotate(7deg); }
+.pw:nth-child(1) .polaroid { transform: rotate(-3.5deg); }
+.pw:nth-child(2) .polaroid { transform: rotate(3deg); }
 
 .polaroid-photo {
-width: 100%;
-aspect-ratio: 1 / 1.05;
-background: var(–photo-bg);
-display: flex;
-align-items: center;
-justify-content: center;
-overflow: hidden;
-position: relative;
-filter: grayscale(1) contrast(1.06) brightness(0.98);
-}
-.polaroid-photo::before {
-content: ‘’;
-position: absolute;
-inset: 0;
-background: linear-gradient(180deg, rgba(255,255,255,0.14), rgba(0,0,0,0.04));
-pointer-events: none;
-z-index: 2;
-}
-.polaroid-photo::after {
-content: ‘’;
-position: absolute;
-inset: 0;
-background-image:
-radial-gradient(rgba(255,255,255,0.15) 0.5px, transparent 0.8px),
-radial-gradient(rgba(0,0,0,0.08) 0.5px, transparent 0.8px);
-background-size: 10px 10px, 12px 12px;
-background-position: 0 0, 5px 6px;
-opacity: 0.16;
-mix-blend-mode: soft-light;
-pointer-events: none;
-z-index: 2;
-}
-.pw:nth-child(2) .polaroid-photo::before {
-background:
-linear-gradient(180deg, rgba(255,255,255,0.12), rgba(0,0,0,0.03)),
-linear-gradient(62deg, rgba(255,120,214,0.22) 58%, rgba(255,247,155,0.18) 78%, rgba(177,255,173,0.2) 95%);
+  width: 100%;
+  aspect-ratio: 1 / 1.05;
+  background: var(--photo-bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  position: relative;
 }
 .polaroid-photo svg { width: 58%; height: 58%; }
 .polaroid-photo img {
-width: 100%;
-height: 100%;
-object-fit: cover;
-display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
 }
-.polaroid-photo.has-image { background: #e8e0d8; }
-.polaroid-photo.has-image .photo-placeholder { display: none; }
+.polaroid-photo.has-image {
+  background: #e8e0d8;
+}
+.polaroid-photo.has-image .photo-placeholder {
+  display: none;
+}
 
 .polaroid-name {
-font-family: ‘Caveat’, ‘Marck Script’, cursive;
-font-size: clamp(30px, 8vw, 44px);
-color: rgba(35, 25, 30, 0.9);
-text-align: center;
-margin-top: clamp(1px, 0.5vw, 3px);
-line-height: 0.95;
-letter-spacing: 0.01em;
+  font-family: 'Caveat', 'Marck Script', cursive;
+  font-size: clamp(28px, 7vw, 40px);
+  color: #4a3540;
+  text-align: center;
+  margin-top: clamp(6px, 1.6vw, 10px);
+  line-height: 0.92;
+  letter-spacing: 0.01em;
 }
-.pw:nth-child(1) .polaroid-name { transform: rotate(-4deg) translateX(-2px); }
-.pw:nth-child(2) .polaroid-name { transform: rotate(-2deg) translateX(1px); color: rgba(141, 97, 122, 0.74); }
 
 /* ══════════════════════════════════════
-STORY TEXT
+   STORY TEXT
 ══════════════════════════════════════ */
 .story-headline {
-font-size: var(–fs-body);
-font-weight: 400;
-color: var(–text-dark);
+  font-size: var(--fs-body);
+  font-weight: 400;
+  color: var(--text-dark);
 }
 
 .story-body {
-font-size: var(–fs-body);
-line-height: 1.85;
-color: var(–text-mid);
+  font-size: var(--fs-body);
+  line-height: 1.85;
+  color: var(--text-mid);
 }
-.red { color: var(–fig); }
+.red { color: var(--fig); }
 
 .tagline {
-font-style: italic;
-font-size: var(–fs-body);
-color: var(–text-mid);
+  font-style: italic;
+  font-size: var(--fs-body);
+  color: var(--text-mid);
 }
 
 /* ══════════════════════════════════════
-CALENDAR
+   CALENDAR
 ══════════════════════════════════════ */
 .month-title {
-font-family: ‘Cormorant Garamond’, serif;
-font-weight: 600;
-font-size: var(–fs-h1);
-letter-spacing: 0.22em;
-text-transform: uppercase;
-color: var(–fig);
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 600;
+  font-size: var(--fs-h1);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--fig);
 }
 
-.cal-wrap { width: 100%; max-width: 300px; }
+.cal-wrap {
+  width: 100%;
+  max-width: 320px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(10px, 2vw, 14px);
+}
 
 .cal-grid {
-display: grid;
-grid-template-columns: repeat(7, 1fr);
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  row-gap: clamp(8px, 2vw, 12px);
 }
 
 .ch {
-font-family: ‘Jost’, sans-serif;
-font-weight: 300;
-font-size: var(–fs-xs);
-color: var(–text-dark);
-text-align: center;
-padding: clamp(4px, 1.2vw, 7px) 0;
+  font-family: 'Jost', sans-serif;
+  font-weight: 300;
+  font-size: var(--fs-xs);
+  color: var(--text-dark);
+  text-align: center;
 }
 
 .cd {
-font-family: ‘Jost’, sans-serif;
-font-weight: 200;
-font-size: clamp(12px, 3.2vw, 15px);
-color: var(–text-dark);
-text-align: center;
-padding: clamp(5px, 1.4vw, 8px) 0;
-position: relative;
-z-index: 0;
+  font-family: 'Jost', sans-serif;
+  font-weight: 300;
+  font-size: clamp(12px, 3.2vw, 16px);
+  color: var(--text-dark);
+  text-align: center;
+  position: relative;
+  min-height: 54px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.cd.hl { color: #fff; font-weight: 400; }
-.cd.hl::before {
-content: ‘♥’;
-position: absolute;
-left: 50%;
-top: 54%;
-transform: translate(-50%, -50%);
-color: var(–fig);
-font-size: clamp(34px, 8vw, 46px);
-line-height: 1;
-z-index: -1;
-text-shadow: 0 2px 6px rgba(123,31,58,0.18);
+.cd .date-num {
+  position: relative;
+  z-index: 2;
 }
 
-.cal-heart {
-text-align: center;
-font-size: clamp(20px, 5.5vw, 28px);
-color: var(–fig);
-line-height: 1.1;
-margin-top: clamp(8px, 2vw, 12px);
+.cd.heart-date svg {
+  position: absolute;
+  width: clamp(38px, 10vw, 52px);
+  height: auto;
+  top: -4px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1;
+}
+
+.cd.heart-date path {
+  fill: none;
+  stroke: var(--fig);
+  stroke-width: 2.4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.cal-month-note {
+  align-self: flex-end;
+  margin-right: clamp(10px, 4vw, 22px);
+  margin-top: -10px;
+  font-family: 'Caveat', 'Marck Script', cursive;
+  font-size: clamp(24px, 6vw, 32px);
+  color: var(--fig);
+  transform: rotate(-8deg);
 }
 
 .cal-year {
-font-family: ‘Jost’, sans-serif;
-font-weight: 200;
-font-size: clamp(16px, 4.5vw, 22px);
-letter-spacing: 0.42em;
-text-align: center;
-color: var(–text-dark);
+  font-family: 'Jost', sans-serif;
+  font-weight: 200;
+  font-size: clamp(16px, 4.5vw, 22px);
+  letter-spacing: 0.42em;
+  text-align: center;
+  color: var(--text-dark);
+}
+
+.timeline {
+  width: 100%;
+  max-width: 310px;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(14px, 3vw, 18px);
+  margin-top: clamp(6px, 2vw, 12px);
+}
+
+.timeline-item {
+  display: grid;
+  grid-template-columns: 74px 1fr;
+  column-gap: 16px;
+  align-items: start;
+  text-align: left;
+}
+
+.timeline-time {
+  font-family: 'Jost', sans-serif;
+  font-weight: 300;
+  font-size: clamp(18px, 4.8vw, 24px);
+  color: var(--text-mid);
+  line-height: 1;
+  padding-top: 2px;
+}
+
+.timeline-content {
+  border-left: 1.5px solid rgba(123,31,58,0.28);
+  padding-left: 14px;
+}
+
+.timeline-title {
+  font-family: 'Caveat', 'Marck Script', cursive;
+  font-size: clamp(28px, 7vw, 38px);
+  color: var(--text-dark);
+  line-height: 0.95;
+  margin-bottom: 6px;
+}
+
+.timeline-desc {
+  font-size: var(--fs-body);
+  line-height: 1.6;
+  color: var(--text-mid);
 }
 
 /* ══════════════════════════════════════
-BOTTOM PARAGRAPHS
+   BOTTOM PARAGRAPHS
 ══════════════════════════════════════ */
 .bottom-para {
-font-size: var(–fs-body);
-line-height: 1.85;
-color: var(–text-mid);
-max-width: 90%;
+  font-size: var(--fs-body);
+  line-height: 1.85;
+  color: var(--text-mid);
+  max-width: 90%;
 }
-.bottom-para strong { font-weight: 700; color: var(–text-dark); }
+.bottom-para strong { font-weight: 700; color: var(--text-dark); }
 
 /* ══════════════════════════════════════
-DIVIDER
+   DIVIDER
 ══════════════════════════════════════ */
 .divider {
-width: 100%;
-height: 1px;
-background: linear-gradient(to right, transparent, var(–champagne), transparent);
-flex-shrink: 0;
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--champagne), transparent);
+  flex-shrink: 0;
 }
 
 /* ══════════════════════════════════════
-PAGE 2
+   PAGE 2 — LOCATION / DRESSCODE / WISHES
 ══════════════════════════════════════ */
 .section-title {
-font-family: ‘Cormorant Garamond’, serif;
-font-weight: 600;
-font-size: var(–fs-h1);
-letter-spacing: 0.18em;
-text-transform: uppercase;
-color: var(–text-dark);
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 600;
+  font-size: var(--fs-h1);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--text-dark);
 }
 
 .section-body {
-font-size: var(–fs-body);
-line-height: 1.8;
-color: var(–text-mid);
-max-width: 90%;
+  font-size: var(--fs-body);
+  line-height: 1.8;
+  color: var(--text-mid);
+  max-width: 90%;
 }
 
-.dresscode-palette {
-width: 100%;
-display: grid;
-grid-template-columns: repeat(3, minmax(0, 1fr));
-gap: clamp(10px, 3vw, 16px);
-margin-top: clamp(2px, 1vw, 6px);
-margin-bottom: clamp(6px, 2vw, 10px);
-}
-
-.palette-chip {
-display: flex;
-flex-direction: column;
-align-items: center;
-gap: 6px;
-}
-
-.palette-swatch {
-width: clamp(74px, 20vw, 94px);
-aspect-ratio: 1 / 1;
-border-radius: 999px;
-display: flex;
-align-items: center;
-justify-content: center;
-text-align: center;
-padding: 10px;
-box-shadow: inset 0 0 0 1px rgba(255,255,255,0.35);
-}
-
-.palette-swatch span {
-font-family: ‘Cormorant Garamond’, serif;
-font-size: clamp(14px, 3.6vw, 18px);
-line-height: 1.05;
-}
-
-.palette-label {
-font-family: ‘Jost’, sans-serif;
-font-size: clamp(10px, 2.8vw, 12px);
-letter-spacing: 0.08em;
-text-transform: uppercase;
-color: var(–text-mid);
-}
-
-.palette-fig { background: #7b1f3a; color: #fff; }
-.palette-wisteria { background: #c8bad3; color: #fff; }
-.palette-dusty-rose { background: #cf8a90; color: #fff; }
-.palette-champagne { background: #ead9d1; color: #5b494b; }
-.palette-green-moss { background: #b8b28e; color: #fff; }
-.palette-olive { background: #8c8a58; color: #fff; }
-
+/* Map */
 .map-wrap {
-width: 100%;
-background: var(–map-bg);
-position: relative;
-overflow: hidden;
+  width: 100%;
+  background: var(--map-bg);
+  position: relative;
+  overflow: hidden;
 }
 .map-wrap svg { display: block; width: 100%; height: auto; }
 .map-pin {
-position: absolute;
-top: 44%;
-left: 58%;
-transform: translate(-50%, -50%);
-font-size: clamp(22px, 6vw, 30px);
-color: var(–fig);
-filter: drop-shadow(0 2px 4px rgba(0,0,0,0.25));
-pointer-events: none;
+  position: absolute;
+  top: 44%;
+  left: 58%;
+  transform: translate(-50%, -50%);
+  font-size: clamp(22px, 6vw, 30px);
+  color: var(--fig);
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.25));
+  pointer-events: none;
 }
 
+/* RSVP box */
 .rsvp-box {
-border: 1.5px solid var(–wisteria);
-border-radius: clamp(6px, 2vw, 10px);
-padding: var(–sp-sm) var(–sp-md);
-font-size: var(–fs-body);
-line-height: 1.75;
-color: var(–text-mid);
-width: 100%;
-text-align: center;
+  border: 1.5px solid var(--wisteria);
+  border-radius: clamp(6px, 2vw, 10px);
+  padding: var(--sp-sm) var(--sp-md);
+  font-size: var(--fs-body);
+  line-height: 1.75;
+  color: var(--text-mid);
+  width: 100%;
+  text-align: center;
 }
 
+/* RSVP button */
 .rsvp-btn {
-display: block;
-width: 100%;
-background: var(–fig);
-color: #fff;
-font-family: ‘Jost’, sans-serif;
-font-weight: 300;
-font-size: var(–fs-xs);
-letter-spacing: 0.28em;
-text-transform: uppercase;
-border: none;
-padding: clamp(14px, 4vw, 20px) 0;
-cursor: pointer;
-transition: background 0.25s;
--webkit-appearance: none;
+  display: block;
+  width: 100%;
+  background: var(--fig);
+  color: #fff;
+  font-family: 'Jost', sans-serif;
+  font-weight: 300;
+  font-size: var(--fs-xs);
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  border: none;
+  padding: clamp(14px, 4vw, 20px) 0;
+  cursor: pointer;
+  transition: background 0.25s;
+  -webkit-appearance: none;
 }
-.rsvp-btn:hover, .rsvp-btn:active { background: var(–fig-light); }
+.rsvp-btn:hover, .rsvp-btn:active { background: var(--fig-light); }
 
+/* Footer */
 .footer-line {
-font-family: ‘Cormorant Garamond’, serif;
-font-style: italic;
-font-size: var(–fs-sub);
-color: var(–fig-light);
-text-align: center;
-padding: var(–sp-md) var(–sp-sm) var(–sp-lg);
-letter-spacing: 0.06em;
-flex-shrink: 0;
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: var(--fs-sub);
+  color: var(--fig-light);
+  text-align: center;
+  padding: var(--sp-md) var(--sp-sm) var(--sp-lg);
+  letter-spacing: 0.06em;
+  flex-shrink: 0;
 }
 
 /* ══════════════════════════════════════
-SCROLL REVEAL
+   SCROLL REVEAL
 ══════════════════════════════════════ */
 .reveal {
-opacity: 0;
-transform: translateY(18px);
-transition: opacity 0.65s ease, transform 0.65s ease;
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 0.65s ease, transform 0.65s ease;
 }
 .reveal.visible { opacity: 1; transform: none; }
 .d1 { transition-delay: 0.1s; }
 .d2 { transition-delay: 0.22s; }
 .d3 { transition-delay: 0.34s; }
 </style>
-
 </head>
 <body>
 <div class="card">
 
-<!-- ═══════════ PAGE 1 ═══════════ -->
+  <!-- ═══════════ PAGE 1 ═══════════ -->
+  <div class="page">
 
-<div class="page">
+    <!-- Polaroids -->
+    <div class="polaroid-row reveal">
+      <!-- Жених -->
+      <div class="pw">
+        <div class="label-row">
+          <span class="label-text">Жених</span>
+          <span class="label-arrow" aria-hidden="true">
+            <svg class="hand-arrow" viewBox="0 0 40 34" xmlns="http://www.w3.org/2000/svg">
+              <path d="M35 4 C24 7, 17 13, 15 20 C13.8 24, 11 27, 6 30" />
+              <path d="M6 30 L12 29" />
+              <path d="M6 30 L8 24" />
+            </svg>
+          </span>
+        </div>
+        <div class="polaroid">
+          <div class="polaroid-photo has-image">
+            <!-- Вставьте фото жениха сюда: замените groom-photo.jpg на свой файл -->
+            <img src="groom-photo.jpg" alt="Фото Игоря" onerror="this.style.display='none'; this.parentElement.classList.remove('has-image');">
+            <div class="photo-placeholder">
+              <svg viewBox="0 0 70 85" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="35" cy="18" r="12" fill="#4a2830" opacity="0.55"/>
+                <ellipse cx="35" cy="60" rx="15" ry="20" fill="#4a2830" opacity="0.42"/>
+                <line x1="20" y1="52" x2="10" y2="74" stroke="#4a2830" stroke-width="5" stroke-linecap="round" opacity="0.38"/>
+                <line x1="50" y1="52" x2="60" y2="74" stroke="#4a2830" stroke-width="5" stroke-linecap="round" opacity="0.38"/>
+              </svg>
+            </div>
+          </div>
+          <p class="polaroid-name">Игорь</p>
+        </div>
+      </div>
+      <br><br>
 
-```
-<!-- Polaroids -->
-<div class="polaroid-row reveal">
-<!-- Жених -->
-<div class="pw">
-<div class="label-row">
-<span class="label-arrow" aria-hidden="true">
-<svg class="hand-arrow" viewBox="0 0 44 34" xmlns="http://www.w3.org/2000/svg">
-<path d="M37 4 C24 10, 16 15, 11 23 C9 26, 7 28, 4 30" />
-<path d="M4 30 L11 29" />
-<path d="M4 30 L7 23" />
-</svg>
-</span>
-<span class="label-text">Жених</span>
-</div>
-<div class="polaroid">
-<div class="polaroid-photo has-image">
-<img src="groom-photo.png" alt="Фото Игоря" onerror="this.style.display='none'; this.parentElement.classList.remove('has-image');">
-<div class="photo-placeholder">
-<svg viewBox="0 0 70 85" fill="none" xmlns="http://www.w3.org/2000/svg">
-<circle cx="35" cy="18" r="12" fill="#4a2830" opacity="0.55"/>
-<ellipse cx="35" cy="60" rx="15" ry="20" fill="#4a2830" opacity="0.42"/>
-<line x1="20" y1="52" x2="10" y2="74" stroke="#4a2830" stroke-width="5" stroke-linecap="round" opacity="0.38"/>
-<line x1="50" y1="52" x2="60" y2="74" stroke="#4a2830" stroke-width="5" stroke-linecap="round" opacity="0.38"/>
-</svg>
-</div>
-</div>
-<p class="polaroid-name">Игорь</p>
-</div>
-</div>
+      <!-- Невеста -->
+      <div class="pw">
+        <div class="label-row">
+          <span class="label-arrow" aria-hidden="true">
+            <svg class="hand-arrow" viewBox="0 0 40 34" xmlns="http://www.w3.org/2000/svg">
+              <path d="M35 4 C24 7, 17 13, 15 20 C13.8 24, 11 27, 6 30" />
+              <path d="M6 30 L12 29" />
+              <path d="M6 30 L8 24" />
+            </svg>
+          </span>
+          <span class="label-text">Невеста</span>
+        </div>
+        <div class="polaroid">
+          <div class="polaroid-photo has-image">
+            <!-- Вставьте фото невесты сюда: замените bride-photo.jpg на свой файл -->
+            <img src="bride-photo.jpg" alt="Фото Алины" onerror="this.style.display='none'; this.parentElement.classList.remove('has-image');">
+            <div class="photo-placeholder">
+              <svg viewBox="0 0 70 85" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="35" cy="16" r="12" fill="#4a2830" opacity="0.55"/>
+                <rect x="24" y="28" width="22" height="15" rx="3" fill="#4a2830" opacity="0.42"/>
+                <path d="M18 44 Q35 38 52 44 L60 84 Q35 90 10 84 Z" fill="#4a2830" opacity="0.38"/>
+              </svg>
+            </div>
+          </div>
+          <p class="polaroid-name">Алина</p>
+        </div>
+      </div>
+    </div>
 
-<!-- Невеста -->
-<div class="pw">
-<div class="label-row">
-<span class="label-text">Невеста</span>
-<span class="label-arrow" aria-hidden="true">
-<svg class="hand-arrow" viewBox="0 0 54 44" xmlns="http://www.w3.org/2000/svg">
-<path d="M8 6 C20 7, 31 11, 38 18 C43 23, 45 30, 40 37" />
-<path d="M40 37 L34 33" />
-<path d="M40 37 L42 29" />
-</svg>
-</span>
-</div>
-<div class="polaroid">
-<div class="polaroid-photo has-image">
-<img src="bride-photo.png" alt="Фото Алины" onerror="this.style.display='none'; this.parentElement.classList.remove('has-image');">
-<div class="photo-placeholder">
-<svg viewBox="0 0 70 85" fill="none" xmlns="http://www.w3.org/2000/svg">
-<circle cx="35" cy="16" r="12" fill="#4a2830" opacity="0.55"/>
-<rect x="24" y="28" width="22" height="15" rx="3" fill="#4a2830" opacity="0.42"/>
-<path d="M18 44 Q35 38 52 44 L60 84 Q35 90 10 84 Z" fill="#4a2830" opacity="0.38"/>
-</svg>
-</div>
-</div>
-<p class="polaroid-name">Алина</p>
-</div>
-</div>
-</div>
+    <!-- Story text -->
+    <p class="story-headline reveal d1">Да-да, это мы!</p>
 
-<!-- Story text -->
-<p class="story-headline reveal d1">Да-да, это мы!</p>
+    <p class="story-body reveal d2">
+      Когда-то мы были детьми, беззаботными и весёлыми.<br>
+      А потом выросли, нашли друг друга...<br>
+      и поняли, что хотим быть вместе <span class="red">навсегда!</span>
+    </p>
+    <div class="divider"></div>
 
-<p class="story-body reveal d2">
-Когда-то мы были детьми, беззаботными и весёлыми.<br>
-А потом выросли, нашли друг друга...<br>
-и поняли, что хотим быть вместе <span class="red">навсегда!</span>
-</p>
+    <p class="timeline-title">Дорогие гости</p>
+    <p class="tagline reveal d2">Мы приглашаем вас разделить с нами радостный день, в который мы станем <span class="red">семьей!</span></p>
 
-<p class="tagline reveal d2">Наше «<span class="red">навсегда</span>» начнётся...</p>
 
-<!-- Month -->
-<p class="month-title reveal d3">Июнь</p>
+  
+    <!-- Calendar -->
+    <div class="cal-wrap reveal d3">
+      <div class="cal-grid">
+        <div class="ch">Пн</div><div class="ch">Вт</div><div class="ch">Ср</div>
+        <div class="ch">Чт</div><div class="ch">Пт</div><div class="ch">Сб</div><div class="ch">Вс</div>
 
-<!-- Calendar — June 2026 starts on Monday -->
-<div class="cal-wrap reveal d3">
-<div class="cal-grid">
-<div class="ch">Пн</div><div class="ch">Вт</div><div class="ch">Ср</div>
-<div class="ch">Чт</div><div class="ch">Пт</div><div class="ch">Сб</div><div class="ch">Вс</div>
+        <div class="cd"><span class="date-num">15</span></div>
+        <div class="cd"><span class="date-num">16</span></div>
+        <div class="cd"><span class="date-num">17</span></div>
+        <div class="cd"><span class="date-num">18</span></div>
+        <div class="cd"><span class="date-num">19</span></div>
+        <div class="cd heart-date">
+          <svg viewBox="0 0 44 54" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M22 49 C20 43, 7 34, 7 22 C7 14, 12 9, 18 9 C21 9, 24 10.5, 26 13 C28 10.5, 31 9, 34 9 C40 9, 45 14, 45 22 C45 34, 32 43, 30 49" transform="translate(-4 0)"/>
+          </svg>
+          <span class="date-num">20</span>
+        </div>
+        <div class="cd"><span class="date-num">21</span></div>
+      </div>
+      <div class="cal-month-note">июнь</div>
+    </div>
+    <div class="divider"></div>
 
-<div class="cd">01</div><div class="cd">02</div><div class="cd">03</div>
-<div class="cd">04</div><div class="cd">05</div><div class="cd">06</div><div class="cd">07</div>
+    <div class="timeline reveal d3">
+      <div class="timeline-item">
+        <div class="timeline-time">15:00</div>
+        <div class="timeline-content">
+          <div class="timeline-title">Сбор гостей</div>
+          <div class="timeline-desc">Встретимся, обнимемся и настроимся на красивый вечер вместе.</div>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-time">16:00</div>
+        <div class="timeline-content">
+          <div class="timeline-title">Церемония</div>
+          <div class="timeline-desc">Самый трогательный момент дня, когда мы скажем друг другу «да».</div>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-time">17:00</div>
+        <div class="timeline-content">
+          <div class="timeline-title">Банкет</div>
+          <div class="timeline-desc">Праздничный ужин, тёплые слова, улыбки и много радости.</div>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-time">до утра</div>
+        <div class="timeline-content">
+          <div class="timeline-title">Танцы</div>
+          <div class="timeline-desc">Будем танцевать, веселиться и создавать воспоминания до самого рассвета.</div>
+        </div>
+      </div>
+    </div>
 
-<div class="cd">08</div><div class="cd">09</div><div class="cd">10</div>
-<div class="cd">11</div><div class="cd">12</div><div class="cd">13</div><div class="cd">14</div>
 
-<div class="cd">15</div><div class="cd">16</div><div class="cd">17</div>
-<div class="cd">18</div><div class="cd">19</div><div class="cd hl">20</div><div class="cd">21</div>
-</div>
-<div class="cal-heart">♥</div>
-<div class="cal-year">2 0 2 6</div>
-</div>
+  </div><!-- /page 1 -->
 
-<!-- Bottom story -->
-<p class="bottom-para reveal">
-Мы верим, что этот день послужит началом нашей счастливой семейной жизни.
-</p>
-<p class="bottom-para reveal d1">
-Поэтому не представляем наш праздник без <strong>Вашего</strong> участия. Разделите с нами это главное событие лета.
-</p>
-```
+  <div class="divider"></div>
 
-</div><!-- /page 1 -->
+  <!-- ═══════════ PAGE 2 ═══════════ -->
+  <div class="page">
 
-<div class="divider"></div>
+    <!-- ЛОКАЦИЯ -->
+    <p class="section-title reveal">Локация</p>
+    <p class="section-body reveal d1">
+      Место — Ozo Club House<br>
+      Rīga, Mīlgrāvja iela 16
+    </p>
 
-<!-- ═══════════ PAGE 2 ═══════════ -->
+    <!-- Illustrated map -->
+    <div class="map-wrap reveal d2">
+      <svg viewBox="0 0 400 175" xmlns="http://www.w3.org/2000/svg">
+        <rect width="400" height="175" fill="#d4cec6"/>
+        <!-- Water (Daugava river feel) -->
+        <path d="M0 118 Q60 92 140 112 Q220 132 300 106 Q358 88 400 100 L400 175 L0 175Z" fill="#bbb4ac" opacity="0.75"/>
+        <!-- Roads -->
+        <line x1="0"   y1="76" x2="400" y2="76"  stroke="#ede8e0" stroke-width="4.5"/>
+        <line x1="0"   y1="94" x2="400" y2="94"  stroke="#ede8e0" stroke-width="2.5"/>
+        <line x1="115" y1="0"  x2="98"  y2="175" stroke="#ede8e0" stroke-width="3.5"/>
+        <line x1="258" y1="0"  x2="272" y2="175" stroke="#ede8e0" stroke-width="2.5"/>
+        <line x1="0"   y1="50" x2="400" y2="54"  stroke="#ede8e0" stroke-width="1.5" opacity="0.55"/>
+        <line x1="185" y1="0"  x2="190" y2="80"  stroke="#ede8e0" stroke-width="1.5" opacity="0.55"/>
+        <!-- City blocks -->
+        <rect x="18"  y="16"  width="74" height="28" rx="2" fill="#c6c0b8" opacity="0.85"/>
+        <rect x="130" y="12"  width="98" height="24" rx="2" fill="#c6c0b8" opacity="0.85"/>
+        <rect x="288" y="18"  width="88" height="30" rx="2" fill="#c6c0b8" opacity="0.85"/>
+        <rect x="18"  y="118" width="62" height="38" rx="2" fill="#c6c0b8" opacity="0.6"/>
+        <rect x="308" y="114" width="80" height="36" rx="2" fill="#c6c0b8" opacity="0.6"/>
+        <!-- Street label -->
+        <text x="144" y="70" font-family="sans-serif" font-size="7.5" fill="#7a7470" letter-spacing="0.4">Mīlgrāvja iela</text>
+      </svg>
+      <div class="map-pin">♥</div>
+    </div>
 
-<div class="page">
+    <!-- ДРЕСС-КОД -->
+    <p class="section-title reveal">Дресс-код</p>
+    <p class="section-body reveal d1">
+      Мы будем рады, если вы поддержите праздничную атмосферу и выберете нарядный, элегантный образ. Главное — чувствовать себя комфортно и выглядеть уместно!
+    </p>
 
-```
-<!-- ЛОКАЦИЯ -->
-<p class="section-title reveal">Локация</p>
-<p class="section-body reveal d1">
-Время — 14:00<br>
-Место — Ozo Club House<br>
-Rīga, Mīlgrāvja iela 16
-</p>
+    <!-- ПОЖЕЛАНИЯ -->
+    <p class="section-title reveal">Пожелания</p>
+    <p class="section-body reveal d1">
+      В качестве подарка будем благодарны за вклад в бюджет нашей молодой семьи
+    </p>
 
-<!-- Illustrated map -->
-<div class="map-wrap reveal d2">
-<svg viewBox="0 0 400 175" xmlns="http://www.w3.org/2000/svg">
-<rect width="400" height="175" fill="#d4cec6"/>
-<path d="M0 118 Q60 92 140 112 Q220 132 300 106 Q358 88 400 100 L400 175 L0 175Z" fill="#bbb4ac" opacity="0.75"/>
-<line x1="0" y1="76" x2="400" y2="76" stroke="#ede8e0" stroke-width="4.5"/>
-<line x1="0" y1="94" x2="400" y2="94" stroke="#ede8e0" stroke-width="2.5"/>
-<line x1="115" y1="0" x2="98" y2="175" stroke="#ede8e0" stroke-width="3.5"/>
-<line x1="258" y1="0" x2="272" y2="175" stroke="#ede8e0" stroke-width="2.5"/>
-<line x1="0" y1="50" x2="400" y2="54" stroke="#ede8e0" stroke-width="1.5" opacity="0.55"/>
-<line x1="185" y1="0" x2="190" y2="80" stroke="#ede8e0" stroke-width="1.5" opacity="0.55"/>
-<rect x="18" y="16" width="74" height="28" rx="2" fill="#c6c0b8" opacity="0.85"/>
-<rect x="130" y="12" width="98" height="24" rx="2" fill="#c6c0b8" opacity="0.85"/>
-<rect x="288" y="18" width="88" height="30" rx="2" fill="#c6c0b8" opacity="0.85"/>
-<rect x="18" y="118" width="62" height="38" rx="2" fill="#c6c0b8" opacity="0.6"/>
-<rect x="308" y="114" width="80" height="36" rx="2" fill="#c6c0b8" opacity="0.6"/>
-<text x="144" y="70" font-family="sans-serif" font-size="7.5" fill="#7a7470" letter-spacing="0.4">Mīlgrāvja iela</text>
-</svg>
-<div class="map-pin">♥</div>
-</div>
+    <!-- RSVP note box -->
+    <div class="rsvp-box reveal d2">
+      Пожалуйста, подтвердите своё присутствие до 1 мая, чтобы мы могли планировать нашу свадьбу наилучшим образом!
+    </div>
 
-<!-- ДРЕСС-КОД -->
-<p class="section-title reveal">Дресс-код</p>
-<p class="section-body reveal d1">
-Мы будем рады, если вы поддержите праздничную атмосферу и выберете нарядный, элегантный образ в цветах нашей свадьбы.
-</p>
+    <!-- RSVP button -->
+    <button class="rsvp-btn reveal d3" onclick="alert('Спасибо! Мы рады вашему присутствию 🤍')">
+      Подтвердить присутствие
+    </button>
 
-<div class="dresscode-palette reveal d2" aria-label="Палитра дресс-кода">
-<div class="palette-chip">
-<div class="palette-swatch palette-fig"><span>Fig /<br>Berry</span></div>
-<div class="palette-label">Fig Berry</div>
-</div>
-<div class="palette-chip">
-<div class="palette-swatch palette-wisteria"><span>Wisteria</span></div>
-<div class="palette-label">Wisteria</div>
-</div>
-<div class="palette-chip">
-<div class="palette-swatch palette-dusty-rose"><span>Dusty<br>Rose</span></div>
-<div class="palette-label">Dusty Rose</div>
-</div>
-<div class="palette-chip">
-<div class="palette-swatch palette-champagne"><span>Champagne</span></div>
-<div class="palette-label">Champagne</div>
-</div>
-<div class="palette-chip">
-<div class="palette-swatch palette-green-moss"><span>Green<br>Moss</span></div>
-<div class="palette-label">Green Moss</div>
-</div>
-<div class="palette-chip">
-<div class="palette-swatch palette-olive"><span>Olive</span></div>
-<div class="palette-label">Olive</div>
-</div>
-</div>
+  </div><!-- /page 2 -->
 
-<p class="section-body reveal d2">
-Подойдут оттенки ягодного, лавандового, пыльно-розового, шампань, мха и оливы. Главное — чувствовать себя комфортно и выглядеть уместно.
-</p>
-
-<!-- ПОЖЕЛАНИЯ -->
-<p class="section-title reveal">Пожелания</p>
-<p class="section-body reveal d1">
-В качестве подарка будем благодарны за вклад в бюджет нашей молодой семьи
-</p>
-
-<!-- RSVP note box -->
-<div class="rsvp-box reveal d2">
-Пожалуйста, подтвердите своё присутствие до 1 мая, чтобы мы могли планировать нашу свадьбу наилучшим образом!
-</div>
-
-<!-- RSVP button -->
-<button class="rsvp-btn reveal d3" onclick="alert('Спасибо! Мы рады вашему присутствию 🤍')">
-Подтвердить присутствие
-</button>
-```
-
-</div><!-- /page 2 -->
-
-<p class="footer-line reveal">До встречи на нашем торжестве ♥</p>
+  <p class="footer-line reveal">До встречи на нашем торжестве ♥</p>
 
 </div><!-- /card -->
 
 <script>
-const items = document.querySelectorAll('.reveal');
+  // Make all .reveal elements visible on load if already in viewport,
+  // then watch for scroll — handles both mobile and desktop
+  const items = document.querySelectorAll('.reveal');
 
-if ('IntersectionObserver' in window) {
-const io = new IntersectionObserver(entries => {
-entries.forEach(e => {
-if (e.isIntersecting) {
-e.target.classList.add('visible');
-io.unobserve(e.target);
-}
-});
-}, { threshold: 0.08, rootMargin: '0px 0px -20px 0px' });
-items.forEach(el => io.observe(el));
-} else {
-items.forEach(el => el.classList.add('visible'));
-}
+  if ('IntersectionObserver' in window) {
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          io.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.08, rootMargin: '0px 0px -20px 0px' });
+    items.forEach(el => io.observe(el));
+  } else {
+    // Fallback: show everything immediately
+    items.forEach(el => el.classList.add('visible'));
+  }
 </script>
-
 </body>
 </html>
