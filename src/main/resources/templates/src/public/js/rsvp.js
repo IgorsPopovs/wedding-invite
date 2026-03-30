@@ -2,6 +2,8 @@
       var name = document.getElementById('name').value.trim();
       var attending = document.querySelector('input[name="attending"]:checked').value;
       var plusOne = document.getElementById('plus-one').checked ? 1 : 0;
+      var inviteCode = new URLSearchParams(window.location.search).get('guest') || 'unknown';
+
 
       if (!name) {
         document.getElementById('message').textContent = 'Please enter your name.';
@@ -11,7 +13,7 @@
       fetch('/wedding-invite/api/rsvp', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name: name, attending: parseInt(attending), plus_one: plusOne })
+        body: JSON.stringify({ name: name, attending: parseInt(attending), plus_one: plusOne, invite_code: inviteCode })
       })
       .then(function(res) { return res.json(); })
       .then(function(data) {
