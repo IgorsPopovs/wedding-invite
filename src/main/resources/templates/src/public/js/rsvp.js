@@ -27,4 +27,5 @@
       .catch(function() {
         document.getElementById('message').textContent = 'Что-то пошло не так :( Напишите нам, мы проверим :D.';
       });
+
     }
