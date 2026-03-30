@@ -2,10 +2,10 @@
   "$schema": "./node_modules/wrangler/config-schema.json",
   "name": "wedding-invite",
   "compatibility_date": "2025-09-27",
-  "main": "./dist/worker.js",           // ← webpack output
+  "main": "./dist/worker.js",
   "compatibility_flags": ["nodejs_compat"],
   "assets": {
-    "directory": "./dist",              // ← webpack output folder
+    "directory": "./dist",
     "binding": "ASSETS"
   },
   "observability": {
