@@ -8,6 +8,13 @@
     "directory": "./dist",
     "binding": "ASSETS"
   },
+  "d1_databases": [
+    {
+      "binding": "DB_BINDING",
+      "database_name": "my-db",
+      "database_id": "dc4c0a51-eaef-42d7-99b1-6bb99629d593"
+    }
+  ],
   "observability": {
     "enabled": true
   }
