@@ -654,6 +654,28 @@ body {
       Пожалуйста, подтвердите своё присутствие до 1 мая, чтобы мы могли планировать нашу свадьбу наилучшим образом!
     </div>
 
+     <h2>Will you attend?</h2>
+      <div id="rsvp-form">
+        <input type="text" id="name" placeholder="Your name" />
+        <br><br>
+        <label>
+          <input type="radio" name="attending" value="1" checked> Yes, I will attend
+        </label>
+        <br>
+        <label>
+          <input type="radio" name="attending" value="0"> No, I can't make it
+        </label>
+        <br><br>
+        <label>
+          <input type="checkbox" id="plus-one"> I'm bringing a partner
+        </label>
+        <br><br>
+        <button onclick="submitRSVP()">Send RSVP</button>
+        <p id="message"></p>
+      </div>
+
+
+
     <!-- RSVP button -->
     <button class="rsvp-btn reveal d3" onclick="alert('Спасибо! Мы рады вашему присутствию 🤍')">
       Подтвердить присутствие
@@ -684,6 +706,35 @@ body {
     // Fallback: show everything immediately
     items.forEach(el => el.classList.add('visible'));
   }
+</script>
+   <script type="module" src="js/main.js"></script>
+<script>
+function submitRSVP() {
+  var name = document.getElementById('name').value.trim();
+  var attending = document.querySelector('input[name="attending"]:checked').value;
+  var plusOne = document.getElementById('plus-one').checked ? 1 : 0;
+
+  if (!name) {
+    document.getElementById('message').textContent = 'Please enter your name.';
+    return;
+  }
+
+  fetch('/wedding-invite/api/rsvp', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ name: name, attending: parseInt(attending), plus_one: plusOne })
+  })
+  .then(function(res) { return res.json(); })
+  .then(function(data) {
+    if (data.ok) {
+      document.getElementById('message').textContent = 'Thank you! Your RSVP has been saved.';
+      document.getElementById('rsvp-form').style.opacity = '0.5';
+    }
+  })
+  .catch(function() {
+    document.getElementById('message').textContent = 'Something went wrong. Please try again.';
+  });
+}
 </script>
 </body>
 </html>
