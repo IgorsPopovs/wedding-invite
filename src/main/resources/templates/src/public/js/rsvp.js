@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', function() {
   // Show/hide plus-one name field based on plus-one selection
   document.querySelectorAll('input[name="plus-one"]').forEach(function(radio) {
     radio.addEventListener('change', function() {
-      plusOneNameSection.style.display = this.value === '1' ? 'block' : 'none';
+      plusOneNameSection.style.display = this.value === '1' ? 'flex' : 'none';
     });
   });
 
@@ -37,7 +37,7 @@ document.addEventListener('DOMContentLoaded', function() {
             var plusOne = document.querySelector('input[name="plus-one"][value="' + data.plus_one + '"]');
             if (plusOne) plusOne.checked = true;
             if (data.plus_one === 1) {
-              plusOneNameSection.style.display = 'block';
+              plusOneNameSection.style.display = 'flex';
               document.getElementById('plus-one-name').value = data.plus_one_name || '';
             }
           }
