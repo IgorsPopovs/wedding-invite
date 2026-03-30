@@ -1,842 +1,870 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-<title>Игорь & Алина — 20 июня 2026</title>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=EB+Garamond:ital,wght@0,400;1,400&family=Jost:wght@200;300;400&family=Marck+Script&family=Caveat:wght@400;600&display=swap" rel="stylesheet">
-<style>
-/* ══════════════════════════════════════
-   RESET & BASE
-══════════════════════════════════════ */
-*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <title>Игорь & Алина — 20 июня 2026</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=EB+Garamond:ital,wght@0,400;1,400&family=Jost:wght@200;300;400&family=Marck+Script&family=Caveat:wght@400;600&display=swap"
+          rel="stylesheet">
+    <style>
+        /* ══════════════════════════════════════
+           RESET & BASE
+        ══════════════════════════════════════ */
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
 
-:root {
-  --fig:        #7b1f3a;
-  --fig-light:  #a8385a;
-  --wisteria:   #b8a5c8;
-  --champagne:  #e8d4b8;
-  --cream:      #faf7f3;
-  --white:      #ffffff;
-  --text-dark:  #2a1a1f;
-  --text-mid:   #4a3540;
-  --photo-bg:   #a89898;
-  --map-bg:     #d4cec6;
+        :root {
+          --fig:        #7b1f3a;
+          --fig-light:  #a8385a;
+          --wisteria:   #b8a5c8;
+          --champagne:  #e8d4b8;
+          --cream:      #faf7f3;
+          --white:      #ffffff;
+          --text-dark:  #2a1a1f;
+          --text-mid:   #4a3540;
+          --photo-bg:   #a89898;
+          --map-bg:     #d4cec6;
 
-  /* fluid spacing scale — works on any screen */
-  --sp-xs:  clamp(6px,  1.5vw, 10px);
-  --sp-sm:  clamp(10px, 2.5vw, 16px);
-  --sp-md:  clamp(16px, 4vw,   28px);
-  --sp-lg:  clamp(24px, 6vw,   40px);
-  --sp-xl:  clamp(32px, 8vw,   56px);
+          /* fluid spacing scale — works on any screen */
+          --sp-xs:  clamp(6px,  1.5vw, 10px);
+          --sp-sm:  clamp(10px, 2.5vw, 16px);
+          --sp-md:  clamp(16px, 4vw,   28px);
+          --sp-lg:  clamp(24px, 6vw,   40px);
+          --sp-xl:  clamp(32px, 8vw,   56px);
 
-  /* fluid type scale */
-  --fs-xs:   clamp(10px, 2.5vw, 13px);
-  --fs-sm:   clamp(13px, 3.2vw, 16px);
-  --fs-body: clamp(14px, 3.6vw, 17px);
-  --fs-sub:  clamp(16px, 4.2vw, 20px);
-  --fs-h2:   clamp(22px, 6vw,   32px);
-  --fs-h1:   clamp(26px, 7vw,   38px);
-  --fs-name: clamp(18px, 4.8vw, 24px);
-}
+          /* fluid type scale */
+          --fs-xs:   clamp(10px, 2.5vw, 13px);
+          --fs-sm:   clamp(13px, 3.2vw, 16px);
+          --fs-body: clamp(14px, 3.6vw, 17px);
+          --fs-sub:  clamp(16px, 4.2vw, 20px);
+          --fs-h2:   clamp(22px, 6vw,   32px);
+          --fs-h1:   clamp(26px, 7vw,   38px);
+          --fs-name: clamp(18px, 4.8vw, 24px);
+        }
 
-body {
-  background: #a89eb0;
-  font-family: 'EB Garamond', Georgia, serif;
-  color: var(--text-dark);
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  padding: clamp(16px, 4vw, 48px) clamp(0px, 2vw, 24px);
-}
+        body {
+          background: #a89eb0;
+          font-family: 'EB Garamond', Georgia, serif;
+          color: var(--text-dark);
+          min-height: 100vh;
+          display: flex;
+          justify-content: center;
+          align-items: flex-start;
+          padding: clamp(16px, 4vw, 48px) clamp(0px, 2vw, 24px);
+        }
 
-/* ══════════════════════════════════════
-   CARD — fills phone, caps on desktop
-══════════════════════════════════════ */
-.card {
-  background: var(--white);
-  width: 100%;
-  max-width: min(440px, 100%);
-  box-shadow: 0 8px 48px rgba(0,0,0,0.32);
-  display: flex;
-  flex-direction: column;
-}
+        /* ══════════════════════════════════════
+           CARD — fills phone, caps on desktop
+        ══════════════════════════════════════ */
+        .card {
+          background: var(--white);
+          width: 100%;
+          max-width: min(440px, 100%);
+          box-shadow: 0 8px 48px rgba(0,0,0,0.32);
+          display: flex;
+          flex-direction: column;
+        }
 
-/* on wider screens centre properly */
-@media (min-width: 520px) {
-  body { padding: 48px 24px; }
-  .card { max-width: 440px; }
-}
+        /* on wider screens centre properly */
+        @media (min-width: 520px) {
+          body { padding: 48px 24px; }
+          .card { max-width: 440px; }
+        }
 
-/* ══════════════════════════════════════
-   PAGE SECTIONS
-══════════════════════════════════════ */
-.page {
-  padding: var(--sp-lg) var(--sp-md);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  gap: var(--sp-md);
-}
+        /* ══════════════════════════════════════
+           PAGE SECTIONS
+        ══════════════════════════════════════ */
+        .page {
+          padding: var(--sp-lg) var(--sp-md);
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          text-align: center;
+          gap: var(--sp-md);
+        }
 
-/* ══════════════════════════════════════
-   POLAROIDS
-══════════════════════════════════════ */
-.polaroid-row {
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  width: 100%;
-  gap: clamp(10px, 3.2vw, 18px);
-  margin-top: clamp(4px, 1vw, 8px);
-}
+        /* ══════════════════════════════════════
+           POLAROIDS
+        ══════════════════════════════════════ */
+        .polaroid-row {
+          display: flex;
+          justify-content: center;
+          align-items: flex-start;
+          width: 100%;
+          gap: clamp(10px, 3.2vw, 18px);
+          margin-top: clamp(4px, 1vw, 8px);
+        }
 
-.pw {
-  display: flex;
-  flex-direction: column;
-  position: relative;
-}
-.pw:nth-child(1) {
-  align-items: flex-start;
-  z-index: 1;
-  margin-top: clamp(16px, 4vw, 24px);
-}
-.pw:nth-child(2) {
-  align-items: flex-end;
-  z-index: 2;
-  margin-left: clamp(-8px, -2vw, -2px);
-}
+        .pw {
+          display: flex;
+          flex-direction: column;
+          position: relative;
+        }
+        .pw:nth-child(1) {
+          align-items: flex-start;
+          z-index: 1;
+          margin-top: clamp(16px, 4vw, 24px);
+        }
+        .pw:nth-child(2) {
+          align-items: flex-end;
+          z-index: 2;
+          margin-left: clamp(-8px, -2vw, -2px);
+        }
 
-.label-row {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  margin-bottom: clamp(3px, 1vw, 6px);
-}
-.pw:nth-child(1) .label-row { padding-left: clamp(8px, 2vw, 14px); margin-bottom: clamp(6px, 1.6vw, 10px); }
-.pw:nth-child(2) .label-row { flex-direction: row-reverse; padding-right: clamp(8px, 2vw, 14px); margin-bottom: clamp(6px, 1.6vw, 10px); }
+        .label-row {
+          display: flex;
+          align-items: center;
+          gap: 6px;
+          margin-bottom: clamp(3px, 1vw, 6px);
+        }
+        .pw:nth-child(1) .label-row { padding-left: clamp(8px, 2vw, 14px); margin-bottom: clamp(6px, 1.6vw, 10px); }
+        .pw:nth-child(2) .label-row { flex-direction: row-reverse; padding-right: clamp(8px, 2vw, 14px); margin-bottom: clamp(6px, 1.6vw, 10px); }
 
-.label-text {
-  font-family: 'Marck Script', 'Cormorant Garamond', serif;
-  font-size: clamp(22px, 5.4vw, 30px);
-  color: var(--fig);
-  line-height: 0.95;
-  letter-spacing: 0.01em;
-  transform: rotate(-4deg);
-}
-.pw:nth-child(1) .label-text { transform: rotate(-8deg); }
-.pw:nth-child(2) .label-text { transform: rotate(4deg); }
+        .label-text {
+          font-family: 'Marck Script', 'Cormorant Garamond', serif;
+          font-size: clamp(22px, 5.4vw, 30px);
+          color: var(--fig);
+          line-height: 0.95;
+          letter-spacing: 0.01em;
+          transform: rotate(-4deg);
+        }
+        .pw:nth-child(1) .label-text { transform: rotate(-8deg); }
+        .pw:nth-child(2) .label-text { transform: rotate(4deg); }
 
-.label-arrow {
-  width: clamp(26px, 7vw, 38px);
-  height: auto;
-  color: var(--fig);
-  line-height: 1;
-  transform: rotate(-8deg);
-}
-.pw:nth-child(1) .label-arrow { margin-left: -4px; }
-.pw:nth-child(2) .label-arrow { transform: scaleX(-1) rotate(-10deg); margin-right: -4px; }
+        .label-arrow {
+          width: clamp(26px, 7vw, 38px);
+          height: auto;
+          color: var(--fig);
+          line-height: 1;
+          transform: rotate(-8deg);
+        }
+        .pw:nth-child(1) .label-arrow { margin-left: -4px; }
+        .pw:nth-child(2) .label-arrow { transform: scaleX(-1) rotate(-10deg); margin-right: -4px; }
 
-.hand-arrow {
-  width: 100%;
-  height: auto;
-  overflow: visible;
-}
-.hand-arrow path {
-  stroke: currentColor;
-  stroke-width: 2.6;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-  fill: none;
-}
+        .hand-arrow {
+          width: 100%;
+          height: auto;
+          overflow: visible;
+        }
+        .hand-arrow path {
+          stroke: currentColor;
+          stroke-width: 2.6;
+          stroke-linecap: round;
+          stroke-linejoin: round;
+          fill: none;
+        }
 
-.polaroid {
-  background: #f3ede6;
-  /* padding: top sides bottom — bottom is the big white space */
-  padding: clamp(7px, 2vw, 11px) clamp(7px, 2vw, 11px) clamp(28px, 8vw, 38px);
-  box-shadow: 2px 4px 18px rgba(0,0,0,0.22);
-  width: clamp(130px, 38vw, 170px);
-}
-.pw:nth-child(1) .polaroid { transform: rotate(-7deg); }
-.pw:nth-child(2) .polaroid { transform: rotate(6deg); }
+        .polaroid {
+          background: #f3ede6;
+          /* padding: top sides bottom — bottom is the big white space */
+          padding: clamp(7px, 2vw, 11px) clamp(7px, 2vw, 11px) clamp(28px, 8vw, 38px);
+          box-shadow: 2px 4px 18px rgba(0,0,0,0.22);
+          width: clamp(130px, 38vw, 170px);
+        }
+        .pw:nth-child(1) .polaroid { transform: rotate(-7deg); }
+        .pw:nth-child(2) .polaroid { transform: rotate(6deg); }
 
-.polaroid-photo {
-  width: 100%;
-  aspect-ratio: 1 / 1.05;
-  background: var(--photo-bg);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-  position: relative;
-}
-.polaroid-photo svg { width: 58%; height: 58%; }
-.polaroid-photo img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-}
-.polaroid-photo.has-image {
-  background: #e8e0d8;
-}
-.polaroid-photo.has-image .photo-placeholder {
-  display: none;
-}
+        .polaroid-photo {
+          width: 100%;
+          aspect-ratio: 1 / 1.05;
+          background: var(--photo-bg);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          overflow: hidden;
+          position: relative;
+        }
+        .polaroid-photo svg { width: 58%; height: 58%; }
+        .polaroid-photo img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          display: block;
+        }
+        .polaroid-photo.has-image {
+          background: #e8e0d8;
+        }
+        .polaroid-photo.has-image .photo-placeholder {
+          display: none;
+        }
 
-.polaroid-name {
-  font-family: 'Caveat', 'Marck Script', cursive;
-  font-size: clamp(28px, 7vw, 40px);
-  color: #4a3540;
-  text-align: center;
-  margin-top: clamp(6px, 1.6vw, 10px);
-  line-height: 0.92;
-  letter-spacing: 0.01em; 
-}
+        .polaroid-name {
+          font-family: 'Caveat', 'Marck Script', cursive;
+          font-size: clamp(28px, 7vw, 40px);
+          color: #4a3540;
+          text-align: center;
+          margin-top: clamp(6px, 1.6vw, 10px);
+          line-height: 0.92;
+          letter-spacing: 0.01em;
+        }
 
-/* ══════════════════════════════════════
-   STORY TEXT
-══════════════════════════════════════ */
-.story-headline {
-  font-size: var(--fs-body);
-  font-weight: 400;
-  color: var(--text-dark);
-}
+        /* ══════════════════════════════════════
+           STORY TEXT
+        ══════════════════════════════════════ */
+        .story-headline {
+          font-size: var(--fs-body);
+          font-weight: 400;
+          color: var(--text-dark);
+        }
 
-.story-body {
-  font-size: var(--fs-body);
-  line-height: 1.85;
-  color: var(--text-mid);
-}
-.red { color: var(--fig); }
+        .story-body {
+          font-size: var(--fs-body);
+          line-height: 1.85;
+          color: var(--text-mid);
+        }
+        .red { color: var(--fig); }
 
-.tagline {
-  font-style: italic;
-  font-size: var(--fs-body);
-  color: var(--text-mid);
-}
+        .tagline {
+          font-style: italic;
+          font-size: var(--fs-body);
+          color: var(--text-mid);
+        }
 
-/* ══════════════════════════════════════
-   CALENDAR
-══════════════════════════════════════ */
-.month-title {
-  font-family: 'Cormorant Garamond', serif;
-  font-weight: 600;
-  font-size: var(--fs-h1);
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: var(--fig);
-}
+        /* ══════════════════════════════════════
+           CALENDAR
+        ══════════════════════════════════════ */
+        .month-title {
+          font-family: 'Cormorant Garamond', serif;
+          font-weight: 600;
+          font-size: var(--fs-h1);
+          letter-spacing: 0.22em;
+          text-transform: uppercase;
+          color: var(--fig);
+        }
 
-.cal-wrap { width: 100%; max-width: 300px; }
+        .cal-wrap { width: 100%; max-width: 300px; }
 
-.cal-grid {
-  display: grid;
-  grid-template-columns: repeat(7, 1fr);
-}
+        .cal-grid {
+          display: grid;
+          grid-template-columns: repeat(7, 1fr);
+        }
 
-.ch {
-  font-family: 'Jost', sans-serif;
-  font-weight: 300;
-  font-size: var(--fs-xs);
-  color: var(--text-dark);
-  text-align: center;
-  padding: clamp(4px, 1.2vw, 7px) 0;
-}
+        .ch {
+          font-family: 'Jost', sans-serif;
+          font-weight: 300;
+          font-size: var(--fs-xs);
+          color: var(--text-dark);
+          text-align: center;
+          padding: clamp(4px, 1.2vw, 7px) 0;
+        }
 
-.cd {
-  font-family: 'Jost', sans-serif;
-  font-weight: 200;
-  font-size: clamp(12px, 3.2vw, 15px);
-  color: var(--text-dark);
-  text-align: center;
-  padding: clamp(5px, 1.4vw, 8px) 0;
-  position: relative;
-  z-index: 0;
-}
+        .cd {
+          font-family: 'Jost', sans-serif;
+          font-weight: 200;
+          font-size: clamp(12px, 3.2vw, 15px);
+          color: var(--text-dark);
+          text-align: center;
+          padding: clamp(5px, 1.4vw, 8px) 0;
+          position: relative;
+          z-index: 0;
+        }
 
-.cd.hl {
-  color: #fff;
-  font-weight: 400;
-}
-.cd.hl::before {
-  content: '♥';
-  position: absolute;
-  left: 50%;
-  top: 54%;
-  transform: translate(-50%, -50%);
-  color: var(--fig);
-  font-size: clamp(34px, 8vw, 46px);
-  line-height: 1;
-  z-index: -1;
-  text-shadow: 0 2px 6px rgba(123,31,58,0.18);
-}
+        .cd.hl {
+          color: #fff;
+          font-weight: 400;
+        }
+        .cd.hl::before {
+          content: '♥';
+          position: absolute;
+          left: 50%;
+          top: 54%;
+          transform: translate(-50%, -50%);
+          color: var(--fig);
+          font-size: clamp(34px, 8vw, 46px);
+          line-height: 1;
+          z-index: -1;
+          text-shadow: 0 2px 6px rgba(123,31,58,0.18);
+        }
 
-.cal-heart {
-  text-align: center;
-  font-size: clamp(20px, 5.5vw, 28px);
-  color: var(--fig);
-  line-height: 1.1;
-  margin-top: clamp(8px, 2vw, 12px);
-}
+        .cal-heart {
+          text-align: center;
+          font-size: clamp(20px, 5.5vw, 28px);
+          color: var(--fig);
+          line-height: 1.1;
+          margin-top: clamp(8px, 2vw, 12px);
+        }
 
-.cal-year {
-  font-family: 'Jost', sans-serif;
-  font-weight: 200;
-  font-size: clamp(16px, 4.5vw, 22px);
-  letter-spacing: 0.42em;
-  text-align: center;
-  color: var(--text-dark);
-}
+        .cal-year {
+          font-family: 'Jost', sans-serif;
+          font-weight: 200;
+          font-size: clamp(16px, 4.5vw, 22px);
+          letter-spacing: 0.42em;
+          text-align: center;
+          color: var(--text-dark);
+        }
 
-.timeline {
-  width: 100%;
-  max-width: 310px;
-  display: flex;
-  flex-direction: column;
-  gap: clamp(14px, 3vw, 18px);
-  margin-top: clamp(6px, 2vw, 12px);
-}
+        .timeline {
+          width: 100%;
+          max-width: 310px;
+          display: flex;
+          flex-direction: column;
+          gap: clamp(14px, 3vw, 18px);
+          margin-top: clamp(6px, 2vw, 12px);
+        }
 
-.timeline-item {
-  display: grid;
-  grid-template-columns: 74px 1fr;
-  column-gap: 16px;
-  align-items: start;
-  text-align: left;
-}
+        .timeline-item {
+          display: grid;
+          grid-template-columns: 74px 1fr;
+          column-gap: 16px;
+          align-items: start;
+          text-align: left;
+        }
 
-.timeline-time {
-  font-family: 'Jost', sans-serif;
-  font-weight: 300;
-  font-size: clamp(18px, 4.8vw, 24px);
-  color: var(--text-mid);
-  line-height: 1;
-  padding-top: 2px;
-}
+        .timeline-time {
+          font-family: 'Jost', sans-serif;
+          font-weight: 300;
+          font-size: clamp(18px, 4.8vw, 24px);
+          color: var(--text-mid);
+          line-height: 1;
+          padding-top: 2px;
+        }
 
-.timeline-content {
-  border-left: 1.5px solid rgba(123,31,58,0.28);
-  padding-left: 14px;
-}
+        .timeline-content {
+          border-left: 1.5px solid rgba(123,31,58,0.28);
+          padding-left: 14px;
+        }
 
-.timeline-title {
-  font-family: 'Caveat', 'Marck Script', cursive;
-  font-size: clamp(18px, 4vw, 26px);
-  color: var(--text-dark);
-  line-height: 0.95;
-  margin-bottom: 6px;
-}
+        .timeline-title {
+          font-family: 'Caveat', 'Marck Script', cursive;
+          font-size: clamp(18px, 4vw, 26px);
+          color: var(--text-dark);
+          line-height: 0.95;
+          margin-bottom: 6px;
+        }
 
-.timeline-desc {
-  font-size: var(--fs-body);
-  line-height: 1.6;
-  color: var(--text-mid);
-}
+        .timeline-desc {
+          font-size: var(--fs-body);
+          line-height: 1.6;
+          color: var(--text-mid);
+        }
 
-/* ══════════════════════════════════════
-   BOTTOM PARAGRAPHS
-══════════════════════════════════════ */
-.bottom-para {
-  font-size: var(--fs-body);
-  line-height: 1.85;
-  color: var(--text-mid);
-  max-width: 90%;
-}
-.bottom-para strong { font-weight: 700; color: var(--text-dark); }
+        /* ══════════════════════════════════════
+           BOTTOM PARAGRAPHS
+        ══════════════════════════════════════ */
+        .bottom-para {
+          font-size: var(--fs-body);
+          line-height: 1.85;
+          color: var(--text-mid);
+          max-width: 90%;
+        }
+        .bottom-para strong { font-weight: 700; color: var(--text-dark); }
 
-/* ══════════════════════════════════════
-   DIVIDER
-══════════════════════════════════════ */
-.divider {
-  width: 100%;
-  height: 1px;
-  background: linear-gradient(to right, transparent, var(--champagne), transparent);
-  flex-shrink: 0;
-}
+        /* ══════════════════════════════════════
+           DIVIDER
+        ══════════════════════════════════════ */
+        .divider {
+          width: 100%;
+          height: 1px;
+          background: linear-gradient(to right, transparent, var(--champagne), transparent);
+          flex-shrink: 0;
+        }
 
-/* ══════════════════════════════════════
-   PAGE 2 — LOCATION / DRESSCODE / WISHES
-══════════════════════════════════════ */
-.section-title {
-  font-family: 'Cormorant Garamond', serif;
-  font-weight: 600;
-  font-size: var(--fs-h1);
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--text-dark);
-}
+        /* ══════════════════════════════════════
+           PAGE 2 — LOCATION / DRESSCODE / WISHES
+        ══════════════════════════════════════ */
+        .section-title {
+          font-family: 'Cormorant Garamond', serif;
+          font-weight: 600;
+          font-size: var(--fs-h1);
+          letter-spacing: 0.18em;
+          text-transform: uppercase;
+          color: var(--text-dark);
+        }
 
-.section-body {
-  font-size: var(--fs-body);
-  line-height: 1.8;
-  color: var(--text-mid);
-  max-width: 90%;
-}
+        .section-body {
+          font-size: var(--fs-body);
+          line-height: 1.8;
+          color: var(--text-mid);
+          max-width: 90%;
+        }
 
 
-.dresscode-palette {
-  width: 100%;
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: clamp(10px, 3vw, 16px);
-  margin-top: clamp(2px, 1vw, 6px);
-  margin-bottom: clamp(6px, 2vw, 10px);
-}
+        .dresscode-palette {
+          width: 100%;
+          display: grid;
+          grid-template-columns: repeat(3, minmax(0, 1fr));
+          gap: clamp(10px, 3vw, 16px);
+          margin-top: clamp(2px, 1vw, 6px);
+          margin-bottom: clamp(6px, 2vw, 10px);
+        }
 
-.palette-chip {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 6px;
-}
+        .palette-chip {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          gap: 6px;
+        }
 
-.palette-swatch {
-  width: clamp(74px, 20vw, 94px);
-  aspect-ratio: 1 / 1;
-  border-radius: 999px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  padding: 10px;
-  box-shadow: inset 0 0 0 1px rgba(255,255,255,0.35);
-}
+        .palette-swatch {
+          width: clamp(74px, 20vw, 94px);
+          aspect-ratio: 1 / 1;
+          border-radius: 999px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          text-align: center;
+          padding: 10px;
+          box-shadow: inset 0 0 0 1px rgba(255,255,255,0.35);
+        }
 
-.palette-swatch span {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(14px, 3.6vw, 18px);
-  line-height: 1.05;
-}
+        .palette-swatch span {
+          font-family: 'Cormorant Garamond', serif;
+          font-size: clamp(14px, 3.6vw, 18px);
+          line-height: 1.05;
+        }
 
-.palette-label {
-  font-family: 'Jost', sans-serif;
-  font-size: clamp(10px, 2.8vw, 12px);
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--text-mid);
-}
+        .palette-label {
+          font-family: 'Jost', sans-serif;
+          font-size: clamp(10px, 2.8vw, 12px);
+          letter-spacing: 0.08em;
+          text-transform: uppercase;
+          color: var(--text-mid);
+        }
 
-.palette-fig { background: #7b1f3a; color: #fff; }
-.palette-wisteria { background: #c8bad3; color: #fff; }
-.palette-dusty-rose { background: #cf8a90; color: #fff; }
-.palette-champagne { background: #ead9d1; color: #5b494b; }
-.palette-green-moss { background: #b8b28e; color: #fff; }
-.palette-olive { background: #8c8a58; color: #fff; }
+        .palette-fig { background: #7b1f3a; color: #fff; }
+        .palette-wisteria { background: #c8bad3; color: #fff; }
+        .palette-dusty-rose { background: #cf8a90; color: #fff; }
+        .palette-champagne { background: #ead9d1; color: #5b494b; }
+        .palette-green-moss { background: #b8b28e; color: #fff; }
+        .palette-olive { background: #8c8a58; color: #fff; }
 
-/* Map */
-.map-wrap {
-  width: 100%;
-  background: var(--map-bg);
-  position: relative;
-  overflow: hidden;
-  border-radius: 16px;
-  box-shadow: 0 12px 28px rgba(0,0,0,0.10);
-}
-.map-frame {
-  width: 100%;
-  height: 180px;
-  border: 0;
-  filter: grayscale(100%) contrast(95%) brightness(105%) blur(0.3px);
-}
-/* Heart pin */
-.map-heart {
-  position: absolute;
-  top: 50%;
-  left: 58%; /* tweak this slightly if needed */
-  transform: translate(-50%, -100%);
-  width: 34px;
-  pointer-events: none;
-}
+        /* Map */
+        .map-wrap {
+          width: 100%;
+          background: var(--map-bg);
+          position: relative;
+          overflow: hidden;
+          border-radius: 16px;
+          box-shadow: 0 12px 28px rgba(0,0,0,0.10);
+        }
+        .map-frame {
+          width: 100%;
+          height: 180px;
+          border: 0;
+          filter: grayscale(100%) contrast(95%) brightness(105%) blur(0.3px);
+        }
+        /* Heart pin */
+        .map-heart {
+          position: absolute;
+          top: 50%;
+          left: 58%; /* tweak this slightly if needed */
+          transform: translate(-50%, -100%);
+          width: 34px;
+          pointer-events: none;
+        }
 
-.map-heart svg {
-  width: 100%;
-}
+        .map-heart svg {
+          width: 100%;
+        }
 
-.map-heart path {
-  fill: var(--fig);
-  stroke: white;
-  stroke-width: 2;
-  filter: drop-shadow(0 4px 6px rgba(0,0,0,0.25));
-}
-.map-actions {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  margin-top: 10px;
-}
-.map-link {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 10px 18px;
-  border-radius: 999px;
-  background: var(--fig);
-  color: #fff;
-  text-decoration: none;
-  font-family: 'Jost', sans-serif;
-  font-size: 12px;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-}
+        .map-heart path {
+          fill: var(--fig);
+          stroke: white;
+          stroke-width: 2;
+          filter: drop-shadow(0 4px 6px rgba(0,0,0,0.25));
+        }
+        .map-actions {
+          width: 100%;
+          display: flex;
+          justify-content: center;
+          margin-top: 10px;
+        }
+        .map-link {
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          padding: 10px 18px;
+          border-radius: 999px;
+          background: var(--fig);
+          color: #fff;
+          text-decoration: none;
+          font-family: 'Jost', sans-serif;
+          font-size: 12px;
+          letter-spacing: 0.18em;
+          text-transform: uppercase;
+        }
 
-/* RSVP box */
-.rsvp-box {
-  border: 1.5px solid var(--wisteria);
-  border-radius: clamp(6px, 2vw, 10px);
-  padding: var(--sp-sm) var(--sp-md);
-  font-size: var(--fs-body);
-  line-height: 1.75;
-  color: var(--text-mid);
-  width: 100%;
-  text-align: center;
-}
+        /* RSVP box */
+        .rsvp-box {
+          border: 1.5px solid var(--wisteria);
+          border-radius: clamp(6px, 2vw, 10px);
+          padding: var(--sp-sm) var(--sp-md);
+          font-size: var(--fs-body);
+          line-height: 1.75;
+          color: var(--text-mid);
+          width: 100%;
+          text-align: center;
+        }
 
-/* RSVP button */
-.rsvp-btn {
-  display: block;
-  width: 100%;
-  background: var(--fig);
-  color: #fff;
-  font-family: 'Jost', sans-serif;
-  font-weight: 300;
-  font-size: var(--fs-xs);
-  letter-spacing: 0.28em;
-  text-transform: uppercase;
-  border: none;
-  padding: clamp(14px, 4vw, 20px) 0;
-  cursor: pointer;
-  transition: background 0.25s;
-  -webkit-appearance: none;
-}
-.rsvp-btn:hover, .rsvp-btn:active { background: var(--fig-light); }
+        /* RSVP button */
+        .rsvp-btn {
+          display: block;
+          width: 100%;
+          background: var(--fig);
+          color: #fff;
+          font-family: 'Jost', sans-serif;
+          font-weight: 300;
+          font-size: var(--fs-xs);
+          letter-spacing: 0.28em;
+          text-transform: uppercase;
+          border: none;
+          padding: clamp(14px, 4vw, 20px) 0;
+          cursor: pointer;
+          transition: background 0.25s;
+          -webkit-appearance: none;
+        }
+        .rsvp-btn:hover, .rsvp-btn:active { background: var(--fig-light); }
 
-/* Footer */
-.footer-line {
-  font-family: 'Cormorant Garamond', serif;
-  font-style: italic;
-  font-size: var(--fs-sub);
-  color: var(--fig-light);
-  text-align: center;
-  padding: var(--sp-md) var(--sp-sm) var(--sp-lg);
-  letter-spacing: 0.06em;
-  flex-shrink: 0;
-}
+        /* Footer */
+        .footer-line {
+          font-family: 'Cormorant Garamond', serif;
+          font-style: italic;
+          font-size: var(--fs-sub);
+          color: var(--fig-light);
+          text-align: center;
+          padding: var(--sp-md) var(--sp-sm) var(--sp-lg);
+          letter-spacing: 0.06em;
+          flex-shrink: 0;
+        }
 
-/* ══════════════════════════════════════
-   SCROLL REVEAL
-══════════════════════════════════════ */
-.reveal {
-  opacity: 0;
-  transform: translateY(18px);
-  transition: opacity 0.65s ease, transform 0.65s ease;
-}
-.reveal.visible { opacity: 1; transform: none; }
-.d1 { transition-delay: 0.1s; }
-.d2 { transition-delay: 0.22s; }
-.d3 { transition-delay: 0.34s; }
-</style>
+        /* ══════════════════════════════════════
+           SCROLL REVEAL
+        ══════════════════════════════════════ */
+        .reveal {
+          opacity: 0;
+          transform: translateY(18px);
+          transition: opacity 0.65s ease, transform 0.65s ease;
+        }
+        .reveal.visible { opacity: 1; transform: none; }
+        .d1 { transition-delay: 0.1s; }
+        .d2 { transition-delay: 0.22s; }
+        .d3 { transition-delay: 0.34s; }
+    </style>
 </head>
 <body>
 <div class="card">
 
-  <!-- ═══════════ PAGE 1 ═══════════ -->
-  <div class="page">
+    <!-- ═══════════ PAGE 1 ═══════════ -->
+    <div class="page">
 
-    <!-- Polaroids -->
-    <div class="polaroid-row reveal">
-      <!-- Жених -->
-      <div class="pw">
-        <div class="label-row">
-          <span class="label-text">Жених</span>
-          <span class="label-arrow" aria-hidden="true">
+        <!-- Polaroids -->
+        <div class="polaroid-row reveal">
+            <!-- Жених -->
+            <div class="pw">
+                <div class="label-row">
+                    <span class="label-text">Жених</span>
+                    <span class="label-arrow" aria-hidden="true">
             <svg class="hand-arrow" viewBox="0 0 40 34" xmlns="http://www.w3.org/2000/svg">
-              <path d="M35 4 C24 7, 17 13, 15 20 C13.8 24, 11 27, 6 30" />
-              <path d="M6 30 L12 29" />
-              <path d="M6 30 L8 24" />
+              <path d="M35 4 C24 7, 17 13, 15 20 C13.8 24, 11 27, 6 30"/>
+              <path d="M6 30 L12 29"/>
+              <path d="M6 30 L8 24"/>
             </svg>
           </span>
-        </div>
-        <div class="polaroid">
-          <div class="polaroid-photo has-image">
-            <!-- Вставьте фото жениха сюда: замените groom-photo.jpg на свой файл -->
-            <img src="groom-photo.jpg" alt="Фото Игоря" onerror="this.style.display='none'; this.parentElement.classList.remove('has-image');">
-            <div class="photo-placeholder">
-              <svg viewBox="0 0 70 85" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <circle cx="35" cy="18" r="12" fill="#4a2830" opacity="0.55"/>
-                <ellipse cx="35" cy="60" rx="15" ry="20" fill="#4a2830" opacity="0.42"/>
-                <line x1="20" y1="52" x2="10" y2="74" stroke="#4a2830" stroke-width="5" stroke-linecap="round" opacity="0.38"/>
-                <line x1="50" y1="52" x2="60" y2="74" stroke="#4a2830" stroke-width="5" stroke-linecap="round" opacity="0.38"/>
-              </svg>
+                </div>
+                <div class="polaroid">
+                    <div class="polaroid-photo has-image">
+                        <!-- Вставьте фото жениха сюда: замените groom-photo.jpg на свой файл -->
+                        <img src="groom-photo.png" alt="Фото Игоря">
+                        <div class="photo-placeholder">
+                            <svg viewBox="0 0 70 85" xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="35" cy="18" r="12" fill="#4a2830" opacity="0.55"/>
+                                <ellipse cx="35" cy="60" rx="15" ry="20" fill="#4a2830" opacity="0.42"/>
+                                <line x1="20" y1="52" x2="10" y2="74" stroke="#4a2830" stroke-width="5"
+                                      stroke-linecap="round" opacity="0.38"/>
+                                <line x1="50" y1="52" x2="60" y2="74" stroke="#4a2830" stroke-width="5"
+                                      stroke-linecap="round" opacity="0.38"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <p class="polaroid-name">Игорь</p>
+                </div>
             </div>
-          </div>
-          <p class="polaroid-name">Игорь</p>
-        </div>
-      </div>
 
-      <!-- Невеста -->
-      <div class="pw">
-        <div class="label-row">
+            <!-- Невеста -->
+            <div class="pw">
+                <div class="label-row">
           <span class="label-arrow" aria-hidden="true">
             <svg class="hand-arrow" viewBox="0 0 40 34" xmlns="http://www.w3.org/2000/svg">
-              <path d="M35 4 C24 7, 17 13, 15 20 C13.8 24, 11 27, 6 30" />
-              <path d="M6 30 L12 29" />
-              <path d="M6 30 L8 24" />
+              <path d="M35 4 C24 7, 17 13, 15 20 C13.8 24, 11 27, 6 30"/>
+              <path d="M6 30 L12 29"/>
+              <path d="M6 30 L8 24"/>
             </svg>
           </span>
-          <span class="label-text">Невеста</span>
-        </div>
-        <div class="polaroid">
-          <div class="polaroid-photo has-image">
-            <!-- Вставьте фото невесты сюда: замените bride-photo.jpg на свой файл -->
-            <img src="bride-photo.jpg" alt="Фото Алины" onerror="this.style.display='none'; this.parentElement.classList.remove('has-image');">
-            <div class="photo-placeholder">
-              <svg viewBox="0 0 70 85" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <circle cx="35" cy="16" r="12" fill="#4a2830" opacity="0.55"/>
-                <rect x="24" y="28" width="22" height="15" rx="3" fill="#4a2830" opacity="0.42"/>
-                <path d="M18 44 Q35 38 52 44 L60 84 Q35 90 10 84 Z" fill="#4a2830" opacity="0.38"/>
-              </svg>
+                    <span class="label-text">Невеста</span>
+                </div>
+                <div class="polaroid">
+                    <div class="polaroid-photo has-image">
+                        <!-- Вставьте фото невесты сюда: замените bride-photo.jpg на свой файл -->
+                        <img src="bride-photo.png" alt="Фото Алины">
+                        <div class="photo-placeholder">
+                            <svg viewBox="0 0 70 85" xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="35" cy="16" r="12" fill="#4a2830" opacity="0.55"/>
+                                <rect x="24" y="28" width="22" height="15" rx="3" fill="#4a2830" opacity="0.42"/>
+                                <path d="M18 44 Q35 38 52 44 L60 84 Q35 90 10 84 Z" fill="#4a2830" opacity="0.38"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <p class="polaroid-name">Алина</p>
+                </div>
             </div>
-          </div>
-          <p class="polaroid-name">Алина</p>
         </div>
-      </div>
-    </div>
 
-    <!-- Story text -->
-    <p class="story-headline reveal d1">Да-да, это мы!</p>
+        <!-- Story text -->
+        <p class="story-headline reveal d1">Да-да, это мы!</p>
 
-    <p class="story-body reveal d2">
-      Когда-то мы были детьми, беззаботными и весёлыми.<br>
-      А потом выросли, нашли друг друга...<br>
-      и поняли, что хотим быть вместе <span class="red">всегда!</span>
-    </p>
+        <p class="story-body reveal d2">
+            Когда-то мы были детьми, беззаботными и весёлыми.<br>
+            А потом выросли, нашли друг друга...<br>
+            и поняли, что хотим быть вместе <span class="red">всегда!</span>
+        </p>
+        <div class="divider"></div>
+
+        <p class="timeline-title">Дорогие друзья и родные</p>
+        <p class="tagline reveal d2">Мы приглашаем вас разделить с нами радостный день, в который мы станем <span
+                class="red">семьей!</span></p>
+
+        <!-- Month -->
+        <p class="month-title reveal d3">Июнь</p>
+        <div class="cal-year">2 0 2 6</div>
+        <!-- Calendar -->
+        <div class="cal-wrap reveal d3">
+            <div class="cal-grid">
+                <div class="ch">Пн</div>
+                <div class="ch">Вт</div>
+                <div class="ch">Ср</div>
+                <div class="ch">Чт</div>
+                <div class="ch">Пт</div>
+                <div class="ch">Сб</div>
+                <div class="ch">Вс</div>
+
+                <div class="cd">01</div>
+                <div class="cd">02</div>
+                <div class="cd">03</div>
+                <div class="cd">04</div>
+                <div class="cd">05</div>
+                <div class="cd">06</div>
+                <div class="cd">07</div>
+
+                <div class="cd">08</div>
+                <div class="cd">09</div>
+                <div class="cd">10</div>
+                <div class="cd">11</div>
+                <div class="cd">12</div>
+                <div class="cd">13</div>
+                <div class="cd">14</div>
+
+                <div class="cd">15</div>
+                <div class="cd">16</div>
+                <div class="cd">17</div>
+                <div class="cd">18</div>
+                <div class="cd">19</div>
+                <div class="cd hl">20</div>
+                <div class="cd">21</div>
+            </div>
+            <!-- June 1 2026 = Monday. 20 June falls on Saturday ✓ -->
+
+        </div>
+        <div class="divider"></div>
+
+        <div class="timeline reveal d3">
+            <p class="section-title reveal">Тайминг</p>
+            <br>
+            <div class="timeline-item">
+                <div class="timeline-time">15:00</div>
+                <div class="timeline-content">
+                    <div class="timeline-title">Сбор гостей</div>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-time">16:00</div>
+                <div class="timeline-content">
+                    <div class="timeline-title">Церемония</div>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-time">17:00</div>
+                <div class="timeline-content">
+                    <div class="timeline-title">Банкет</div>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-time">1:00</div>
+                <div class="timeline-content">
+                    <div class="timeline-title">Танцы до утра</div>
+                </div>
+            </div>
+        </div>
+
+
+    </div><!-- /page 1 -->
+
     <div class="divider"></div>
 
-    <p class="timeline-title">Дорогие друзья и родные</p>
-    <p class="tagline reveal d2">Мы приглашаем вас разделить с нами радостный день, в который мы станем <span class="red">семьей!</span></p>
+    <!-- ═══════════ PAGE 2 ═══════════ -->
+    <div class="page">
 
-     <!-- Month -->
-    <p class="month-title reveal d3">Июнь</p>
-    <div class="cal-year">2 0 2 6</div>
-    <!-- Calendar -->
-    <div class="cal-wrap reveal d3">
-      <div class="cal-grid">
-        <div class="ch">Пн</div><div class="ch">Вт</div><div class="ch">Ср</div>
-        <div class="ch">Чт</div><div class="ch">Пт</div><div class="ch">Сб</div><div class="ch">Вс</div>
+        <!-- ЛОКАЦИЯ -->
+        <p class="section-title reveal">Локация</p>
+        <p class="section-body reveal d1">
+            Место — Ozo Club House<br>
+            Rīga, Mīlgrāvja iela 16
+        </p>
 
-        <div class="cd">01</div><div class="cd">02</div><div class="cd">03</div>
-        <div class="cd">04</div><div class="cd">05</div><div class="cd">06</div><div class="cd">07</div>
-
-        <div class="cd">08</div><div class="cd">09</div><div class="cd">10</div>
-        <div class="cd">11</div><div class="cd">12</div><div class="cd">13</div><div class="cd">14</div>
-
-        <div class="cd">15</div><div class="cd">16</div><div class="cd">17</div>
-        <div class="cd">18</div><div class="cd">19</div><div class="cd hl">20</div><div class="cd">21</div>
-      </div>
-      <!-- June 1 2026 = Monday. 20 June falls on Saturday ✓ -->
-  
-    </div>
-    <div class="divider"></div>
-
-    <div class="timeline reveal d3">
-      <p class="section-title reveal">Тайминг</p>
-      <br>
-      <div class="timeline-item">
-        <div class="timeline-time">15:00</div>
-        <div class="timeline-content">
-          <div class="timeline-title">Сбор гостей</div>
+        <!-- Illustrated map -->
+        <!-- Interactive map -->
+        <div class="map-wrap reveal d2">
+            <iframe
+                    class="map-frame"
+                    title="Ozo Club House map"
+                    loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade"
+                    src="https://www.google.com/maps?q=Ozo+Club+House,+Milgravja+iela+16,+Riga&z=15&output=embed">
+            </iframe>
+            <!-- Heart pin -->
+            <div class="map-heart">
+                <svg viewBox="0 0 44 54" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M22 49 C20 43, 7 34, 7 22 C7 14, 12 9, 18 9 C21 9, 24 10.5, 26 13 C28 10.5, 31 9, 34 9 C40 9, 45 14, 45 22 C45 34, 32 43, 30 49"/>
+                </svg>
+            </div>
         </div>
-      </div>
-      <div class="timeline-item">
-        <div class="timeline-time">16:00</div>
-        <div class="timeline-content">
-          <div class="timeline-title">Церемония</div>
+        <div class="map-actions reveal d2">
+            <a class="map-link"
+               href="https://www.google.com/maps/search/?api=1&query=Ozo+Club+House,+Milgravja+iela+16,+Riga"
+               target="_blank" rel="noopener noreferrer">Открыть карту</a>
         </div>
-      </div>
-      <div class="timeline-item">
-        <div class="timeline-time">17:00</div>
-        <div class="timeline-content">
-          <div class="timeline-title">Банкет</div>
-        </div>
-      </div>
-      <div class="timeline-item">
-        <div class="timeline-time">1:00</div>
-        <div class="timeline-content">
-          <div class="timeline-title">Танцы до утра</div>
-        </div>
-      </div>
-    </div>
 
 
-  </div><!-- /page 1 -->
-
-  <div class="divider"></div>
-
-  <!-- ═══════════ PAGE 2 ═══════════ -->
-  <div class="page">
-
-    <!-- ЛОКАЦИЯ -->
-    <p class="section-title reveal">Локация</p>
-    <p class="section-body reveal d1">
-      Место — Ozo Club House<br>
-      Rīga, Mīlgrāvja iela 16
-    </p>
-
-    <!-- Illustrated map -->
-    <!-- Interactive map -->
-    <div class="map-wrap reveal d2">
-      <iframe
-        class="map-frame"
-        title="Ozo Club House map"
-        loading="lazy"
-        referrerpolicy="no-referrer-when-downgrade"
-        src="https://www.google.com/maps?q=Ozo+Club+House,+Milgravja+iela+16,+Riga&z=15&output=embed">
-      </iframe>
-      <!-- Heart pin -->
-      <div class="map-heart">
-        <svg viewBox="0 0 44 54" xmlns="http://www.w3.org/2000/svg">
-          <path d="M22 49 C20 43, 7 34, 7 22 C7 14, 12 9, 18 9 C21 9, 24 10.5, 26 13 C28 10.5, 31 9, 34 9 C40 9, 45 14, 45 22 C45 34, 32 43, 30 49" />
-        </svg>
-      </div>
-    </div>
-    <div class="map-actions reveal d2">
-      <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=Ozo+Club+House,+Milgravja+iela+16,+Riga" target="_blank" rel="noopener noreferrer">Открыть карту</a>
-    </div>
-    
-
-    <!-- ДРЕСС-КОД -->
-    <p class="section-title reveal">Дресс-код</p>
-    <p class="section-body reveal d1">
-      Мы будем рады, если вы поддержите праздничную атмосферу и выберете нарядный, элегантный образ. Главное — чувствовать себя комфортно и выглядеть уместно!
-    </p>
+        <!-- ДРЕСС-КОД -->
+        <p class="section-title reveal">Дресс-код</p>
+        <p class="section-body reveal d1">
+            Мы будем рады, если вы поддержите праздничную атмосферу и выберете нарядный, элегантный образ. Главное —
+            чувствовать себя комфортно и выглядеть уместно!
+        </p>
         <div class="dresscode-palette reveal d2" aria-label="Палитра дресс-кода">
-      <div class="palette-chip">
-        <div class="palette-swatch palette-fig"></div>
-        <div class="palette-label">Fig/Berry</div>
-      </div>
-      <div class="palette-chip">
-        <div class="palette-swatch palette-wisteria"></div>
-        <div class="palette-label">Wisteria</div>
-      </div>
-      <div class="palette-chip">
-        <div class="palette-swatch palette-dusty-rose"></div>
-        <div class="palette-label">Dusty Rose</div>
-      </div>
-      <div class="palette-chip">
-        <div class="palette-swatch palette-champagne"></div>
-        <div class="palette-label">Champagne</div>
-      </div>
-      <div class="palette-chip">
-        <div class="palette-swatch palette-green-moss"></div>
-        <div class="palette-label">Green Moss</div>
-      </div>
-      <div class="palette-chip">
-        <div class="palette-swatch palette-olive"></div>
-        <div class="palette-label">Olive</div>
-      </div>
-    </div>
+            <div class="palette-chip">
+                <div class="palette-swatch palette-fig"></div>
+                <div class="palette-label">Fig/Berry</div>
+            </div>
+            <div class="palette-chip">
+                <div class="palette-swatch palette-wisteria"></div>
+                <div class="palette-label">Wisteria</div>
+            </div>
+            <div class="palette-chip">
+                <div class="palette-swatch palette-dusty-rose"></div>
+                <div class="palette-label">Dusty Rose</div>
+            </div>
+            <div class="palette-chip">
+                <div class="palette-swatch palette-champagne"></div>
+                <div class="palette-label">Champagne</div>
+            </div>
+            <div class="palette-chip">
+                <div class="palette-swatch palette-green-moss"></div>
+                <div class="palette-label">Green Moss</div>
+            </div>
+            <div class="palette-chip">
+                <div class="palette-swatch palette-olive"></div>
+                <div class="palette-label">Olive</div>
+            </div>
+        </div>
 
-    <!-- ПОЖЕЛАНИЯ -->
-    <p class="section-title reveal">Пожелания</p>
-    <p class="section-body reveal d1">
-      В качестве подарка будем благодарны за вклад в бюджет нашей молодой семьи
-    </p>
-    <p class="section-body reveal d1">
-      Пожалуйста не дарите нам цветы, после свадьбы мы отправляемся в свадебере путешествие и прсто не успеем ими насладитья. Можете сделать выбор в пользу лотерейноги билета.
-    </p>
+        <!-- ПОЖЕЛАНИЯ -->
+        <p class="section-title reveal">Пожелания</p>
+        <p class="section-body reveal d1">
+            В качестве подарка будем благодарны за вклад в бюджет нашей молодой семьи
+        </p>
+        <p class="section-body reveal d1">
+            Пожалуйста не дарите нам цветы, после свадьбы мы отправляемся в свадебере путешествие и прсто не успеем ими
+            насладитья. Можете сделать выбор в пользу лотерейноги билета.
+        </p>
 
-    <!-- RSVP note box -->
-    <div class="rsvp-box reveal d2">
-      Пожалуйста, подтвердите своё присутствие до 1 мая, чтобы мы могли планировать нашу свадьбу наилучшим образом!
+        <!-- RSVP note box -->
+        <div class="rsvp-box reveal d2">
+            Пожалуйста, подтвердите своё присутствие до 1 мая, чтобы мы могли планировать нашу свадьбу наилучшим
+            образом!
 
-      <div id="rsvp-form">
-        <label for="name">Name
-            <input type="text" id="name" placeholder="Your name" />
-        </label>
-        <br>
-        <label>
-          <input type="radio" name="attending" value="1" checked> Буду!
-        </label>
-        <br>
-        <label>
-          <input type="radio" name="attending" value="0"> Не смогу прийти на свадьбу
-        </label>
-        <br>
-        <label>
-          <input type="checkbox" id="plus-one"> Я буду с +1
-        </label>
-        <br><br>
-        <!-- RSVP button -->
-        <button class="rsvp-btn reveal d3" onclick="submitRSVP()">
-        Подтвердить присутствие
-        </button>
-        <p id="message"></p>
-      </div>
-    </div>
+            <div id="rsvp-form">
+                <label for="name">Name
+                    <input type="text" id="name" placeholder="Your name"/>
+                </label>
+                <br>
+                <label>
+                    <input type="radio" name="attending" value="1" checked> Буду!
+                </label>
+                <br>
+                <label>
+                    <input type="radio" name="attending" value="0"> Не смогу прийти на свадьбу
+                </label>
+                <br>
+                <label>
+                    <input type="checkbox" id="plus-one"> Я буду с +1
+                </label>
+                <br><br>
+                <!-- RSVP button -->
+                <button class="rsvp-btn reveal d3" onclick="submitRSVP()">
+                    Подтвердить присутствие
+                </button>
+                <p id="message"></p>
+            </div>
+        </div>
 
-  </div><!-- /page 2 -->
+    </div><!-- /page 2 -->
 
-  <p class="footer-line reveal">До встречи на нашем торжестве ♥</p>
+    <p class="footer-line reveal">До встречи на нашем торжестве ♥</p>
 
 </div><!-- /card -->
 
 <script>
-  // Make all .reveal elements visible on load if already in viewport,
-  // then watch for scroll — handles both mobile and desktop
-  const items = document.querySelectorAll('.reveal');
+    // Make all .reveal elements visible on load if already in viewport,
+    // then watch for scroll — handles both mobile and desktop
+    const items = document.querySelectorAll('.reveal');
 
-  if ('IntersectionObserver' in window) {
-    const io = new IntersectionObserver(entries => {
-      entries.forEach(e => {
-        if (e.isIntersecting) {
-          e.target.classList.add('visible');
-          io.unobserve(e.target);
-        }
-      });
-    }, { threshold: 0.08, rootMargin: '0px 0px -20px 0px' });
-    items.forEach(el => io.observe(el));
-  } else {
-    // Fallback: show everything immediately
-    items.forEach(el => el.classList.add('visible'));
-  }
-</script>
-</script>
-   <script type="module" src="js/main.js"></script>
-<script>
-function submitRSVP() {
-  var name = document.getElementById('name').value.trim();
-  var attending = document.querySelector('input[name="attending"]:checked').value;
-  var plusOne = document.getElementById('plus-one').checked ? 1 : 0;
-
-  if (!name) {
-    document.getElementById('message').textContent = 'Please enter your name.';
-    return;
-  }
-
-  fetch('/wedding-invite/api/rsvp', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ name: name, attending: parseInt(attending), plus_one: plusOne })
-  })
-  .then(function(res) { return res.json(); })
-  .then(function(data) {
-    if (data.ok) {
-        if (attending) {
-            document.getElementById('message').textContent = 'Спасибо! Мы рады вашему присутствию 🤍';
-        } else {
-            document.getElementById('message').textContent = 'Ну и хорошо, мы все равно вас чисто для приличия пригласили 🤍';
-        }
-   document.getElementById('rsvp-form').style.opacity = '0.5';
+    if ('IntersectionObserver' in window) {
+      const io = new IntersectionObserver(entries => {
+        entries.forEach(e => {
+          if (e.isIntersecting) {
+            e.target.classList.add('visible');
+            io.unobserve(e.target);
+          }
+        });
+      }, { threshold: 0.08, rootMargin: '0px 0px -20px 0px' });
+      items.forEach(el => io.observe(el));
+    } else {
+      // Fallback: show everything immediately
+      items.forEach(el => el.classList.add('visible'));
     }
-  })
-  .catch(function() {
-    document.getElementById('message').textContent = 'Что-то пошло не так :( Напишите нам, мы проверим :D.';
-  });
-}
+</script>
+<script type="module" src="js/main.js"></script>
+<script>
+    function submitRSVP() {
+      var name = document.getElementById('name').value.trim();
+      var attending = document.querySelector('input[name="attending"]:checked').value;
+      var plusOne = document.getElementById('plus-one').checked ? 1 : 0;
+
+      if (!name) {
+        document.getElementById('message').textContent = 'Please enter your name.';
+        return;
+      }
+
+      fetch('/wedding-invite/api/rsvp', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name: name, attending: parseInt(attending), plus_one: plusOne })
+      })
+      .then(function(res) { return res.json(); })
+      .then(function(data) {
+        if (data.ok) {
+            if (attending) {
+                document.getElementById('message').textContent = 'Спасибо! Мы рады вашему присутствию 🤍';
+            } else {
+                document.getElementById('message').textContent = 'Ну и хорошо, мы все равно вас чисто для приличия пригласили 🤍';
+            }
+       document.getElementById('rsvp-form').style.opacity = '0.5';
+        }
+      })
+      .catch(function() {
+        document.getElementById('message').textContent = 'Что-то пошло не так :( Напишите нам, мы проверим :D.';
+      });
+    }
 </script>
 </body>
 </html>
