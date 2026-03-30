@@ -48,7 +48,10 @@
    })
    .catch(function() {
      btn.disabled = false;
-     btn.textContent = 'Подтвердить присутствие';
+     btn.textContent = 'Подтвердить';
      document.getElementById('rsvp-message').textContent = 'Что-то пошло не так :( Напишите нам, мы проверим :D.';
    });
  }
+
+
+ document.getElementById('rsvp-submit').addEventListener('click', submitRSVP);
