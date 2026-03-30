@@ -1,5 +1,6 @@
 export default {
   async fetch(request, env) {
-    return env.ASSETS.fetch(request);
+    const url = new URL(request.url);
+    return env.ASSETS.fetch(new Request(url.toString(), request));
   }
 };
