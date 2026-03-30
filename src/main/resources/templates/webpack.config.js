@@ -1,4 +1,3 @@
-// webpack.config.js
 import path from 'path';
 import CopyWebpackPlugin from 'copy-webpack-plugin';
 
@@ -18,8 +17,8 @@ export default {
     new CopyWebpackPlugin({
       patterns: [
         { from: './src/public/index.html', to: 'index.html' },
-        { from: './src/public/index.html', to: 'wedding-invite/index.html' }, // ← add this
-        { from: './src/public', to: 'public' },
+        { from: './src/public/index.html', to: 'wedding-invite/index.html' },
+        { from: './src/public', to: '.' },
       ],
     }),
   ],
