@@ -16,9 +16,8 @@ export default {
   plugins: [
     new CopyWebpackPlugin({
       patterns: [
-        { from: './src/public/index.html', to: 'index.html' },
-        { from: './src/public/index.html', to: 'wedding-invite/index.html' },
         { from: './src/public', to: '.' },
+        { from: './src/public', to: 'wedding-invite' },
       ],
     }),
   ],
