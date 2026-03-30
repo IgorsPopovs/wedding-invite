@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', function() {
   // Show/hide plus-one name field based on plus-one selection
   document.querySelectorAll('input[name="plus-one"]').forEach(function(radio) {
     radio.addEventListener('change', function() {
-      plusOneNameSection.style.display = this.value === '1' ? 'flex' : 'none';
+      plusOneNameSection.style.display = this.value === '1' ? 'block' : 'none';
     });
   });
 
@@ -41,19 +41,10 @@ document.addEventListener('DOMContentLoaded', function() {
               document.getElementById('plus-one-name').value = data.plus_one_name || '';
             }
           }
-          document.getElementById('rsvp-message').textContent = 'Вы уже подтвердили своё присутствие 🤍';
-          document.getElementById('rsvp-form').style.opacity = '0.5';
-          document.getElementById('rsvp-form').style.pointerEvents = 'none';
+          document.getElementById('rsvp-message').textContent = 'Вы уже подтвердили своё присутствие — можете изменить ответ 🤍';
+          document.getElementById('rsvp-message').style.color = 'var(--fig)';
         }
       });
-  }
-
-  // Anonymous submit lock via localStorage
-  if (inviteCode === 'unknown' && localStorage.getItem('rsvp_submitted')) {
-    document.getElementById('rsvp-message').textContent = 'Вы уже подтвердили своё присутствие 🤍';
-    document.getElementById('rsvp-message').style.color = 'var(--fig)';
-    document.getElementById('rsvp-form').style.opacity = '0.5';
-    document.getElementById('rsvp-form').style.pointerEvents = 'none';
   }
 
   function submitRSVP() {
@@ -89,14 +80,13 @@ document.addEventListener('DOMContentLoaded', function() {
     .then(function(res) { return res.json(); })
     .then(function(data) {
       if (data.ok) {
-        if (inviteCode === 'unknown') localStorage.setItem('rsvp_submitted', '1');
         var msgEl = document.getElementById('rsvp-message');
         msgEl.style.color = 'var(--fig)';
         msgEl.textContent = attending === '1'
           ? 'Спасибо! Мы рады вашему присутствию 🤍'
           : 'Ну и хорошо, мы все равно вас чисто для приличия пригласили 🤍';
-        document.getElementById('rsvp-form').style.opacity = '0.5';
-        document.getElementById('rsvp-form').style.pointerEvents = 'none';
+        btn.disabled = false;
+        btn.textContent = 'Подтвердить';
       }
     })
     .catch(function() {
