@@ -52,4 +52,5 @@ function submitRSVP() {
   });
 }
 
+
 document.getElementById('rsvp-submit').addEventListener('click', submitRSVP);
