@@ -1,33 +1,54 @@
-    function submitRSVP() {
-      var name = document.getElementById('name').value.trim();
-      var attending = document.querySelector('input[name="attending"]:checked').value;
-      var plusOne = document.getElementById('plus-one').checked ? 1 : 0;
-      var inviteCode = new URLSearchParams(window.location.search).get('guest') || 'unknown';
+ var inviteCode = new URLSearchParams(window.location.search).get('guest') || '';
 
+ if (inviteCode) {
+   fetch('/wedding-invite/api/guest?guest=' + encodeURIComponent(inviteCode))
+     .then(function(res) { return res.json(); })
+     .then(function(data) {
+       if (!data || data.attending === null) return;
+       document.getElementById('rsvp-name').value = data.name || '';
+       var radio = document.querySelector('input[name="attending"][value="' + data.attending + '"]');
+       if (radio) radio.checked = true;
+       document.getElementById('plus-one').checked = data.plus_one === 1;
+       document.getElementById('rsvp-message').textContent = 'Вы уже подтвердили своё присутствие 🤍';
+     });
+ }
 
-      if (!name) {
-        document.getElementById('message').textContent = 'Please enter your name.';
-        return;
-      }
+ function submitRSVP() {
+   var name = document.getElementById('rsvp-name').value.trim();
+   var attending = document.querySelector('input[name="attending"]:checked').value;
+   var plusOne = document.getElementById('plus-one').checked ? 1 : 0;
+   var inviteCode = new URLSearchParams(window.location.search).get('guest') || 'unknown';
 
-      fetch('/wedding-invite/api/rsvp', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name: name, attending: parseInt(attending), plus_one: plusOne, invite_code: inviteCode })
-      })
-      .then(function(res) { return res.json(); })
-      .then(function(data) {
-        if (data.ok) {
-            if (attending) {
-                document.getElementById('message').textContent = 'Спасибо! Мы рады вашему присутствию 🤍';
-            } else {
-                document.getElementById('message').textContent = 'Ну и хорошо, мы все равно вас чисто для приличия пригласили 🤍';
-            }
+   if (!name) {
+     document.getElementById('rsvp-message').textContent = 'Пожалуйста, введите ваше имя.';
+     document.getElementById('rsvp-message').style.color = '#a8385a';
+     return;
+   }
+
+   var btn = document.getElementById('rsvp-submit');
+   btn.disabled = true;
+   btn.textContent = 'Отправляем...';
+
+   fetch('/wedding-invite/api/rsvp', {
+     method: 'POST',
+     headers: { 'Content-Type': 'application/json' },
+     body: JSON.stringify({ name: name, attending: parseInt(attending), plus_one: plusOne, invite_code: inviteCode })
+   })
+   .then(function(res) { return res.json(); })
+   .then(function(data) {
+     if (data.ok) {
+       var msgEl = document.getElementById('rsvp-message');
+       msgEl.style.color = 'var(--fig)';
+       msgEl.textContent = attending === '1'
+         ? 'Спасибо! Мы рады вашему присутствию 🤍'
+         : 'Ну и хорошо, мы все равно вас чисто для приличия пригласили 🤍';
        document.getElementById('rsvp-form').style.opacity = '0.5';
-        }
-      })
-      .catch(function() {
-        document.getElementById('message').textContent = 'Что-то пошло не так :( Напишите нам, мы проверим :D.';
-      });
-
-    }
+       document.getElementById('rsvp-form').style.pointerEvents = 'none';
+     }
+   })
+   .catch(function() {
+     btn.disabled = false;
+     btn.textContent = 'Подтвердить присутствие';
+     document.getElementById('rsvp-message').textContent = 'Что-то пошло не так :( Напишите нам, мы проверим :D.';
+   });
+ }

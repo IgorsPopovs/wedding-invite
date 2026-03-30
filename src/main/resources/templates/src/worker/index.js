@@ -1,11 +1,21 @@
 export default {
   async fetch(request, env) {
-    const url = new URL(request.url);
+    var url = new URL(request.url);
+
+    if (url.pathname === '/wedding-invite/api/guest' && request.method === 'GET') {
+      var code = url.searchParams.get('guest') || '';
+      var row = await env.DB_BINDING.prepare(
+        'SELECT name, attending, plus_one FROM rsvp WHERE invite_code = ?'
+      ).bind(code).first();
+      return new Response(JSON.stringify(row || null), {
+        headers: { 'Content-Type': 'application/json' }
+      });
+    }
 
     if (url.pathname === '/wedding-invite/api/rsvp' && request.method === 'POST') {
-      const body = await request.json();
+      var body = await request.json();
       await env.DB_BINDING.prepare(
-        'INSERT INTO rsvp (name, attending, plus_one, invite_code) VALUES (?, ?, ?, ?)'
+        'UPDATE rsvp SET name = ?, attending = ?, plus_one = ? WHERE invite_code = ?'
       ).bind(body.name, body.attending, body.plus_one, body.invite_code).run();
       return new Response(JSON.stringify({ ok: true }), {
         headers: { 'Content-Type': 'application/json' }
