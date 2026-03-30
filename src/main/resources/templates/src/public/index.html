@@ -231,20 +231,11 @@ body {
   color: var(--fig);
 }
 
-.cal-wrap {
-  width: 100%;
-  max-width: 320px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: clamp(10px, 2vw, 14px);
-}
+.cal-wrap { width: 100%; max-width: 300px; }
 
 .cal-grid {
-  width: 100%;
   display: grid;
   grid-template-columns: repeat(7, 1fr);
-  row-gap: clamp(8px, 2vw, 12px);
 }
 
 .ch {
@@ -253,52 +244,43 @@ body {
   font-size: var(--fs-xs);
   color: var(--text-dark);
   text-align: center;
+  padding: clamp(4px, 1.2vw, 7px) 0;
 }
 
 .cd {
   font-family: 'Jost', sans-serif;
-  font-weight: 300;
-  font-size: clamp(12px, 3.2vw, 16px);
+  font-weight: 200;
+  font-size: clamp(12px, 3.2vw, 15px);
   color: var(--text-dark);
   text-align: center;
+  padding: clamp(5px, 1.4vw, 8px) 0;
   position: relative;
-  min-height: 54px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  z-index: 0;
 }
 
-.cd .date-num {
-  position: relative;
-  z-index: 2;
+.cd.hl {
+  color: #fff;
+  font-weight: 400;
 }
-
-.cd.heart-date svg {
+.cd.hl::before {
+  content: '♥';
   position: absolute;
-  width: clamp(38px, 10vw, 52px);
-  height: auto;
-  top: -4px;
   left: 50%;
-  transform: translateX(-50%);
-  z-index: 1;
-}
-
-.cd.heart-date path {
-  fill: none;
-  stroke: var(--fig);
-  stroke-width: 2.4;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-}
-
-.cal-month-note {
-  align-self: flex-end;
-  margin-right: clamp(10px, 4vw, 22px);
-  margin-top: -10px;
-  font-family: 'Caveat', 'Marck Script', cursive;
-  font-size: clamp(24px, 6vw, 32px);
+  top: 54%;
+  transform: translate(-50%, -50%);
   color: var(--fig);
-  transform: rotate(-8deg);
+  font-size: clamp(34px, 8vw, 46px);
+  line-height: 1;
+  z-index: -1;
+  text-shadow: 0 2px 6px rgba(123,31,58,0.18);
+}
+
+.cal-heart {
+  text-align: center;
+  font-size: clamp(20px, 5.5vw, 28px);
+  color: var(--fig);
+  line-height: 1.1;
+  margin-top: clamp(8px, 2vw, 12px);
 }
 
 .cal-year {
@@ -343,7 +325,7 @@ body {
 
 .timeline-title {
   font-family: 'Caveat', 'Marck Script', cursive;
-  font-size: clamp(26px, 5vw, 36px);
+  font-size: clamp(18px, 4vw, 26px);
   color: var(--text-dark);
   line-height: 0.95;
   margin-bottom: 6px;
@@ -451,17 +433,54 @@ body {
   background: var(--map-bg);
   position: relative;
   overflow: hidden;
+  border-radius: 16px;
+  box-shadow: 0 12px 28px rgba(0,0,0,0.10);
 }
-.map-wrap svg { display: block; width: 100%; height: auto; }
-.map-pin {
+.map-frame {
+  width: 100%;
+  height: 180px;
+  border: 0;
+  filter: grayscale(100%) contrast(95%) brightness(105%) blur(0.3px);
+}
+/* Heart pin */
+.map-heart {
   position: absolute;
-  top: 44%;
-  left: 58%;
-  transform: translate(-50%, -50%);
-  font-size: clamp(22px, 6vw, 30px);
-  color: var(--fig);
-  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.25));
+  top: 50%;
+  left: 58%; /* tweak this slightly if needed */
+  transform: translate(-50%, -100%);
+  width: 34px;
   pointer-events: none;
+}
+
+.map-heart svg {
+  width: 100%;
+}
+
+.map-heart path {
+  fill: var(--fig);
+  stroke: white;
+  stroke-width: 2;
+  filter: drop-shadow(0 4px 6px rgba(0,0,0,0.25));
+}
+.map-actions {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+.map-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 18px;
+  border-radius: 999px;
+  background: var(--fig);
+  color: #fff;
+  text-decoration: none;
+  font-family: 'Jost', sans-serif;
+  font-size: 12px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
 }
 
 /* RSVP box */
@@ -600,59 +619,54 @@ body {
     <p class="timeline-title">Дорогие друзья и родные</p>
     <p class="tagline reveal d2">Мы приглашаем вас разделить с нами радостный день, в который мы станем <span class="red">семьей!</span></p>
 
-
-  
+     <!-- Month -->
+    <p class="month-title reveal d3">Июнь</p>
+    <div class="cal-year">2 0 2 6</div>
     <!-- Calendar -->
     <div class="cal-wrap reveal d3">
       <div class="cal-grid">
         <div class="ch">Пн</div><div class="ch">Вт</div><div class="ch">Ср</div>
         <div class="ch">Чт</div><div class="ch">Пт</div><div class="ch">Сб</div><div class="ch">Вс</div>
 
-        <div class="cd"><span class="date-num">15</span></div>
-        <div class="cd"><span class="date-num">16</span></div>
-        <div class="cd"><span class="date-num">17</span></div>
-        <div class="cd"><span class="date-num">18</span></div>
-        <div class="cd"><span class="date-num">19</span></div>
-        <div class="cd heart-date">
-          <svg viewBox="0 0 44 54" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-            <path d="M22 49 C20 43, 7 34, 7 22 C7 14, 12 9, 18 9 C21 9, 24 10.5, 26 13 C28 10.5, 31 9, 34 9 C40 9, 45 14, 45 22 C45 34, 32 43, 30 49" transform="translate(-4 0)"/>
-          </svg>
-          <span class="date-num">20</span>
-        </div>
-        <div class="cd"><span class="date-num">21</span></div>
+        <div class="cd">01</div><div class="cd">02</div><div class="cd">03</div>
+        <div class="cd">04</div><div class="cd">05</div><div class="cd">06</div><div class="cd">07</div>
+
+        <div class="cd">08</div><div class="cd">09</div><div class="cd">10</div>
+        <div class="cd">11</div><div class="cd">12</div><div class="cd">13</div><div class="cd">14</div>
+
+        <div class="cd">15</div><div class="cd">16</div><div class="cd">17</div>
+        <div class="cd">18</div><div class="cd">19</div><div class="cd hl">20</div><div class="cd">21</div>
       </div>
-      <div class="cal-month-note">июнь</div>
+      <!-- June 1 2026 = Monday. 20 June falls on Saturday ✓ -->
+  
     </div>
     <div class="divider"></div>
 
     <div class="timeline reveal d3">
       <p class="section-title reveal">Тайминг</p>
+      <br>
       <div class="timeline-item">
         <div class="timeline-time">15:00</div>
         <div class="timeline-content">
           <div class="timeline-title">Сбор гостей</div>
-          <div class="timeline-desc">Встретимся, обнимемся и настроимся на красивый вечер вместе.</div>
         </div>
       </div>
       <div class="timeline-item">
         <div class="timeline-time">16:00</div>
         <div class="timeline-content">
           <div class="timeline-title">Церемония</div>
-          <div class="timeline-desc">Самый трогательный момент дня, когда мы скажем друг другу «да».</div>
         </div>
       </div>
       <div class="timeline-item">
         <div class="timeline-time">17:00</div>
         <div class="timeline-content">
           <div class="timeline-title">Банкет</div>
-          <div class="timeline-desc">Праздничный ужин, тёплые слова, улыбки и много радости.</div>
         </div>
       </div>
       <div class="timeline-item">
-        <div class="timeline-time">до утра</div>
+        <div class="timeline-time">1:00</div>
         <div class="timeline-content">
-          <div class="timeline-title">Танцы</div>
-          <div class="timeline-desc">Будем танцевать, веселиться и создавать воспоминания до самого рассвета.</div>
+          <div class="timeline-title">Танцы до утра</div>
         </div>
       </div>
     </div>
@@ -673,29 +687,26 @@ body {
     </p>
 
     <!-- Illustrated map -->
+    <!-- Interactive map -->
     <div class="map-wrap reveal d2">
-      <svg viewBox="0 0 400 175" xmlns="http://www.w3.org/2000/svg">
-        <rect width="400" height="175" fill="#d4cec6"/>
-        <!-- Water (Daugava river feel) -->
-        <path d="M0 118 Q60 92 140 112 Q220 132 300 106 Q358 88 400 100 L400 175 L0 175Z" fill="#bbb4ac" opacity="0.75"/>
-        <!-- Roads -->
-        <line x1="0"   y1="76" x2="400" y2="76"  stroke="#ede8e0" stroke-width="4.5"/>
-        <line x1="0"   y1="94" x2="400" y2="94"  stroke="#ede8e0" stroke-width="2.5"/>
-        <line x1="115" y1="0"  x2="98"  y2="175" stroke="#ede8e0" stroke-width="3.5"/>
-        <line x1="258" y1="0"  x2="272" y2="175" stroke="#ede8e0" stroke-width="2.5"/>
-        <line x1="0"   y1="50" x2="400" y2="54"  stroke="#ede8e0" stroke-width="1.5" opacity="0.55"/>
-        <line x1="185" y1="0"  x2="190" y2="80"  stroke="#ede8e0" stroke-width="1.5" opacity="0.55"/>
-        <!-- City blocks -->
-        <rect x="18"  y="16"  width="74" height="28" rx="2" fill="#c6c0b8" opacity="0.85"/>
-        <rect x="130" y="12"  width="98" height="24" rx="2" fill="#c6c0b8" opacity="0.85"/>
-        <rect x="288" y="18"  width="88" height="30" rx="2" fill="#c6c0b8" opacity="0.85"/>
-        <rect x="18"  y="118" width="62" height="38" rx="2" fill="#c6c0b8" opacity="0.6"/>
-        <rect x="308" y="114" width="80" height="36" rx="2" fill="#c6c0b8" opacity="0.6"/>
-        <!-- Street label -->
-        <text x="144" y="70" font-family="sans-serif" font-size="7.5" fill="#7a7470" letter-spacing="0.4">Mīlgrāvja iela</text>
-      </svg>
-      <div class="map-pin">♥</div>
+      <iframe
+        class="map-frame"
+        title="Ozo Club House map"
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+        src="https://www.google.com/maps?q=Ozo+Club+House,+Milgravja+iela+16,+Riga&z=15&output=embed">
+      </iframe>
+      <!-- Heart pin -->
+      <div class="map-heart">
+        <svg viewBox="0 0 44 54" xmlns="http://www.w3.org/2000/svg">
+          <path d="M22 49 C20 43, 7 34, 7 22 C7 14, 12 9, 18 9 C21 9, 24 10.5, 26 13 C28 10.5, 31 9, 34 9 C40 9, 45 14, 45 22 C45 34, 32 43, 30 49" />
+        </svg>
+      </div>
     </div>
+    <div class="map-actions reveal d2">
+      <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=Ozo+Club+House,+Milgravja+iela+16,+Riga" target="_blank" rel="noopener noreferrer">Открыть карту</a>
+    </div>
+    
 
     <!-- ДРЕСС-КОД -->
     <p class="section-title reveal">Дресс-код</p>
