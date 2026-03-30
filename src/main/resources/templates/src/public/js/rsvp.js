@@ -2,14 +2,24 @@ document.addEventListener('DOMContentLoaded', function() {
 
   var inviteCode = new URLSearchParams(window.location.search).get('guest') || 'unknown';
   var plusOneSection = document.getElementById('plus-one-section');
+  var plusOneNameSection = document.getElementById('plus-one-name-section');
 
-  // Hide plus-one section initially
+  // Hide plus-one sections initially
   plusOneSection.style.display = 'none';
+  plusOneNameSection.style.display = 'none';
 
-  // Show/hide based on attending selection
+  // Show/hide plus-one section based on attending
   document.querySelectorAll('input[name="attending"]').forEach(function(radio) {
     radio.addEventListener('change', function() {
       plusOneSection.style.display = this.value === '1' ? 'block' : 'none';
+      if (this.value !== '1') plusOneNameSection.style.display = 'none';
+    });
+  });
+
+  // Show/hide plus-one name field based on plus-one selection
+  document.querySelectorAll('input[name="plus-one"]').forEach(function(radio) {
+    radio.addEventListener('change', function() {
+      plusOneNameSection.style.display = this.value === '1' ? 'block' : 'none';
     });
   });
 
@@ -22,9 +32,15 @@ document.addEventListener('DOMContentLoaded', function() {
         if (data.attending !== null) {
           var attending = document.querySelector('input[name="attending"][value="' + data.attending + '"]');
           if (attending) attending.checked = true;
-          if (data.attending === 1) plusOneSection.style.display = 'block';
-          var plusOne = document.querySelector('input[name="plus-one"][value="' + data.plus_one + '"]');
-          if (plusOne) plusOne.checked = true;
+          if (data.attending === 1) {
+            plusOneSection.style.display = 'block';
+            var plusOne = document.querySelector('input[name="plus-one"][value="' + data.plus_one + '"]');
+            if (plusOne) plusOne.checked = true;
+            if (data.plus_one === 1) {
+              plusOneNameSection.style.display = 'block';
+              document.getElementById('plus-one-name').value = data.plus_one_name || '';
+            }
+          }
           document.getElementById('rsvp-message').textContent = 'Вы уже подтвердили своё присутствие 🤍';
           document.getElementById('rsvp-form').style.opacity = '0.5';
           document.getElementById('rsvp-form').style.pointerEvents = 'none';
@@ -44,6 +60,7 @@ document.addEventListener('DOMContentLoaded', function() {
     var name = document.getElementById('rsvp-name').value.trim();
     var attendingEl = document.querySelector('input[name="attending"]:checked');
     var plusOneEl = document.querySelector('input[name="plus-one"]:checked');
+    var plusOneName = document.getElementById('plus-one-name').value.trim();
 
     if (!name) {
       document.getElementById('rsvp-message').textContent = 'Пожалуйста, введите ваше имя.';
@@ -67,7 +84,7 @@ document.addEventListener('DOMContentLoaded', function() {
     fetch('/wedding-invite/api/rsvp', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ name: name, attending: parseInt(attending), plus_one: plusOne, invite_code: inviteCode })
+      body: JSON.stringify({ name: name, attending: parseInt(attending), plus_one: plusOne, plus_one_name: plusOneName, invite_code: inviteCode })
     })
     .then(function(res) { return res.json(); })
     .then(function(data) {

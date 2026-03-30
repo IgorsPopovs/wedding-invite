@@ -15,7 +15,7 @@ export default {
     if (url.pathname === '/wedding-invite/api/guest' && request.method === 'GET') {
       var code = url.searchParams.get('guest') || '';
       var row = await env.DB_BINDING.prepare(
-        'SELECT name, attending, plus_one FROM rsvp WHERE invite_code = ?'
+        'SELECT name, attending, plus_one, plus_one_name FROM rsvp WHERE invite_code = ?'
       ).bind(code).first();
       return new Response(JSON.stringify(row || null), {
         headers: { 'Content-Type': 'application/json', ...corsHeaders }
@@ -24,9 +24,17 @@ export default {
 
     if (url.pathname === '/wedding-invite/api/rsvp' && request.method === 'POST') {
       var body = await request.json();
-      await env.DB_BINDING.prepare(
-        'UPDATE rsvp SET name = ?, attending = ?, plus_one = ? WHERE invite_code = ?'
-      ).bind(body.name, body.attending, body.plus_one, body.invite_code).run();
+
+      if (!body.invite_code || body.invite_code === 'unknown') {
+        await env.DB_BINDING.prepare(
+          'INSERT INTO rsvp (name, attending, plus_one, plus_one_name) VALUES (?, ?, ?, ?)'
+        ).bind(body.name, body.attending, body.plus_one, body.plus_one_name).run();
+      } else {
+        await env.DB_BINDING.prepare(
+          'UPDATE rsvp SET name = ?, attending = ?, plus_one = ?, plus_one_name = ? WHERE invite_code = ?'
+        ).bind(body.name, body.attending, body.plus_one, body.plus_one_name, body.invite_code).run();
+      }
+
       return new Response(JSON.stringify({ ok: true }), {
         headers: { 'Content-Type': 'application/json', ...corsHeaders }
       });
