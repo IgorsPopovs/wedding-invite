@@ -6,25 +6,37 @@ document.addEventListener('DOMContentLoaded', function() {
     fetch('/wedding-invite/api/guest?guest=' + encodeURIComponent(inviteCode))
       .then(function(res) { return res.json(); })
       .then(function(data) {
-        if (!data || data.attending === null) return;
+        if (!data) return;
         document.getElementById('rsvp-name').value = data.name || '';
-        var radio = document.querySelector('input[name="attending"][value="' + data.attending + '"]');
-        if (radio) radio.checked = true;
-        document.getElementById('plus-one').checked = data.plus_one === 1;
-        document.getElementById('rsvp-message').textContent = 'Вы уже подтвердили своё присутствие 🤍';
+        if (data.attending !== null) {
+          var attending = document.querySelector('input[name="attending"][value="' + data.attending + '"]');
+          if (attending) attending.checked = true;
+          var plusOne = document.querySelector('input[name="plus-one"][value="' + data.plus_one + '"]');
+          if (plusOne) plusOne.checked = true;
+          document.getElementById('rsvp-message').textContent = 'Вы уже подтвердили своё присутствие 🤍';
+        }
       });
   }
 
   function submitRSVP() {
     var name = document.getElementById('rsvp-name').value.trim();
-    var attending = document.querySelector('input[name="attending"]:checked').value;
-    var plusOne = document.getElementById('plus-one').checked ? 1 : 0;
+    var attendingEl = document.querySelector('input[name="attending"]:checked');
+    var plusOneEl = document.querySelector('input[name="plus-one"]:checked');
 
     if (!name) {
       document.getElementById('rsvp-message').textContent = 'Пожалуйста, введите ваше имя.';
       document.getElementById('rsvp-message').style.color = '#a8385a';
       return;
     }
+
+    if (!attendingEl) {
+      document.getElementById('rsvp-message').textContent = 'Пожалуйста, выберите вариант присутствия.';
+      document.getElementById('rsvp-message').style.color = '#a8385a';
+      return;
+    }
+
+    var attending = attendingEl.value;
+    var plusOne = plusOneEl ? parseInt(plusOneEl.value) : 0;
 
     var btn = document.getElementById('rsvp-submit');
     btn.disabled = true;
