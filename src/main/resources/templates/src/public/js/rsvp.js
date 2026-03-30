@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', function() {
   // Show/hide plus-one name field based on plus-one selection
   document.querySelectorAll('input[name="plus-one"]').forEach(function(radio) {
     radio.addEventListener('change', function() {
-      plusOneNameSection.style.display = this.value === '1' ? 'block' : 'none';
+      plusOneNameSection.style.display = this.value === '1' ? 'flex' : 'none';
     });
   });
 

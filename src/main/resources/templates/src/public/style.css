@@ -479,6 +479,7 @@ body {
 .rsvp-box {
   display: flex;
   flex-direction: column;
+  background: #b8b28e;
 
   border: 1.5px solid var(--wisteria);
   border-radius: clamp(6px, 2vw, 10px);
@@ -515,8 +516,16 @@ input[type="radio"] + label {
   border: 2px solid #ccc;
   border-radius: 6px;
   cursor: pointer;
+  /*background: #fff;
+  color: #333;*/
+
   background: #fff;
   color: #333;
+  font-family: 'Jost', sans-serif;
+  font-weight: 300;
+  font-size: var(--fs-xs);
+  letter-spacing: 1px;
+  text-transform: uppercase;
 }
 
 /* Style when selected */
