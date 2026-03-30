@@ -16,10 +16,12 @@ export default {
   target: 'webworker',
   plugins: [
     new CopyWebpackPlugin({
-      patterns: [
-        { from: './src/public/index.html', to: 'index.html' },
-        { from: './src/public', to: 'public' },
-      ],
-    }),
+  patterns: [
+    { from: './src/public/index.html', to: 'index.html' },           // keeps / working
+    { from: './src/public/index.html', to: 'wedding-invite/index.html' }, // adds /wedding-invite
+    { from: './src/public', to: 'public' },
+  ],
+}),
+
   ],
 };
