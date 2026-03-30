@@ -1,6 +1,17 @@
 export default {
   async fetch(request, env) {
     const url = new URL(request.url);
-    return env.ASSETS.fetch(new Request(url.toString(), request));
+
+    if (url.pathname === '/wedding-invite/api/rsvp' && request.method === 'POST') {
+      const body = await request.json();
+      await env.DB_BINDING.prepare(
+        'INSERT INTO rsvp (name, attending, plus_one) VALUES (?, ?, ?)'
+      ).bind(body.name, body.attending, body.plus_one).run();
+      return new Response(JSON.stringify({ ok: true }), {
+        headers: { 'Content-Type': 'application/json' }
+      });
+    }
+
+    return env.ASSETS.fetch(request);
   }
 };
