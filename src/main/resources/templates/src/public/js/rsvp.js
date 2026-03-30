@@ -14,6 +14,8 @@ document.addEventListener('DOMContentLoaded', function() {
           var plusOne = document.querySelector('input[name="plus-one"][value="' + data.plus_one + '"]');
           if (plusOne) plusOne.checked = true;
           document.getElementById('rsvp-message').textContent = 'Вы уже подтвердили своё присутствие 🤍';
+          document.getElementById('rsvp-form').style.opacity = '0.5';
+          document.getElementById('rsvp-form').style.pointerEvents = 'none';
         }
       });
   }
@@ -56,6 +58,7 @@ document.addEventListener('DOMContentLoaded', function() {
           ? 'Спасибо! Мы рады вашему присутствию 🤍'
           : 'Ну и хорошо, мы все равно вас чисто для приличия пригласили 🤍';
         document.getElementById('rsvp-form').style.opacity = '0.5';
+        document.getElementById('rsvp-form').style.pointerEvents = '0.5';
         document.getElementById('rsvp-form').style.pointerEvents = 'none';
       }
     })
