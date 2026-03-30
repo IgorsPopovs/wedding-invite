@@ -88,18 +88,26 @@ body {
 .polaroid-row {
   display: flex;
   justify-content: center;
-  align-items: flex-end;
+  align-items: flex-start;
   width: 100%;
-  /* no gap — overlap controlled by negative margin */
+  gap: clamp(10px, 3.2vw, 18px);
+  margin-top: clamp(4px, 1vw, 8px);
 }
 
-.pw { display: flex; flex-direction: column; }
-.pw:nth-child(1) { align-items: flex-start; z-index: 2; }
+.pw {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+.pw:nth-child(1) {
+  align-items: flex-start;
+  z-index: 1;
+  margin-top: clamp(16px, 4vw, 24px);
+}
 .pw:nth-child(2) {
   align-items: flex-end;
-  margin-left: clamp(-28px, -7vw, -16px);
-  margin-bottom: clamp(8px, 2.5vw, 14px);
-  z-index: 1;
+  z-index: 2;
+  margin-left: clamp(-8px, -2vw, -2px);
 }
 
 .label-row {
@@ -108,8 +116,8 @@ body {
   gap: 6px;
   margin-bottom: clamp(3px, 1vw, 6px);
 }
-.pw:nth-child(1) .label-row { padding-left: clamp(4px, 1.5vw, 8px); }
-.pw:nth-child(2) .label-row { flex-direction: row-reverse; padding-right: clamp(4px, 1.5vw, 8px); }
+.pw:nth-child(1) .label-row { padding-left: clamp(8px, 2vw, 14px); margin-bottom: clamp(6px, 1.6vw, 10px); }
+.pw:nth-child(2) .label-row { flex-direction: row-reverse; padding-right: clamp(8px, 2vw, 14px); margin-bottom: clamp(6px, 1.6vw, 10px); }
 
 .label-text {
   font-family: 'Marck Script', 'Cormorant Garamond', serif;
@@ -119,7 +127,8 @@ body {
   letter-spacing: 0.01em;
   transform: rotate(-4deg);
 }
-.pw:nth-child(2) .label-text { transform: rotate(3deg); }
+.pw:nth-child(1) .label-text { transform: rotate(-8deg); }
+.pw:nth-child(2) .label-text { transform: rotate(4deg); }
 
 .label-arrow {
   width: clamp(26px, 7vw, 38px);
@@ -128,7 +137,8 @@ body {
   line-height: 1;
   transform: rotate(-8deg);
 }
-.pw:nth-child(2) .label-arrow { transform: scaleX(-1) rotate(-10deg); }
+.pw:nth-child(1) .label-arrow { margin-left: -4px; }
+.pw:nth-child(2) .label-arrow { transform: scaleX(-1) rotate(-10deg); margin-right: -4px; }
 
 .hand-arrow {
   width: 100%;
@@ -150,8 +160,8 @@ body {
   box-shadow: 2px 4px 18px rgba(0,0,0,0.22);
   width: clamp(130px, 38vw, 170px);
 }
-.pw:nth-child(1) .polaroid { transform: rotate(-3.5deg); }
-.pw:nth-child(2) .polaroid { transform: rotate(3deg); }
+.pw:nth-child(1) .polaroid { transform: rotate(-7deg); }
+.pw:nth-child(2) .polaroid { transform: rotate(6deg); }
 
 .polaroid-photo {
   width: 100%;
@@ -184,7 +194,7 @@ body {
   text-align: center;
   margin-top: clamp(6px, 1.6vw, 10px);
   line-height: 0.92;
-  letter-spacing: 0.01em;
+  letter-spacing: 0.01em; 
 }
 
 /* ══════════════════════════════════════
@@ -333,7 +343,7 @@ body {
 
 .timeline-title {
   font-family: 'Caveat', 'Marck Script', cursive;
-  font-size: clamp(28px, 7vw, 38px);
+  font-size: clamp(26px, 5vw, 36px);
   color: var(--text-dark);
   line-height: 0.95;
   margin-bottom: 6px;
@@ -384,6 +394,56 @@ body {
   color: var(--text-mid);
   max-width: 90%;
 }
+
+
+.dresscode-palette {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(10px, 3vw, 16px);
+  margin-top: clamp(2px, 1vw, 6px);
+  margin-bottom: clamp(6px, 2vw, 10px);
+}
+
+.palette-chip {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+.palette-swatch {
+  width: clamp(74px, 20vw, 94px);
+  aspect-ratio: 1 / 1;
+  border-radius: 999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 10px;
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,0.35);
+}
+
+.palette-swatch span {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(14px, 3.6vw, 18px);
+  line-height: 1.05;
+}
+
+.palette-label {
+  font-family: 'Jost', sans-serif;
+  font-size: clamp(10px, 2.8vw, 12px);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-mid);
+}
+
+.palette-fig { background: #7b1f3a; color: #fff; }
+.palette-wisteria { background: #c8bad3; color: #fff; }
+.palette-dusty-rose { background: #cf8a90; color: #fff; }
+.palette-champagne { background: #ead9d1; color: #5b494b; }
+.palette-green-moss { background: #b8b28e; color: #fff; }
+.palette-olive { background: #8c8a58; color: #fff; }
 
 /* Map */
 .map-wrap {
@@ -484,7 +544,7 @@ body {
         <div class="polaroid">
           <div class="polaroid-photo has-image">
             <!-- Вставьте фото жениха сюда: замените groom-photo.jpg на свой файл -->
-            <img src="groom-photo.png" alt="Фото Игоря" onerror="this.style.display='none'; this.parentElement.classList.remove('has-image');">
+            <img src="groom-photo.jpg" alt="Фото Игоря" onerror="this.style.display='none'; this.parentElement.classList.remove('has-image');">
             <div class="photo-placeholder">
               <svg viewBox="0 0 70 85" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <circle cx="35" cy="18" r="12" fill="#4a2830" opacity="0.55"/>
@@ -497,7 +557,6 @@ body {
           <p class="polaroid-name">Игорь</p>
         </div>
       </div>
-      <br><br>
 
       <!-- Невеста -->
       <div class="pw">
@@ -514,7 +573,7 @@ body {
         <div class="polaroid">
           <div class="polaroid-photo has-image">
             <!-- Вставьте фото невесты сюда: замените bride-photo.jpg на свой файл -->
-            <img src="bride-photo.png" alt="Фото Алины" onerror="this.style.display='none'; this.parentElement.classList.remove('has-image');">
+            <img src="bride-photo.jpg" alt="Фото Алины" onerror="this.style.display='none'; this.parentElement.classList.remove('has-image');">
             <div class="photo-placeholder">
               <svg viewBox="0 0 70 85" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <circle cx="35" cy="16" r="12" fill="#4a2830" opacity="0.55"/>
@@ -534,11 +593,11 @@ body {
     <p class="story-body reveal d2">
       Когда-то мы были детьми, беззаботными и весёлыми.<br>
       А потом выросли, нашли друг друга...<br>
-      и поняли, что хотим быть вместе <span class="red">навсегда!</span>
+      и поняли, что хотим быть вместе <span class="red">всегда!</span>
     </p>
     <div class="divider"></div>
 
-    <p class="timeline-title">Дорогие гости</p>
+    <p class="timeline-title">Дорогие друзья и родные</p>
     <p class="tagline reveal d2">Мы приглашаем вас разделить с нами радостный день, в который мы станем <span class="red">семьей!</span></p>
 
 
@@ -567,6 +626,7 @@ body {
     <div class="divider"></div>
 
     <div class="timeline reveal d3">
+      <p class="section-title reveal">Тайминг</p>
       <div class="timeline-item">
         <div class="timeline-time">15:00</div>
         <div class="timeline-content">
@@ -642,11 +702,40 @@ body {
     <p class="section-body reveal d1">
       Мы будем рады, если вы поддержите праздничную атмосферу и выберете нарядный, элегантный образ. Главное — чувствовать себя комфортно и выглядеть уместно!
     </p>
+        <div class="dresscode-palette reveal d2" aria-label="Палитра дресс-кода">
+      <div class="palette-chip">
+        <div class="palette-swatch palette-fig"></div>
+        <div class="palette-label">Fig/Berry</div>
+      </div>
+      <div class="palette-chip">
+        <div class="palette-swatch palette-wisteria"></div>
+        <div class="palette-label">Wisteria</div>
+      </div>
+      <div class="palette-chip">
+        <div class="palette-swatch palette-dusty-rose"></div>
+        <div class="palette-label">Dusty Rose</div>
+      </div>
+      <div class="palette-chip">
+        <div class="palette-swatch palette-champagne"></div>
+        <div class="palette-label">Champagne</div>
+      </div>
+      <div class="palette-chip">
+        <div class="palette-swatch palette-green-moss"></div>
+        <div class="palette-label">Green Moss</div>
+      </div>
+      <div class="palette-chip">
+        <div class="palette-swatch palette-olive"></div>
+        <div class="palette-label">Olive</div>
+      </div>
+    </div>
 
     <!-- ПОЖЕЛАНИЯ -->
     <p class="section-title reveal">Пожелания</p>
     <p class="section-body reveal d1">
       В качестве подарка будем благодарны за вклад в бюджет нашей молодой семьи
+    </p>
+    <p class="section-body reveal d1">
+      Пожалуйста не дарите нам цветы, после свадьбы мы отправляемся в свадебере путешествие и прсто не успеем ими насладитья. Можете сделать выбор в пользу лотерейноги билета.
     </p>
 
     <!-- RSVP note box -->
@@ -678,9 +767,6 @@ body {
       </div>
     </div>
 
-
-
-
   </div><!-- /page 2 -->
 
   <p class="footer-line reveal">До встречи на нашем торжестве ♥</p>
@@ -706,6 +792,7 @@ body {
     // Fallback: show everything immediately
     items.forEach(el => el.classList.add('visible'));
   }
+</script>
 </script>
    <script type="module" src="js/main.js"></script>
 <script>
