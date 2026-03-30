@@ -1,6 +1,17 @@
 document.addEventListener('DOMContentLoaded', function() {
 
   var inviteCode = new URLSearchParams(window.location.search).get('guest') || 'unknown';
+  var plusOneSection = document.getElementById('plus-one-section');
+
+  // Hide plus-one section initially
+  plusOneSection.style.display = 'none';
+
+  // Show/hide based on attending selection
+  document.querySelectorAll('input[name="attending"]').forEach(function(radio) {
+    radio.addEventListener('change', function() {
+      plusOneSection.style.display = this.value === '1' ? 'block' : 'none';
+    });
+  });
 
   if (inviteCode !== 'unknown') {
     fetch('/wedding-invite/api/guest?guest=' + encodeURIComponent(inviteCode))
@@ -11,6 +22,7 @@ document.addEventListener('DOMContentLoaded', function() {
         if (data.attending !== null) {
           var attending = document.querySelector('input[name="attending"][value="' + data.attending + '"]');
           if (attending) attending.checked = true;
+          if (data.attending === 1) plusOneSection.style.display = 'block';
           var plusOne = document.querySelector('input[name="plus-one"][value="' + data.plus_one + '"]');
           if (plusOne) plusOne.checked = true;
           document.getElementById('rsvp-message').textContent = 'Вы уже подтвердили своё присутствие 🤍';
@@ -18,6 +30,14 @@ document.addEventListener('DOMContentLoaded', function() {
           document.getElementById('rsvp-form').style.pointerEvents = 'none';
         }
       });
+  }
+
+  // Anonymous submit lock via localStorage
+  if (inviteCode === 'unknown' && localStorage.getItem('rsvp_submitted')) {
+    document.getElementById('rsvp-message').textContent = 'Вы уже подтвердили своё присутствие 🤍';
+    document.getElementById('rsvp-message').style.color = 'var(--fig)';
+    document.getElementById('rsvp-form').style.opacity = '0.5';
+    document.getElementById('rsvp-form').style.pointerEvents = 'none';
   }
 
   function submitRSVP() {
@@ -52,13 +72,13 @@ document.addEventListener('DOMContentLoaded', function() {
     .then(function(res) { return res.json(); })
     .then(function(data) {
       if (data.ok) {
+        if (inviteCode === 'unknown') localStorage.setItem('rsvp_submitted', '1');
         var msgEl = document.getElementById('rsvp-message');
         msgEl.style.color = 'var(--fig)';
         msgEl.textContent = attending === '1'
           ? 'Спасибо! Мы рады вашему присутствию 🤍'
           : 'Ну и хорошо, мы все равно вас чисто для приличия пригласили 🤍';
         document.getElementById('rsvp-form').style.opacity = '0.5';
-        document.getElementById('rsvp-form').style.pointerEvents = '0.5';
         document.getElementById('rsvp-form').style.pointerEvents = 'none';
       }
     })
