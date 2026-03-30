@@ -8,6 +8,12 @@
     "directory": "./dist",
     "binding": "ASSETS"
   },
+  "routes": [
+    {
+      "pattern": "aligor.us/wedding-invite*",
+      "zone_name": "aligor.us"
+    }
+  ],
   "d1_databases": [
     {
       "binding": "DB_BINDING",
