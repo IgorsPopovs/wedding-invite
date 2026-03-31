@@ -46,6 +46,16 @@ export default {
       });
     }
 
+    if (url.pathname === '/wedding-invite/api/visit' && request.method === 'POST') {
+      var body = await request.json();
+      await env.DB_BINDING.prepare(
+        'INSERT INTO visits (invite_code, user_agent) VALUES (?, ?)'
+      ).bind(body.invite_code || null, body.user_agent || null).run();
+      return new Response(JSON.stringify({ ok: true }), {
+        headers: { 'Content-Type': 'application/json', ...corsHeaders }
+      });
+    }
+
     return env.ASSETS.fetch(request);
   }
 };
