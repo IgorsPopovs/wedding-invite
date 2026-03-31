@@ -15,36 +15,20 @@ document.addEventListener('DOMContentLoaded', function() {
 
   var plusOneSection = document.getElementById('plus-one-section');
   var plusOneNameSection = document.getElementById('plus-one-name-section');
-  var partnerLinkSection = document.getElementById('partner-link-section');
 
-  // Hide all conditional sections initially
   plusOneSection.style.display = 'none';
   plusOneNameSection.style.display = 'none';
-  partnerLinkSection.style.display = 'none';
 
-  // Show/hide plus-one section based on attending
   document.querySelectorAll('input[name="attending"]').forEach(function(radio) {
     radio.addEventListener('change', function() {
       plusOneSection.style.display = this.value === '1' ? 'block' : 'none';
-      if (this.value !== '1') {
-        plusOneNameSection.style.display = 'none';
-        partnerLinkSection.style.display = 'none';
-      }
+      if (this.value !== '1') plusOneNameSection.style.display = 'none';
     });
   });
 
-  // Show/hide plus-one name and partner link based on plus-one selection
   document.querySelectorAll('input[name="plus-one"]').forEach(function(radio) {
     radio.addEventListener('change', function() {
       plusOneNameSection.style.display = this.value === '1' ? 'flex' : 'none';
-      if (this.value === '1') {
-        var partnerCode = inviteCode + '_' + Math.random().toString(36).slice(2, 8);
-        var partnerUrl = window.location.origin + '/wedding-invite?guest=' + partnerCode;
-        document.getElementById('partner-link').href = partnerUrl;
-        partnerLinkSection.style.display = 'block';
-      } else {
-        partnerLinkSection.style.display = 'none';
-      }
     });
   });
 
@@ -63,10 +47,6 @@ document.addEventListener('DOMContentLoaded', function() {
           if (data.plus_one === 1) {
             plusOneNameSection.style.display = 'flex';
             document.getElementById('plus-one-name').value = data.plus_one_name || '';
-            var partnerCode = inviteCode + '_' + Math.random().toString(36).slice(2, 8);
-            var partnerUrl = window.location.origin + '/wedding-invite?guest=' + partnerCode;
-            document.getElementById('partner-link').href = partnerUrl;
-            partnerLinkSection.style.display = 'block';
           }
         }
         document.getElementById('rsvp-message').textContent = 'Вы уже подтвердили своё присутствие — можете изменить ответ 🤍';
