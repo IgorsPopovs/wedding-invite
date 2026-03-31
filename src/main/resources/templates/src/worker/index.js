@@ -24,16 +24,22 @@ export default {
 
     if (url.pathname === '/wedding-invite/api/rsvp' && request.method === 'POST') {
       var body = await request.json();
-
-      if (!body.invite_code || body.invite_code === 'unknown') {
-        await env.DB_BINDING.prepare(
-          'INSERT INTO rsvp (name, attending, plus_one, plus_one_name, updated_at) VALUES (?, ?, ?, ?, datetime(\'now\'))'
-        ).bind(body.name, body.attending || null, body.plus_one || null, body.plus_one_name || null).run();
-      } else {
-        await env.DB_BINDING.prepare(
-          'UPDATE rsvp SET name = ?, attending = ?, plus_one = ?, plus_one_name = ?, updated_at = datetime(\'now\') WHERE invite_code = ?'
-        ).bind(body.name, body.attending || null, body.plus_one || null, body.plus_one_name || null, body.invite_code || null).run();
-      }
+      await env.DB_BINDING.prepare(`
+        INSERT INTO rsvp (invite_code, name, attending, plus_one, plus_one_name, updated_at)
+        VALUES (?, ?, ?, ?, ?, datetime('now'))
+        ON CONFLICT(invite_code) DO UPDATE SET
+          name = excluded.name,
+          attending = excluded.attending,
+          plus_one = excluded.plus_one,
+          plus_one_name = excluded.plus_one_name,
+          updated_at = excluded.updated_at
+      `).bind(
+        body.invite_code,
+        body.name,
+        body.attending || null,
+        body.plus_one || null,
+        body.plus_one_name || null
+      ).run();
 
       return new Response(JSON.stringify({ ok: true }), {
         headers: { 'Content-Type': 'application/json', ...corsHeaders }
