@@ -13,6 +13,7 @@ document.addEventListener('DOMContentLoaded', function() {
     history.replaceState(null, '', window.location.pathname);
   }
 
+  // SELECT    v.invite_code,   r.name,   COUNT(*) as visits,   MAX(v.visited_at) as last_visit FROM visits v LEFT JOIN rsvp r ON r.invite_code = v.invite_code GROUP BY v.invite_code ORDER BY last_visit DESC;
   fetch('/wedding-invite/api/visit', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
