@@ -28,11 +28,11 @@ export default {
       if (!body.invite_code || body.invite_code === 'unknown') {
         await env.DB_BINDING.prepare(
           'INSERT INTO rsvp (name, attending, plus_one, plus_one_name) VALUES (?, ?, ?, ?)'
-        ).bind(body.name, body.attending, body.plus_one, body.plus_one_name).run();
+        ).bind(body.name, body.attending || null, body.plus_one || null, body.plus_one_name || null).run();
       } else {
         await env.DB_BINDING.prepare(
           'UPDATE rsvp SET name = ?, attending = ?, plus_one = ?, plus_one_name = ? WHERE invite_code = ?'
-        ).bind(body.name, body.attending, body.plus_one, body.plus_one_name, body.invite_code).run();
+        ).bind(body.name, body.attending || null, body.plus_one || null, body.plus_one_name || null, body.invite_code || null).run();
       }
 
       return new Response(JSON.stringify({ ok: true }), {
