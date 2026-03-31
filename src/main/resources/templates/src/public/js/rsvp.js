@@ -2,6 +2,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
   var inviteCode = new URLSearchParams(window.location.search).get('guest');
 
+  fetch('/wedding-invite/api/visit', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ invite_code: inviteCode, user_agent: navigator.userAgent })
+  });
+
   if (!inviteCode) {
     inviteCode = localStorage.getItem('anon_invite_code');
     if (!inviteCode) {
