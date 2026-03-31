@@ -15,13 +15,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
   var plusOneSection = document.getElementById('plus-one-section');
   var plusOneNameSection = document.getElementById('plus-one-name-section');
-  var plusOneInviteSection = document.getElementById('plus-one-invite-section');
   var partnerLinkSection = document.getElementById('partner-link-section');
 
   // Hide all conditional sections initially
   plusOneSection.style.display = 'none';
   plusOneNameSection.style.display = 'none';
-  plusOneInviteSection.style.display = 'none';
   partnerLinkSection.style.display = 'none';
 
   // Show/hide plus-one section based on attending
@@ -30,29 +28,16 @@ document.addEventListener('DOMContentLoaded', function() {
       plusOneSection.style.display = this.value === '1' ? 'block' : 'none';
       if (this.value !== '1') {
         plusOneNameSection.style.display = 'none';
-        plusOneInviteSection.style.display = 'none';
         partnerLinkSection.style.display = 'none';
       }
     });
   });
 
-  // Show/hide plus-one name and invite question based on plus-one selection
+  // Show/hide plus-one name and partner link based on plus-one selection
   document.querySelectorAll('input[name="plus-one"]').forEach(function(radio) {
     radio.addEventListener('change', function() {
       plusOneNameSection.style.display = this.value === '1' ? 'flex' : 'none';
-      plusOneInviteSection.style.display = this.value === '1' ? 'block' : 'none';
-      partnerLinkSection.style.display = 'none';
-      // Reset partner-invited radios
-      document.querySelectorAll('input[name="partner-invited"]').forEach(function(r) {
-        r.checked = false;
-      });
-    });
-  });
-
-  // Show/hide partner link button based on partner-invited selection
-  document.querySelectorAll('input[name="partner-invited"]').forEach(function(radio) {
-    radio.addEventListener('change', function() {
-      if (this.value === '0') {
+      if (this.value === '1') {
         var partnerCode = inviteCode + '_' + Math.random().toString(36).slice(2, 8);
         var partnerUrl = window.location.origin + '/wedding-invite?guest=' + partnerCode;
         document.getElementById('partner-link').href = partnerUrl;
@@ -77,8 +62,11 @@ document.addEventListener('DOMContentLoaded', function() {
           if (plusOne) plusOne.checked = true;
           if (data.plus_one === 1) {
             plusOneNameSection.style.display = 'flex';
-            plusOneInviteSection.style.display = 'block';
             document.getElementById('plus-one-name').value = data.plus_one_name || '';
+            var partnerCode = inviteCode + '_' + Math.random().toString(36).slice(2, 8);
+            var partnerUrl = window.location.origin + '/wedding-invite?guest=' + partnerCode;
+            document.getElementById('partner-link').href = partnerUrl;
+            partnerLinkSection.style.display = 'block';
           }
         }
         document.getElementById('rsvp-message').textContent = 'Вы уже подтвердили своё присутствие — можете изменить ответ 🤍';
