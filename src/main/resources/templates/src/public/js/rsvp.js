@@ -8,6 +8,11 @@ document.addEventListener('DOMContentLoaded', function() {
       inviteCode = "guest_" + Math.random().toString(36).slice(2, 8);
       localStorage.setItem('anon_invite_code', inviteCode);
     }
+  } else {
+    // Save the code to localStorage so it persists after URL is cleaned
+    localStorage.setItem('anon_invite_code', inviteCode);
+    // Clean the URL without reloading
+    history.replaceState(null, '', window.location.pathname);
   }
 
   var plusOneSection = document.getElementById('plus-one-section');
