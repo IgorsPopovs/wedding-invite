@@ -27,11 +27,11 @@ export default {
 
       if (!body.invite_code || body.invite_code === 'unknown') {
         await env.DB_BINDING.prepare(
-          'INSERT INTO rsvp (name, attending, plus_one, plus_one_name) VALUES (?, ?, ?, ?)'
+          'INSERT INTO rsvp (name, attending, plus_one, plus_one_name, updated_at) VALUES (?, ?, ?, ?, datetime(\'now\'))'
         ).bind(body.name, body.attending || null, body.plus_one || null, body.plus_one_name || null).run();
       } else {
         await env.DB_BINDING.prepare(
-          'UPDATE rsvp SET name = ?, attending = ?, plus_one = ?, plus_one_name = ? WHERE invite_code = ?'
+          'UPDATE rsvp SET name = ?, attending = ?, plus_one = ?, plus_one_name = ?, updated_at = datetime(\'now\') WHERE invite_code = ?'
         ).bind(body.name, body.attending || null, body.plus_one || null, body.plus_one_name || null, body.invite_code || null).run();
       }
 
