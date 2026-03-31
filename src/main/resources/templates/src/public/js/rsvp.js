@@ -1,6 +1,15 @@
 document.addEventListener('DOMContentLoaded', function() {
 
-  var inviteCode = new URLSearchParams(window.location.search).get('guest') || 'unknown';
+  var inviteCode = new URLSearchParams(window.location.search).get('guest');
+
+  if (!inviteCode) {
+    inviteCode = localStorage.getItem('anon_invite_code');
+    if (!inviteCode) {
+      inviteCode = "guest_" + Math.random().toString(36).slice(2, 8);
+      localStorage.setItem('anon_invite_code', inviteCode);
+    }
+  }
+
   var plusOneSection = document.getElementById('plus-one-section');
   var plusOneNameSection = document.getElementById('plus-one-name-section');
 
@@ -23,29 +32,27 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   });
 
-  if (inviteCode !== 'unknown') {
-    fetch('/wedding-invite/api/guest?guest=' + encodeURIComponent(inviteCode))
-      .then(function(res) { return res.json(); })
-      .then(function(data) {
-        if (!data) return;
-        document.getElementById('rsvp-name').value = data.name || '';
-        if (data.attending !== null) {
-          var attending = document.querySelector('input[name="attending"][value="' + data.attending + '"]');
-          if (attending) attending.checked = true;
-          if (data.attending === 1) {
-            plusOneSection.style.display = 'block';
-            var plusOne = document.querySelector('input[name="plus-one"][value="' + data.plus_one + '"]');
-            if (plusOne) plusOne.checked = true;
-            if (data.plus_one === 1) {
-              plusOneNameSection.style.display = 'flex';
-              document.getElementById('plus-one-name').value = data.plus_one_name || '';
-            }
+  fetch('/wedding-invite/api/guest?guest=' + encodeURIComponent(inviteCode))
+    .then(function(res) { return res.json(); })
+    .then(function(data) {
+      if (!data) return;
+      document.getElementById('rsvp-name').value = data.name || '';
+      if (data.attending !== null) {
+        var attending = document.querySelector('input[name="attending"][value="' + data.attending + '"]');
+        if (attending) attending.checked = true;
+        if (data.attending === 1) {
+          plusOneSection.style.display = 'block';
+          var plusOne = document.querySelector('input[name="plus-one"][value="' + data.plus_one + '"]');
+          if (plusOne) plusOne.checked = true;
+          if (data.plus_one === 1) {
+            plusOneNameSection.style.display = 'flex';
+            document.getElementById('plus-one-name').value = data.plus_one_name || '';
           }
-          document.getElementById('rsvp-message').textContent = 'Вы уже подтвердили своё присутствие — можете изменить ответ 🤍';
-          document.getElementById('rsvp-message').style.color = 'var(--fig)';
         }
-      });
-  }
+        document.getElementById('rsvp-message').textContent = 'Вы уже подтвердили своё присутствие — можете изменить ответ 🤍';
+        document.getElementById('rsvp-message').style.color = 'var(--fig)';
+      }
+    });
 
   function submitRSVP() {
     var name = document.getElementById('rsvp-name').value.trim();
