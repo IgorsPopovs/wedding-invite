@@ -36,8 +36,8 @@ export default {
       `).bind(
         body.invite_code,
         body.name,
-        body.attending || null,
-        body.plus_one || null,
+        body.attending !== undefined ? body.attending : null,
+        body.plus_one !== undefined ? body.plus_one : null,
         body.plus_one_name || null
       ).run();
 
