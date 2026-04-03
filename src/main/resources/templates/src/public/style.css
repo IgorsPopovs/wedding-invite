@@ -564,3 +564,18 @@ input[type="radio"]:checked + label {
   padding-top: 0;
   opacity: 0.4;
 }
+
+
+.floating-heart {
+  position: fixed;
+  bottom: 20%;
+  color: var(--fig);
+  pointer-events: none;
+  animation: floatUp 2s ease-out forwards;
+  z-index: 999;
+}
+
+@keyframes floatUp {
+  0%   { transform: translateY(0) scale(1); opacity: 1; }
+  100% { transform: translateY(-60vh) scale(1.4); opacity: 0; }
+}

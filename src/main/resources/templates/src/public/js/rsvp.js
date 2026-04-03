@@ -58,13 +58,32 @@ document.addEventListener('DOMContentLoaded', function() {
             document.getElementById('plus-one-name').value = data.plus_one_name || '';
           }
         }
-//        if (window.showCountdownIfAttending) {
-//          window.showCountdownIfAttending(data.attending);
-//        }
+        if (window.showCountdownIfAttending) {
+          window.showCountdownIfAttending(data.attending);
+        }
         document.getElementById('rsvp-message').textContent = 'Вы уже подтвердили своё присутствие — можете изменить ответ 🤍';
         document.getElementById('rsvp-message').style.color = 'var(--fig)';
       }
     });
+
+  function launchHearts() {
+    var count = 12;
+    for (var i = 0; i < count; i++) {
+      (function(i) {
+        setTimeout(function() {
+          var heart = document.createElement('div');
+          heart.className = 'floating-heart';
+          heart.innerHTML = '♥';
+          heart.style.left = (20 + Math.random() * 60) + '%';
+          heart.style.animationDuration = (1.2 + Math.random() * 1.2) + 's';
+          heart.style.fontSize = (14 + Math.random() * 18) + 'px';
+          heart.style.opacity = (0.6 + Math.random() * 0.4);
+          document.querySelector('.card').appendChild(heart);
+          setTimeout(function() { heart.remove(); }, 2500);
+        }, i * 80);
+      })(i);
+    }
+  }
 
   function submitRSVP() {
     var name = document.getElementById('rsvp-name').value.trim();
@@ -106,6 +125,7 @@ document.addEventListener('DOMContentLoaded', function() {
           : 'Ну и хорошо, мы все равно вас чисто для приличия пригласили 🤍';
         btn.disabled = false;
         btn.textContent = 'Подтвердить';
+        if (attending === '1') launchHearts();
       }
     })
     .catch(function() {
