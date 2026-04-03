@@ -13,13 +13,12 @@ document.addEventListener('DOMContentLoaded', function() {
     history.replaceState(null, '', window.location.pathname);
   }
 
-  // SELECT    v.invite_code,   r.name,   COUNT(*) as visits,   MAX(v.visited_at) as last_visit FROM visits v LEFT JOIN rsvp r ON r.invite_code = v.invite_code GROUP BY v.invite_code ORDER BY last_visit DESC;
   fetch('/wedding-invite/api/visit', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ invite_code: inviteCode, user_agent: navigator.userAgent })
   });
-  
+
   var plusOneSection = document.getElementById('plus-one-section');
   var plusOneNameSection = document.getElementById('plus-one-name-section');
 
@@ -30,6 +29,9 @@ document.addEventListener('DOMContentLoaded', function() {
     radio.addEventListener('change', function() {
       plusOneSection.style.display = this.value === '1' ? 'block' : 'none';
       if (this.value !== '1') plusOneNameSection.style.display = 'none';
+      if (window.showCountdownIfAttending) {
+        window.showCountdownIfAttending(parseInt(this.value));
+      }
     });
   });
 
@@ -55,6 +57,9 @@ document.addEventListener('DOMContentLoaded', function() {
             plusOneNameSection.style.display = 'flex';
             document.getElementById('plus-one-name').value = data.plus_one_name || '';
           }
+        }
+        if (window.showCountdownIfAttending) {
+          window.showCountdownIfAttending(data.attending);
         }
         document.getElementById('rsvp-message').textContent = 'Вы уже подтвердили своё присутствие — можете изменить ответ 🤍';
         document.getElementById('rsvp-message').style.color = 'var(--fig)';
