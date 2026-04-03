@@ -58,9 +58,9 @@ document.addEventListener('DOMContentLoaded', function() {
             document.getElementById('plus-one-name').value = data.plus_one_name || '';
           }
         }
-        if (window.showCountdownIfAttending) {
-          window.showCountdownIfAttending(data.attending);
-        }
+//        if (window.showCountdownIfAttending) {
+//          window.showCountdownIfAttending(data.attending);
+//        }
         document.getElementById('rsvp-message').textContent = 'Вы уже подтвердили своё присутствие — можете изменить ответ 🤍';
         document.getElementById('rsvp-message').style.color = 'var(--fig)';
       }

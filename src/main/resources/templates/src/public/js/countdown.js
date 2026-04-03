@@ -37,10 +37,9 @@ document.addEventListener('DOMContentLoaded', function() {
       countdownSection.style.display = this.value === '1' ? 'block' : 'none';
     });
   });
-
-  // Pre-fill: expose a function rsvp.js can call after fetching guest data
+˚
   window.showCountdownIfAttending = function(attending) {
-    countdownSection.style.display = attending === 1 ? 'block' : 'none';
+    countdownSection.style.display = 'block';
   };
 
 });
