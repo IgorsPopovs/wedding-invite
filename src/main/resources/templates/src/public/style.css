@@ -332,8 +332,8 @@ body {
 
 .map-heart {
     position: absolute;
-    top: 55%;
-    left: 47%;
+    top: 56%;
+    left: 46%;
     transform: translate(-50%, -100%);
     font-size: 33px;
     pointer-events: none;
