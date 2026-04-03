@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', function() {
   var weddingDate = new Date('2026-06-20T16:00:00');
   var countdownSection = document.getElementById('countdown-section');
 
-  countdownSection.style.display = 'none';
+  countdownSection.style.display = 'block';
 
   function updateCountdown() {
     var now = new Date();
@@ -31,13 +31,6 @@ document.addEventListener('DOMContentLoaded', function() {
   updateCountdown();
   setInterval(updateCountdown, 1000);
 
-  // Listen for attending radio changes
-  document.querySelectorAll('input[name="attending"]').forEach(function(radio) {
-    radio.addEventListener('change', function() {
-      countdownSection.style.display = this.value === '1' ? 'block' : 'none';
-    });
-  });
-˚
   window.showCountdownIfAttending = function(attending) {
     countdownSection.style.display = 'block';
   };
