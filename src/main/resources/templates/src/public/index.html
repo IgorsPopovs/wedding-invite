@@ -101,8 +101,9 @@
                 <div class="cd">11</div><div class="cd">12</div><div class="cd">13</div><div class="cd">14</div>
 
                 <div class="cd">15</div><div class="cd">16</div><div class="cd">17</div>
-                <div class="cd">18</div><div class="cd">19</div><div class="cd hl">
-                <i class="fa-solid fa-heart"></i>20</div><div class="cd">21</div>
+                <div class="cd">18</div><div class="cd">19</div>
+                <div class="cd hl"><i class="fa-solid fa-heart"></i>20</div>
+                <div class="cd">21</div>
             </div>
         </div>
 
@@ -157,15 +158,7 @@
                     referrerpolicy="no-referrer-when-downgrade"
                     src="https://www.google.com/maps?q=Ozo+Club+House,+Milgravja+iela+16,+Riga&z=15&output=embed">
             </iframe>
-            <!--<div class="map-heart">
-                <svg viewBox="0 0 44 54" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M22 49 C20 43, 7 34, 7 22 C7 14, 12 9, 18 9 C21 9, 24 10.5, 26 13 C28 10.5, 31 9, 34 9 C40 9, 45 14, 45 22 C45 34, 32 43, 30 49"/>
-                </svg>
-            </div>
-            <div class="map-heart map-heart-css"></div>
-            <div class="map-heart">♥</div>-->
             <div class="map-heart"><i class="fa-solid fa-heart"></i></div>
-
         </div>
         <div class="map-actions reveal d2">
             <a class="btn-pill" href="https://www.google.com/maps/search/?api=1&query=Ozo+Club+House,+Milgravja+iela+16,+Riga" target="_blank" rel="noopener noreferrer">Открыть карту</a>
@@ -240,40 +233,40 @@
                 <input type="text" id="plus-one-name" placeholder="Имя"/>
             </div>
 
-            <button class="btn-pill" id="rsvp-submit">Подтвердить</button>
+            <button class="rsvp-btn" id="rsvp-submit">Подтвердить</button>
             <span id="rsvp-message"></span>
 
+        </div><!-- /rsvp-box -->
+
+        <!-- Countdown — shown only when attending = yes -->
+        <div id="countdown-section" class="countdown-wrap">
+            <p class="title-serif">До церемонии</p>
+            <div class="countdown-timer">
+                <div class="countdown-unit">
+                    <span class="countdown-number" id="cd-days">00</span>
+                    <span class="countdown-label">дней</span>
+                </div>
+                <div class="countdown-sep">:</div>
+                <div class="countdown-unit">
+                    <span class="countdown-number" id="cd-hours">00</span>
+                    <span class="countdown-label">часов</span>
+                </div>
+                <div class="countdown-sep">:</div>
+                <div class="countdown-unit">
+                    <span class="countdown-number" id="cd-minutes">00</span>
+                    <span class="countdown-label">минут</span>
+                </div>
+                <div class="countdown-sep">:</div>
+                <div class="countdown-unit">
+                    <span class="countdown-number" id="cd-seconds">00</span>
+                    <span class="countdown-label">секунд</span>
+                </div>
+            </div>
         </div>
 
     </div><!-- /page 2 -->
 
     <p class="footer-line reveal">До встречи на нашем торжестве ♥</p>
-
-
-    <div id="countdown-section" class="countdown-wrap reveal d2">
-        <p class="title-serif">До церемонии</p>
-        <div class="countdown-timer">
-            <div class="countdown-unit">
-                <span class="countdown-number" id="cd-days">00</span>
-                <span class="countdown-label">дней</span>
-            </div>
-            <div class="countdown-sep">:</div>
-            <div class="countdown-unit">
-                <span class="countdown-number" id="cd-hours">00</span>
-                <span class="countdown-label">часов</span>
-            </div>
-            <div class="countdown-sep">:</div>
-            <div class="countdown-unit">
-                <span class="countdown-number" id="cd-minutes">00</span>
-                <span class="countdown-label">минут</span>
-            </div>
-            <div class="countdown-sep">:</div>
-            <div class="countdown-unit">
-                <span class="countdown-number" id="cd-seconds">00</span>
-                <span class="countdown-label">секунд</span>
-            </div>
-        </div>
-    </div>
 
 </div><!-- /card -->
 
@@ -293,7 +286,7 @@
         items.forEach(el => el.classList.add('visible'));
     }
 </script>
-<script src="js/rsvp.js"></script>
 <script src="js/countdown.js"></script>
+<script src="js/rsvp.js"></script>
 </body>
 </html>
