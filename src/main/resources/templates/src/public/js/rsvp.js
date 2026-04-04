@@ -60,6 +60,18 @@ document.addEventListener('DOMContentLoaded', function() {
     .then(function(res) { return res.json(); })
     .then(function(data) {
       if (!data) return;
+
+      if (data.name) {
+        var lastName = data.name.trim().split(/\s+/).pop();
+        var lastChar = lastName.slice(-1).toLowerCase();
+        var isFeminine = lastChar === 'а' || lastChar === 'я' || lastChar === 'a' || lastChar === 'e';
+        var salutation = isFeminine ? 'Дорогая' : 'Дорогой';
+        var greeting = data.plus_one_name
+          ? 'Дорогие ' + data.name + ' и ' + data.plus_one_name
+          : salutation + ' ' + data.name;
+        document.getElementById('greeting').textContent = greeting;
+      }
+
       document.getElementById('rsvp-name').value = data.name || '';
       if (data.attending !== null) {
         var attending = document.querySelector('input[name="attending"][value="' + data.attending + '"]');
@@ -77,20 +89,6 @@ document.addEventListener('DOMContentLoaded', function() {
           window.showCountdownIfAttending(data.attending);
         }
         showMessage('Вы уже подтвердили своё присутствие — можете изменить ответ ❤️', 'var(--olive)', true);
-
-        var rsvpBox = document.querySelector('.rsvp-box');
-        var submitBtn = document.getElementById('rsvp-submit');
-        var unlockBtn = document.getElementById('rsvp-unlock');
-
-        rsvpBox.classList.add('locked');
-        submitBtn.style.display = 'none';
-        unlockBtn.style.display = 'block';
-
-        unlockBtn.addEventListener('click', function() {
-          rsvpBox.classList.remove('locked');
-          submitBtn.style.display = '';
-          unlockBtn.style.display = 'none';
-        });
       }
     });
 
