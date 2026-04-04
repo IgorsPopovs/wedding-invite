@@ -1,12 +1,13 @@
 document.addEventListener('DOMContentLoaded', function() {
 
-  function showMessage(text, color) {
+  function showMessage(text, color, success) {
     var el = document.getElementById('rsvp-message');
-    el.classList.remove('show');
+    el.classList.remove('show', 'success');
     el.textContent = text;
     el.style.color = color || 'var(--fig)';
     void el.offsetWidth; // force reflow so animation re-triggers
     el.classList.add('show');
+    if (success) el.classList.add('success');
   }
 
   var inviteCode = new URLSearchParams(window.location.search).get('guest');
@@ -70,7 +71,7 @@ document.addEventListener('DOMContentLoaded', function() {
         if (window.showCountdownIfAttending) {
           window.showCountdownIfAttending(data.attending);
         }
-        showMessage('Вы уже подтвердили своё присутствие — можете изменить ответ 🤍');
+        showMessage('Вы уже подтвердили своё присутствие — можете изменить ответ 🤍', 'var(--olive)', true);
       }
     });
 
@@ -126,7 +127,8 @@ document.addEventListener('DOMContentLoaded', function() {
       if (data.ok) {
         showMessage(attending === '1'
           ? 'Спасибо! Мы рады вашему присутствию 🤍'
-          : 'Ну и хорошо, мы все равно вас чисто для приличия пригласили 🤍');
+          : 'Ну и хорошо, мы все равно вас чисто для приличия пригласили 🤍',
+          'var(--olive)', true);
         btn.disabled = false;
         btn.textContent = 'Подтвердить';
         if (attending === '1') launchHearts();
