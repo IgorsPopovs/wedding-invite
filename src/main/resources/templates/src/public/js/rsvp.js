@@ -38,7 +38,12 @@ document.addEventListener('DOMContentLoaded', function() {
   document.querySelectorAll('input[name="attending"]').forEach(function(radio) {
     radio.addEventListener('change', function() {
       plusOneSection.style.display = this.value === '1' ? 'block' : 'none';
-      if (this.value !== '1') plusOneNameSection.style.display = 'none';
+      if (this.value !== '1') {
+        plusOneNameSection.style.display = 'none';
+      } else {
+        var plusOneChecked = document.querySelector('input[name="plus-one"]:checked');
+        plusOneNameSection.style.display = (plusOneChecked && plusOneChecked.value === '1') ? 'flex' : 'none';
+      }
       if (window.showCountdownIfAttending) {
         window.showCountdownIfAttending(parseInt(this.value));
       }
