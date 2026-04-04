@@ -588,3 +588,17 @@ input[type="radio"]:checked + label {
   100% { transform: translateY(-60vh) scale(1.4); opacity: 0; }
 }
 
+.cal-add-wrap {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--sp-sm);
+}
+
+.cal-add-buttons {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  justify-content: center;
+}
