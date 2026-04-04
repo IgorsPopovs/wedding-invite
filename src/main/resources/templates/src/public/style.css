@@ -380,12 +380,12 @@ body {
   color: var(--text-mid);
 }
 
-.palette-fig        { background-image: url('img.png'); background-size: 500% 400%; background-position: 82% 76%; background-blend-mode: normal; }
-.palette-wisteria   { background-image: url('img.png'); background-size: 500% 400%; background-position: 50% 76%; background-blend-mode: normal; }
-.palette-dusty-rose { background-image: url('img.png'); background-size: 500% 400%; background-position: 82%  7%; background-blend-mode: normal; }
-.palette-champagne  { background-image: url('img.png'); background-size: 500% 400%; background-position: 18%  7%; background-blend-mode: normal; }
-.palette-green-moss { background-image: url('img.png'); background-size: 500% 400%; background-position: 50%  7%; background-blend-mode: normal; }
-.palette-olive      { background-image: url('img.png'); background-size: 500% 400%; background-position: 18% 76%; background-blend-mode: normal; }
+.palette-fig        { background-image: url('fabric-texture.png'); background-size: 500% 400%; background-position: 88% 76%; background-blend-mode: normal; }
+.palette-wisteria   { background-image: url('fabric-texture.png'); background-size: 500% 400%; background-position: 50% 76%; background-blend-mode: normal; }
+.palette-dusty-rose { background-image: url('fabric-texture.png'); background-size: 500% 400%; background-position: 86%  7%; background-blend-mode: normal; }
+.palette-champagne  { background-image: url('fabric-texture.png'); background-size: 500% 400%; background-position: 10%  7%; background-blend-mode: normal; }
+.palette-green-moss { background-image: url('fabric-texture.png'); background-size: 500% 400%; background-position: 50%  7%; background-blend-mode: normal; }
+.palette-olive      { background-image: url('fabric-texture.png'); background-size: 500% 400%; background-position: 10% 76%; background-blend-mode: normal; }
 
 /* ══════════════════════════════════════
    MAP
