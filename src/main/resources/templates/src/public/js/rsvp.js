@@ -31,12 +31,19 @@ document.addEventListener('DOMContentLoaded', function() {
 
   var plusOneSection = document.getElementById('plus-one-section');
   var plusOneNameSection = document.getElementById('plus-one-name-section');
+  var submitBtn = document.getElementById('rsvp-submit');
 
   plusOneSection.style.display = 'none';
   plusOneNameSection.style.display = 'none';
+  submitBtn.classList.add('unmodified');
+
+  function markModified() {
+    submitBtn.classList.remove('unmodified');
+  }
 
   document.querySelectorAll('input[name="attending"]').forEach(function(radio) {
     radio.addEventListener('change', function() {
+      markModified();
       plusOneSection.style.display = this.value === '1' ? 'flex' : 'none';
       if (this.value !== '1') {
         plusOneNameSection.style.display = 'none';
@@ -52,9 +59,13 @@ document.addEventListener('DOMContentLoaded', function() {
 
   document.querySelectorAll('input[name="plus-one"]').forEach(function(radio) {
     radio.addEventListener('change', function() {
+      markModified();
       plusOneNameSection.style.display = this.value === '1' ? 'flex' : 'none';
     });
   });
+
+  document.getElementById('rsvp-name').addEventListener('input', markModified);
+  document.getElementById('plus-one-name').addEventListener('input', markModified);
 
   fetch('/wedding-invite/api/guest?guest=' + encodeURIComponent(inviteCode))
     .then(function(res) { return res.json(); })
