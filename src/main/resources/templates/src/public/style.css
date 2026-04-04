@@ -274,7 +274,13 @@ body {
    CALENDAR
 ══════════════════════════════════════ */
 .cal-wrap { width: 100%; max-width: 300px; }
-.cal-grid { display: grid; grid-template-columns: repeat(7, 1fr); }
+.cal-grid {
+    display: grid;
+    grid-template-columns:
+    repeat(7, 1fr);
+    justify-self: center;
+    width: 250px;
+}
 
 .ch {
   font-family: 'Jost', sans-serif;
