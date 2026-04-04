@@ -360,7 +360,16 @@ body {
   justify-content: center;
   padding: 10px;
   box-shadow: inset 0 0 0 1px rgba(255,255,255,0.35);
+  filter: grayscale(1);
+  transition: filter 1s ease;
 }
+
+.dresscode-palette.visible .palette-chip:nth-child(1) .palette-swatch { filter: grayscale(0); transition-delay: 0.0s; }
+.dresscode-palette.visible .palette-chip:nth-child(2) .palette-swatch { filter: grayscale(0); transition-delay: 0.15s; }
+.dresscode-palette.visible .palette-chip:nth-child(3) .palette-swatch { filter: grayscale(0); transition-delay: 0.30s; }
+.dresscode-palette.visible .palette-chip:nth-child(4) .palette-swatch { filter: grayscale(0); transition-delay: 0.45s; }
+.dresscode-palette.visible .palette-chip:nth-child(5) .palette-swatch { filter: grayscale(0); transition-delay: 0.60s; }
+.dresscode-palette.visible .palette-chip:nth-child(6) .palette-swatch { filter: grayscale(0); transition-delay: 0.75s; }
 
 .palette-label {
   font-family: 'Jost', sans-serif;
@@ -371,12 +380,12 @@ body {
   color: var(--text-mid);
 }
 
-.palette-fig        { background: #6f2a44; color: #fff; }
-.palette-wisteria   { background: #c9a0dc; color: #fff; }
-.palette-dusty-rose { background: #d6a5ab; color: #fff; }
-.palette-champagne  { background: #f7e7ce; color: #6b5540; }
-.palette-green-moss { background: #8a9a5b; color: #fff; }
-.palette-olive      { background: #808000; color: #fff; }
+.palette-fig        { background-image: url('img.png'); background-size: 500% 400%; background-position: 82% 76%; background-blend-mode: normal; }
+.palette-wisteria   { background-image: url('img.png'); background-size: 500% 400%; background-position: 50% 76%; background-blend-mode: normal; }
+.palette-dusty-rose { background-image: url('img.png'); background-size: 500% 400%; background-position: 82%  7%; background-blend-mode: normal; }
+.palette-champagne  { background-image: url('img.png'); background-size: 500% 400%; background-position: 18%  7%; background-blend-mode: normal; }
+.palette-green-moss { background-image: url('img.png'); background-size: 500% 400%; background-position: 50%  7%; background-blend-mode: normal; }
+.palette-olive      { background-image: url('img.png'); background-size: 500% 400%; background-position: 18% 76%; background-blend-mode: normal; }
 
 /* ══════════════════════════════════════
    MAP
@@ -593,20 +602,6 @@ input[type="radio"]:checked + label {
 .d3 { transition-delay: 0.34s; }
 
 
-.palette-swatch {
-  width: clamp(74px, 20vw, 94px);
-  aspect-ratio: 1 / 1;
-  border-radius: 999px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 10px;
-  box-shadow: inset 0 0 0 1px rgba(255,255,255,0.35);
-  background-image: url('fabric-texture.jpeg');
-  background-size: cover;
-  background-position: center;
-  background-blend-mode: multiply;
-}
 
 
 
