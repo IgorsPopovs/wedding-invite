@@ -186,7 +186,7 @@ body {
 
 .polaroid {
   background: #f3ede6;
-  padding: clamp(7px, 2vw, 11px) clamp(7px, 2vw, 11px) clamp(28px, 8vw, 38px);
+  padding: 7px 7px 12px 7px;
   box-shadow: 2px 4px 18px rgba(0,0,0,0.22);
   width: clamp(130px, 38vw, 170px);
 }
