@@ -88,6 +88,16 @@
             скоро<span class="red"> свадьба!</span><br>
         </p>
 
+        <div class="scroll-hint" id="scroll-hint">
+            <span class="scroll-hint-label">листай</span>
+            <svg viewBox="0 0 40 20" xmlns="http://www.w3.org/2000/svg">
+                <path d="M8 4 L20 16 L32 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <svg viewBox="0 0 40 20" xmlns="http://www.w3.org/2000/svg">
+                <path d="M8 4 L20 16 L32 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+        </div>
+
         <div class="divider"></div>
         <!--</div> Page 2
         <div class="page">-->
@@ -332,15 +342,24 @@
             });
         }, { threshold: 0.08, rootMargin: '0px 0px -20px 0px' });
 
+        const scrollHint = document.getElementById('scroll-hint');
+
         let scrolled = false;
         function startReveal() {
             if (scrolled) return;
             scrolled = true;
+            if (scrollHint) scrollHint.classList.add('hidden');
             revealItems.forEach(el => io.observe(el));
             window.removeEventListener('scroll', startReveal);
         }
-        // small timeout so observer doesn't fire before scroll listener is set
-        setTimeout(() => window.addEventListener('scroll', startReveal, { passive: true }), 100);
+        // wait a bit before attaching scroll listener so initial render doesn't trigger it
+        // also auto-hide scroll hint after 5s if user hasn't scrolled
+        setTimeout(() => {
+            window.addEventListener('scroll', startReveal, { passive: true });
+        }, 300);
+        setTimeout(() => {
+            if (scrollHint && !scrolled) scrollHint.classList.add('hidden');
+        }, 5000);
     } else {
         revealItems.forEach(el => el.classList.add('visible'));
         if (polaroidRow) polaroidRow.classList.add('visible');

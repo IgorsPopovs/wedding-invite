@@ -605,6 +605,45 @@ input[type="radio"]:checked + label {
 
 
 /* ══════════════════════════════════════
+   SCROLL HINT
+══════════════════════════════════════ */
+.scroll-hint {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  margin: 18px auto 0;
+  color: var(--fig);
+  opacity: 0.45;
+  transition: opacity 0.8s ease;
+}
+.scroll-hint-label {
+  font-family: 'Jost', sans-serif;
+  font-weight: 300;
+  font-size: 11px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+.scroll-hint svg {
+  width: 40px;
+  height: 20px;
+  animation: scrollWave 1.6s ease-in-out infinite;
+}
+.scroll-hint svg:last-child {
+  animation-delay: 0.25s;
+  opacity: 0.55;
+}
+.scroll-hint.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+@keyframes scrollWave {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(6px); }
+}
+
+/* ══════════════════════════════════════
    FOOTER
 ══════════════════════════════════════ */
 .footer-line {
