@@ -105,8 +105,8 @@
         <p class="title-script reveal d1" id="greeting">Дорогие друзья и родные!</p>
         <p class="text-italic reveal d2">Мы приглашаем вас разделить с нами радостный день, в который мы станем <span class="red">семьей!</span></p>
 
-        <p class="title-serif reveal d3">Июнь</p>
-        <p class="text-ui-spaced reveal d3">2 0 2 6</p>
+        <p class="title-serif reveal d1">Июнь</p>
+        <p class="text-ui-spaced reveal d1">2 0 2 6</p>
 
         <div class="cal-wrap reveal d1">
             <div class="cal-grid">
@@ -352,14 +352,20 @@
             revealItems.forEach(el => io.observe(el));
             window.removeEventListener('scroll', startReveal);
         }
-        // wait a bit before attaching scroll listener so initial render doesn't trigger it
-        // also auto-hide scroll hint after 5s if user hasn't scrolled
-        setTimeout(() => {
-            window.addEventListener('scroll', startReveal, { passive: true });
-        }, 300);
-        setTimeout(() => {
-            if (scrollHint && !scrolled) scrollHint.classList.add('hidden');
-        }, 5000);
+
+        // if page loaded already scrolled (refresh, back nav), reveal everything immediately
+        if (window.scrollY > 10) {
+            startReveal();
+        } else {
+            // wait a bit before attaching scroll listener so initial render doesn't trigger it
+            // also auto-hide scroll hint after 5s if user hasn't scrolled
+            setTimeout(() => {
+                window.addEventListener('scroll', startReveal, { passive: true });
+            }, 300);
+            setTimeout(() => {
+                if (scrollHint && !scrolled) scrollHint.classList.add('hidden');
+            }, 5000);
+        }
     } else {
         revealItems.forEach(el => el.classList.add('visible'));
         if (polaroidRow) polaroidRow.classList.add('visible');
