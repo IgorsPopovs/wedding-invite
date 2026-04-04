@@ -371,12 +371,12 @@ body {
   color: var(--text-mid);
 }
 
-.palette-fig        { background: #7b1f3a; color: #fff; }
-.palette-wisteria   { background: #c8bad3; color: #fff; }
-.palette-dusty-rose { background: #cf8a90; color: #fff; }
-.palette-champagne  { background: #ead9d1; color: #5b494b; }
-.palette-green-moss { background: #b8b28e; color: #fff; }
-.palette-olive      { background: #8c8a58; color: #fff; }
+.palette-fig        { background: #6f2a44; color: #fff; }
+.palette-wisteria   { background: #c9a0dc; color: #fff; }
+.palette-dusty-rose { background: #d6a5ab; color: #fff; }
+.palette-champagne  { background: #f7e7ce; color: #6b5540; }
+.palette-green-moss { background: #8a9a5b; color: #fff; }
+.palette-olive      { background: #808000; color: #fff; }
 
 /* ══════════════════════════════════════
    MAP
