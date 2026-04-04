@@ -71,7 +71,7 @@ document.addEventListener('DOMContentLoaded', function() {
         if (window.showCountdownIfAttending) {
           window.showCountdownIfAttending(data.attending);
         }
-        showMessage('Вы уже подтвердили своё присутствие — можете изменить ответ 🤍', 'var(--olive)', true);
+        showMessage('Вы уже подтвердили своё присутствие — можете изменить ответ ❤️', 'var(--olive)', true);
       }
     });
 
@@ -126,8 +126,8 @@ document.addEventListener('DOMContentLoaded', function() {
     .then(function(data) {
       if (data.ok) {
         showMessage(attending === '1'
-          ? 'Спасибо! Мы рады вашему присутствию 🤍'
-          : 'Ну и хорошо, мы все равно вас чисто для приличия пригласили 🤍',
+          ? 'Спасибо! Мы рады вашему присутствию ❤️'
+          : 'Ну и хорошо, мы все равно вас чисто для приличия пригласили ❤️',
           'var(--olive)', true);
         btn.disabled = false;
         btn.textContent = 'Подтвердить';
