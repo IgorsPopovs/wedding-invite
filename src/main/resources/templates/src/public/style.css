@@ -238,7 +238,7 @@ body {
 .hand-arrow path { stroke: currentColor; stroke-width: 2.6; stroke-linecap: round; stroke-linejoin: round; fill: none; }
 
 .polaroid {
-  background: #f3ede6;
+  background: #ffffff;
   padding: 7px 7px 12px 7px;
   box-shadow: 2px 4px 18px rgba(0,0,0,0.22);
   width: clamp(130px, 38vw, 170px);
@@ -247,6 +247,17 @@ body {
 .pw:nth-child(2) .polaroid { transform: rotate(6deg) translateX(120px); opacity: 0; transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.15s, opacity 0.7s ease 0.15s; }
 .polaroid-row.visible .pw:nth-child(1) .polaroid { transform: rotate(-7deg) translateX(0); opacity: 1; }
 .polaroid-row.visible .pw:nth-child(2) .polaroid { transform: rotate(6deg) translateX(0); opacity: 1; }
+.polaroid-row.visible .polaroid-fade {
+    opacity: 0;
+}
+
+.polaroid-fade {
+    opacity: 1;
+    position: absolute;
+    mix-blend-mode: plus-lighter;
+    transition: opacity 5s 0.5s ease;
+    filter: blur(3px);
+}
 
 .polaroid-photo {
   width: 100%;
