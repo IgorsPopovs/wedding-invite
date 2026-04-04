@@ -77,6 +77,20 @@ document.addEventListener('DOMContentLoaded', function() {
           window.showCountdownIfAttending(data.attending);
         }
         showMessage('Вы уже подтвердили своё присутствие — можете изменить ответ ❤️', 'var(--olive)', true);
+
+        var rsvpBox = document.querySelector('.rsvp-box');
+        var submitBtn = document.getElementById('rsvp-submit');
+        var unlockBtn = document.getElementById('rsvp-unlock');
+
+        rsvpBox.classList.add('locked');
+        submitBtn.style.display = 'none';
+        unlockBtn.style.display = 'block';
+
+        unlockBtn.addEventListener('click', function() {
+          rsvpBox.classList.remove('locked');
+          submitBtn.style.display = '';
+          unlockBtn.style.display = 'none';
+        });
       }
     });
 
