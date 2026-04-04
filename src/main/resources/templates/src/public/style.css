@@ -603,6 +603,9 @@ input[type="radio"]:checked + label {
 .btn-unlock {
   display: block;
   width: 100%;
+  pointer-events: auto;
+  position: relative;
+  z-index: 1;
   background: transparent;
   color: var(--fig);
   font-family: 'Jost', sans-serif;
