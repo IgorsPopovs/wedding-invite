@@ -45,9 +45,6 @@ if ('IntersectionObserver' in window) {
                 window.addEventListener('scroll', startReveal, { passive: true });
             }
         }, 300);
-        setTimeout(() => {
-            if (scrollHint && !scrolled) scrollHint.classList.add('hidden');
-        }, 5000);
     }
 
     // also handle Safari page show from bfcache
