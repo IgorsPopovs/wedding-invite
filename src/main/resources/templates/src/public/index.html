@@ -356,13 +356,6 @@
 
 <script>
     lucide.createIcons();
-    document.querySelectorAll('.tl-gif').forEach(function(img) {
-        if (img.complete) {
-            img.classList.add('loaded');
-        } else {
-            img.addEventListener('load', function() { img.classList.add('loaded'); });
-        }
-    });
 </script>
 <script src="js/reveal.js"></script>
 <script>

@@ -348,7 +348,9 @@ body {
   flex-direction: column;
   width: 100%;
   margin-top: 16px;
-  background: radial-gradient(ellipse at center, #f5ece8 30%, transparent 100%);
+  background: #f5ece8;
+  -webkit-mask-image: radial-gradient(ellipse at center, black 55%, transparent 100%);
+  mask-image: radial-gradient(ellipse at center, black 55%, transparent 100%);
   padding: 0 4px;
 }
 .tl::before {
