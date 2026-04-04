@@ -62,13 +62,14 @@ document.addEventListener('DOMContentLoaded', function() {
       if (!data) return;
 
       if (data.name) {
-        var lastName = data.name.trim().split(/\s+/).pop();
-        var lastChar = lastName.slice(-1).toLowerCase();
+        var nameParts = data.name.trim().split(/\s+/).filter(function(p) { return p.replace(/[^а-яёa-z]/gi, '').length > 1; });
+        var baseName = nameParts.length ? nameParts[0] : data.name.trim();
+        var lastChar = baseName.replace(/[^а-яёa-z]/gi, '').slice(-1).toLowerCase();
         var isFeminine = lastChar === 'а' || lastChar === 'я' || lastChar === 'a' || lastChar === 'e';
         var salutation = isFeminine ? 'Дорогая' : 'Дорогой';
         var greeting = data.plus_one_name
-          ? 'Дорогие ' + data.name + ' и ' + data.plus_one_name
-          : salutation + ' ' + data.name;
+          ? 'Дорогие ' + data.name + ' и ' + data.plus_one_name + '!'
+          : salutation + ' ' + data.name + '!';
         document.getElementById('greeting').textContent = greeting;
       }
 

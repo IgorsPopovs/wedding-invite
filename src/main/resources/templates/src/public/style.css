@@ -95,7 +95,7 @@ body {
 /* Caveat — handwritten accents only */
 .title-script {
   font-family: 'Caveat', 'Marck Script', cursive;
-  font-size: clamp(18px, 4vw, 26px);
+  font-size: clamp(22px, 5vw, 32px);
   color: var(--text-dark);
   line-height: 1.1;
 }
