@@ -19,7 +19,7 @@
     <div class="page">
 
         <!-- Polaroids -->
-        <div class="polaroid-row reveal">
+        <div class="polaroid-row">
 
             <!-- Жених -->
             <div class="pw">
@@ -79,9 +79,9 @@
             </div>
         </div>
 
-        <p class="text-headline reveal d1">Узнали?</p>
+        <p class="text-headline">Узнали?</p>
 
-        <p class="text-body reveal d2" style="line-height: 20px;">
+        <p class="text-body" style="line-height: 20px;">
             Да-да, это мы!<br>
             Время пронеслось незаметно<br>
             и у этих двух милых деток<br>
@@ -92,7 +92,7 @@
         <!--</div> Page 2
         <div class="page">-->
 
-        <p class="title-script" id="greeting">Дорогие друзья и родные!</p>
+        <p class="title-script reveal d1" id="greeting">Дорогие друзья и родные!</p>
         <p class="text-italic reveal d2">Мы приглашаем вас разделить с нами радостный день, в который мы станем <span class="red">семьей!</span></p>
 
         <p class="title-serif reveal d3">Июнь</p>
@@ -312,8 +312,17 @@
 </div><!-- /card -->
 
 <script>
-    const items = document.querySelectorAll('.reveal, .polaroid-row');
+    const revealItems = document.querySelectorAll('.reveal');
+    const polaroidRow = document.querySelector('.polaroid-row');
+
     if ('IntersectionObserver' in window) {
+        // polaroid-row triggers immediately on load
+        const polaroidObs = new IntersectionObserver(entries => {
+            entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); polaroidObs.unobserve(e.target); } });
+        }, { threshold: 0.08 });
+        if (polaroidRow) polaroidObs.observe(polaroidRow);
+
+        // everything else only starts observing after first scroll
         const io = new IntersectionObserver(entries => {
             entries.forEach(e => {
                 if (e.isIntersecting) {
@@ -322,9 +331,19 @@
                 }
             });
         }, { threshold: 0.08, rootMargin: '0px 0px -20px 0px' });
-        items.forEach(el => io.observe(el));
+
+        let scrolled = false;
+        function startReveal() {
+            if (scrolled) return;
+            scrolled = true;
+            revealItems.forEach(el => io.observe(el));
+            window.removeEventListener('scroll', startReveal);
+        }
+        // small timeout so observer doesn't fire before scroll listener is set
+        setTimeout(() => window.addEventListener('scroll', startReveal, { passive: true }), 100);
     } else {
-        items.forEach(el => el.classList.add('visible'));
+        revealItems.forEach(el => el.classList.add('visible'));
+        if (polaroidRow) polaroidRow.classList.add('visible');
     }
 </script>
 <script>
