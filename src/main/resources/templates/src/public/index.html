@@ -353,19 +353,31 @@
             window.removeEventListener('scroll', startReveal);
         }
 
+        function checkScrollPosition() {
+            if (window.scrollY > 10 || document.documentElement.scrollTop > 10) {
+                startReveal();
+                return true;
+            }
+            return false;
+        }
+
         // if page loaded already scrolled (refresh, back nav), reveal everything immediately
-        if (window.scrollY > 10) {
-            startReveal();
-        } else {
-            // wait a bit before attaching scroll listener so initial render doesn't trigger it
-            // also auto-hide scroll hint after 5s if user hasn't scrolled
+        if (!checkScrollPosition()) {
             setTimeout(() => {
-                window.addEventListener('scroll', startReveal, { passive: true });
+                // re-check after browser may have restored scroll position (Safari bfcache)
+                if (!checkScrollPosition()) {
+                    window.addEventListener('scroll', startReveal, { passive: true });
+                }
             }, 300);
             setTimeout(() => {
                 if (scrollHint && !scrolled) scrollHint.classList.add('hidden');
             }, 5000);
         }
+
+        // also handle Safari page show from bfcache
+        window.addEventListener('pageshow', function(e) {
+            if (e.persisted) startReveal();
+        });
     } else {
         revealItems.forEach(el => el.classList.add('visible'));
         if (polaroidRow) polaroidRow.classList.add('visible');
