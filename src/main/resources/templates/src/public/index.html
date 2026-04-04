@@ -8,6 +8,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=EB+Garamond:ital,wght@0,400;1,400&family=Jost:wght@200;300;400&family=Marck+Script&family=Caveat:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
 </head>
 <body>
 
@@ -143,29 +144,56 @@
 
         <div class="timeline reveal d3">
             <p class="title-serif">Тайминг</p>
-            <div class="timeline-item">
-                <div class="text-ui-time">15:00</div>
-                <div class="timeline-content">
-                    <p class="title-script">Сбор гостей</p>
+            <div class="tl">
+
+                <!-- Сбор гостей — champagne glasses -->
+                <div class="tl-item">
+                    <div class="tl-side tl-icon">
+                        <i data-lucide="wine"></i>
+                    </div>
+                    <div class="tl-dot"></div>
+                    <div class="tl-side tl-text">
+                        <div class="tl-time">15:00</div>
+                        <div class="tl-label">Сбор гостей</div>
+                    </div>
                 </div>
-            </div>
-            <div class="timeline-item">
-                <div class="text-ui-time">16:00</div>
-                <div class="timeline-content">
-                    <p class="title-script">Церемония</p>
+
+                <!-- Церемония — wedding rings -->
+                <div class="tl-item tl-right">
+                    <div class="tl-side tl-text">
+                        <div class="tl-time">16:00</div>
+                        <div class="tl-label">Церемония</div>
+                    </div>
+                    <div class="tl-dot"></div>
+                    <div class="tl-side tl-icon">
+                        <i data-lucide="gem"></i>
+                    </div>
                 </div>
-            </div>
-            <div class="timeline-item">
-                <div class="text-ui-time">17:00</div>
-                <div class="timeline-content">
-                    <p class="title-script">Банкет</p>
+
+                <!-- Банкет — plate fork knife -->
+                <div class="tl-item">
+                    <div class="tl-side tl-icon">
+                        <i data-lucide="utensils"></i>
+                    </div>
+                    <div class="tl-dot"></div>
+                    <div class="tl-side tl-text">
+                        <div class="tl-time">17:00</div>
+                        <div class="tl-label">Банкет</div>
+                    </div>
                 </div>
-            </div>
-            <div class="timeline-item">
-                <div class="text-ui-time">1:00</div>
-                <div class="timeline-content">
-                    <p class="title-script">Танцы до утра</p>
+
+                <!-- Танцы — music notes -->
+                <div class="tl-item tl-right">
+                    <div class="tl-side tl-text">
+                        <div class="tl-time">01:00</div>
+                        <div class="tl-label">Танцы до утра</div>
+                    </div>
+                    <div class="tl-dot"></div>
+                    <div class="tl-side tl-icon">
+                        <i data-lucide="music"></i>
+                    </div>
                 </div>
+
             </div>
         </div>
 
@@ -322,6 +350,7 @@
 
 </div><!-- /card -->
 
+<script>lucide.createIcons();</script>
 <script src="js/reveal.js"></script>
 <script>
     (function () {
