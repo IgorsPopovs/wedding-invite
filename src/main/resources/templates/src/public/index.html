@@ -8,13 +8,17 @@
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=EB+Garamond:ital,wght@0,400;1,400&family=Jost:wght@200;300;400&family=Marck+Script&family=Caveat:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
+    <link rel="preload" as="image" href="images/icons/toast_9109257.gif">
+    <link rel="preload" as="image" href="images/icons/wedding_14025471.gif">
+    <link rel="preload" as="image" href="images/icons/vegan-food_9529411.gif">
+    <link rel="preload" as="image" href="images/icons/music_16390432.gif">
     <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
 </head>
 <body>
 
 <div class="card">
     <div class="page">
-<!--    <img style="height: 300px; margin: -40px 0px -70px 0px;" src="heading.png" >-->
+<!--    <img style="height: 300px; margin: -40px 0px -70px 0px;" src="images/heading.png" >-->
     </div>
 
     <!-- ═══════════ PAGE 1 ═══════════ -->
@@ -37,8 +41,8 @@
                 </div>
                 <div class="polaroid">
                     <div class="polaroid-photo has-image">
-                        <img class="polaroid-fade" src="groom-photo.png" alt="Фото Игоря">
-                        <img src="groom-photo.png" alt="Фото Игоря">
+                        <img class="polaroid-fade" src="images/groom-photo.png" alt="Фото Игоря">
+                        <img src="images/groom-photo.png" alt="Фото Игоря">
                         <div class="photo-placeholder">
                             <svg viewBox="0 0 70 85" xmlns="http://www.w3.org/2000/svg">
                                 <circle cx="35" cy="18" r="12" fill="#4a2830" opacity="0.55"/>
@@ -66,8 +70,8 @@
                 </div>
                 <div class="polaroid">
                     <div class="polaroid-photo has-image">
-                        <img src="bride-photo.jpeg" alt="Фото Алины">
-                        <img class="polaroid-fade" src="bride-photo.jpeg" alt="Фото Алины">
+                        <img src="images/bride-photo.jpeg" alt="Фото Алины">
+                        <img class="polaroid-fade" src="images/bride-photo.jpeg" alt="Фото Алины">
                         <div class="photo-placeholder">
                             <svg viewBox="0 0 70 85" xmlns="http://www.w3.org/2000/svg">
                                 <circle cx="35" cy="16" r="12" fill="#4a2830" opacity="0.55"/>
@@ -149,7 +153,7 @@
                 <!-- Сбор гостей — champagne glasses -->
                 <div class="tl-item">
                     <div class="tl-side tl-icon">
-                        <img src="icons/toast_9109257.gif" alt="" class="tl-gif">
+                        <img src="images/icons/toast_9109257.gif" alt="" class="tl-gif">
                     </div>
                     <div class="tl-dot"></div>
                     <div class="tl-side tl-text">
@@ -166,14 +170,14 @@
                     </div>
                     <div class="tl-dot"></div>
                     <div class="tl-side tl-icon">
-                        <img src="icons/wedding_14025471.gif" alt="" class="tl-gif">
+                        <img src="images/icons/wedding_14025471.gif" alt="" class="tl-gif">
                     </div>
                 </div>
 
                 <!-- Банкет — plate fork knife -->
                 <div class="tl-item">
                     <div class="tl-side tl-icon">
-                        <img src="icons/vegan-food_9529411.gif" alt="" class="tl-gif">
+                        <img src="images/icons/vegan-food_9529411.gif" alt="" class="tl-gif">
                     </div>
                     <div class="tl-dot"></div>
                     <div class="tl-side tl-text">
@@ -190,7 +194,7 @@
                     </div>
                     <div class="tl-dot"></div>
                     <div class="tl-side tl-icon">
-                        <img src="icons/music_16390432.gif" alt="" class="tl-gif">
+                        <img src="images/icons/music_16390432.gif" alt="" class="tl-gif">
                     </div>
                 </div>
 
@@ -261,7 +265,7 @@
         </button>
         <div class="palette-example-wrap" id="palette-example-wrap">
             <div class="palette-example-inner">
-                <img src="palette-example.png" alt="Пример дресс-кода" class="palette-example-img">
+                <img src="images/palette-example.png" alt="Пример дресс-кода" class="palette-example-img">
             </div>
         </div>
 
@@ -350,7 +354,16 @@
 
 </div><!-- /card -->
 
-<script>lucide.createIcons();</script>
+<script>
+    lucide.createIcons();
+    document.querySelectorAll('.tl-gif').forEach(function(img) {
+        if (img.complete) {
+            img.classList.add('loaded');
+        } else {
+            img.addEventListener('load', function() { img.classList.add('loaded'); });
+        }
+    });
+</script>
 <script src="js/reveal.js"></script>
 <script>
     (function () {

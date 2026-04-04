@@ -6,7 +6,7 @@ html {
     scroll-behavior: smooth;
     -webkit-text-size-adjust: 100%;
   background-color: #f5ece8;
-  background-image: url('texture.png');
+  background-image: url('images/texture.png');
   background-repeat: repeat;
 }
 
@@ -48,7 +48,7 @@ body {
   align-items: flex-start;
   padding: clamp(16px, 4vw, 48px) clamp(0px, 2vw, 24px);
   background-color: #f5ece8;
-  background-image: url('texture.png');
+  background-image: url('images/texture.png');
   background-repeat: repeat;
 }
 
@@ -382,6 +382,8 @@ body {
   display: flex;
   justify-content: flex-end;
   align-items: center;
+  background: #f5ece8;
+  isolation: isolate;
 }
 .tl-item.tl-right .tl-icon {
   justify-content: flex-start;
@@ -402,6 +404,7 @@ body {
   height: clamp(36px, 10vw, 48px);
   object-fit: contain;
   mix-blend-mode: multiply;
+  filter: hue-rotate(165deg) saturate(0.6);
 }
 .tl-icon svg, .tl-rings {
   width: clamp(32px, 9vw, 40px);
@@ -418,9 +421,9 @@ body {
 }
 .tl-time {
   font-family: 'Jost', sans-serif;
-  font-weight: 300;
-  font-size: clamp(11px, 2.8vw, 13px);
-  letter-spacing: 0.18em;
+  font-weight: 600;
+  font-size: clamp(13px, 3.5vw, 16px);
+  letter-spacing: 0.12em;
   color: var(--fig);
   opacity: 0.7;
   margin-bottom: 2px;
@@ -484,12 +487,12 @@ body {
   color: var(--text-mid);
 }
 
-.palette-fig        { background-image: url('fabric-texture.png'); background-size: 500% 400%; background-position: 88% 76%; background-blend-mode: normal; }
-.palette-wisteria   { background-image: url('fabric-texture.png'); background-size: 500% 400%; background-position: 50% 76%; background-blend-mode: normal; }
-.palette-dusty-rose { background-image: url('fabric-texture.png'); background-size: 500% 400%; background-position: 86%  7%; background-blend-mode: normal; }
-.palette-champagne  { background-image: url('fabric-texture.png'); background-size: 500% 400%; background-position: 10%  7%; background-blend-mode: normal; }
-.palette-green-moss { background-image: url('fabric-texture.png'); background-size: 500% 400%; background-position: 50%  7%; background-blend-mode: normal; }
-.palette-olive      { background-image: url('fabric-texture.png'); background-size: 500% 400%; background-position: 10% 76%; background-blend-mode: normal; }
+.palette-fig        { background-image: url('images/fabric-texture.png'); background-size: 500% 400%; background-position: 88% 76%; background-blend-mode: normal; }
+.palette-wisteria   { background-image: url('images/fabric-texture.png'); background-size: 500% 400%; background-position: 50% 76%; background-blend-mode: normal; }
+.palette-dusty-rose { background-image: url('images/fabric-texture.png'); background-size: 500% 400%; background-position: 86%  7%; background-blend-mode: normal; }
+.palette-champagne  { background-image: url('images/fabric-texture.png'); background-size: 500% 400%; background-position: 10%  7%; background-blend-mode: normal; }
+.palette-green-moss { background-image: url('images/fabric-texture.png'); background-size: 500% 400%; background-position: 50%  7%; background-blend-mode: normal; }
+.palette-olive      { background-image: url('images/fabric-texture.png'); background-size: 500% 400%; background-position: 10% 76%; background-blend-mode: normal; }
 
 /* ══════════════════════════════════════
    MAP
@@ -749,6 +752,10 @@ input[type="radio"]:checked + label {
 ══════════════════════════════════════ */
 .reveal { opacity: 0; transform: translateY(18px); transition: opacity 0.65s ease, transform 0.65s ease; }
 .reveal.visible { opacity: 1; transform: none; }
+
+/* timeline uses transform-only reveal to avoid mix-blend-mode white flash */
+.timeline.reveal { opacity: 1; transform: translateY(18px); }
+.timeline.reveal.visible { transform: none; }
 .d1 { transition-delay: 0.1s; }
 .d2 { transition-delay: 0.22s; }
 .d3 { transition-delay: 0.34s; }
