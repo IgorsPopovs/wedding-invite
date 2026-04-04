@@ -2,7 +2,13 @@
    RESET & BASE
 ══════════════════════════════════════ */
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+    background-image: url('texture.png');
+    background-repeat: repeat;
+    background: #f5ece8e3;
+}
 
 :root {
   --fig:        #7b1f3a;
@@ -39,6 +45,8 @@ body {
   justify-content: center;
   align-items: flex-start;
   padding: clamp(16px, 4vw, 48px) clamp(0px, 2vw, 24px);
+      background-image: url('texture.png');
+      background-repeat: repeat;
 }
 
 @media (min-width: 520px) {
@@ -580,7 +588,3 @@ input[type="radio"]:checked + label {
   100% { transform: translateY(-60vh) scale(1.4); opacity: 0; }
 }
 
-body {
-    background-image: url('texture.png');
-    background-repeat: repeat;
-}
