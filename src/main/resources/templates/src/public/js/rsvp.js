@@ -85,16 +85,19 @@ document.addEventListener('DOMContentLoaded', function() {
       }
 
       document.getElementById('rsvp-name').value = data.name || '';
+
+      // always pre-fill +1 data even if attending is unknown yet
+      var plusOne = document.querySelector('input[name="plus-one"][value="' + data.plus_one + '"]');
+      if (plusOne) plusOne.checked = true;
+      if (data.plus_one_name) document.getElementById('plus-one-name').value = data.plus_one_name;
+
       if (data.attending !== null) {
         var attending = document.querySelector('input[name="attending"][value="' + data.attending + '"]');
         if (attending) attending.checked = true;
         if (data.attending === 1) {
           plusOneSection.style.display = 'flex';
-          var plusOne = document.querySelector('input[name="plus-one"][value="' + data.plus_one + '"]');
-          if (plusOne) plusOne.checked = true;
           if (data.plus_one === 1) {
             plusOneNameSection.style.display = 'flex';
-            document.getElementById('plus-one-name').value = data.plus_one_name || '';
           }
         }
         if (window.showCountdownIfAttending) {
