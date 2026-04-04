@@ -1,5 +1,14 @@
 document.addEventListener('DOMContentLoaded', function() {
 
+  function showMessage(text, color) {
+    var el = document.getElementById('rsvp-message');
+    el.classList.remove('show');
+    el.textContent = text;
+    el.style.color = color || 'var(--fig)';
+    void el.offsetWidth; // force reflow so animation re-triggers
+    el.classList.add('show');
+  }
+
   var inviteCode = new URLSearchParams(window.location.search).get('guest');
 
   if (!inviteCode) {
@@ -61,8 +70,7 @@ document.addEventListener('DOMContentLoaded', function() {
         if (window.showCountdownIfAttending) {
           window.showCountdownIfAttending(data.attending);
         }
-        document.getElementById('rsvp-message').textContent = 'Вы уже подтвердили своё присутствие — можете изменить ответ 🤍';
-        document.getElementById('rsvp-message').style.color = 'var(--fig)';
+        showMessage('Вы уже подтвердили своё присутствие — можете изменить ответ 🤍');
       }
     });
 
@@ -92,14 +100,12 @@ document.addEventListener('DOMContentLoaded', function() {
     var plusOneName = document.getElementById('plus-one-name').value.trim();
 
     if (!name) {
-      document.getElementById('rsvp-message').textContent = 'Пожалуйста, введите ваше имя.';
-      document.getElementById('rsvp-message').style.color = '#a8385a';
+      showMessage('Пожалуйста, введите ваше имя.', '#a8385a');
       return;
     }
 
     if (!attendingEl) {
-      document.getElementById('rsvp-message').textContent = 'Пожалуйста, выберите вариант присутствия.';
-      document.getElementById('rsvp-message').style.color = '#a8385a';
+      showMessage('Пожалуйста, выберите вариант присутствия.', '#a8385a');
       return;
     }
 
@@ -118,11 +124,9 @@ document.addEventListener('DOMContentLoaded', function() {
     .then(function(res) { return res.json(); })
     .then(function(data) {
       if (data.ok) {
-        var msgEl = document.getElementById('rsvp-message');
-        msgEl.style.color = 'var(--fig)';
-        msgEl.textContent = attending === '1'
+        showMessage(attending === '1'
           ? 'Спасибо! Мы рады вашему присутствию 🤍'
-          : 'Ну и хорошо, мы все равно вас чисто для приличия пригласили 🤍';
+          : 'Ну и хорошо, мы все равно вас чисто для приличия пригласили 🤍');
         btn.disabled = false;
         btn.textContent = 'Подтвердить';
         if (attending === '1') launchHearts();
@@ -131,7 +135,7 @@ document.addEventListener('DOMContentLoaded', function() {
     .catch(function() {
       btn.disabled = false;
       btn.textContent = 'Подтвердить';
-      document.getElementById('rsvp-message').textContent = 'Что-то пошло не так :( Напишите нам, мы проверим :D.';
+      showMessage('Что-то пошло не так :( Напишите нам, мы проверим :D.', '#a8385a');
     });
   }
 

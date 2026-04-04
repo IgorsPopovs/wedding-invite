@@ -17,6 +17,9 @@ html {
   --champagne:  #e8d4b8;
   --cream:      #faf7f3;
   --white:      #ffffff;
+  --olive:      #8c8a58;
+  --green-moss: #b8b28e;
+  --dusty-rose: #cf8a90;
   --text-dark:  #2a1a1f;
   --text-mid:   #4a3540;
   --photo-bg:   #a89898;
@@ -146,6 +149,56 @@ body {
 }
 
 .red { color: var(--fig); }
+
+/* ══════════════════════════════════════
+   PALETTE EXAMPLE
+══════════════════════════════════════ */
+.palette-example-btn {
+  background: none;
+  border: 1px solid rgba(123, 31, 58, 0.35);
+  border-radius: 999px;
+  color: var(--fig);
+  font-family: 'Jost', sans-serif;
+  font-weight: 300;
+  font-size: var(--fs-xs);
+  letter-spacing: 0.1em;
+  padding: 6px 18px;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: calc(var(--sp-sm) * -0.5);
+}
+.palette-example-btn:hover {
+  background: rgba(123, 31, 58, 0.08);
+}
+.palette-example-arrow {
+  display: inline-block;
+  transition: transform 0.3s ease;
+}
+.palette-example-btn[aria-expanded="true"] .palette-example-arrow {
+  transform: rotate(180deg);
+}
+
+.palette-example-wrap {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.4s ease;
+  width: 100%;
+}
+.palette-example-wrap.open {
+  grid-template-rows: 1fr;
+}
+.palette-example-inner {
+  overflow: hidden;
+  min-height: 0;
+}
+.palette-example-img {
+  width: 100%;
+  border-radius: 8px;
+  display: block;
+}
 
 /* ══════════════════════════════════════
    POLAROIDS
@@ -439,8 +492,8 @@ input[type="radio"] + label {
   line-height: 1.3;
 }
 input[type="radio"]:checked + label {
-  background: var(--fig);
-  border-color: var(--fig);
+  background: var(--olive);
+  border-color: var(--olive);
   color: #fff;
 }
 
@@ -467,6 +520,11 @@ input[type="radio"]:checked + label {
 .rsvp-btn:hover, .rsvp-btn:active { background: var(--fig-light); }
 .rsvp-btn:disabled { background: #c0a8b0; cursor: default; }
 
+@keyframes rsvp-msg-in {
+  from { opacity: 0; transform: translateY(6px) scale(0.97); }
+  to   { opacity: 1; transform: translateY(0)   scale(1); }
+}
+
 #rsvp-message {
   font-family: 'Jost', sans-serif;
   font-weight: 300;
@@ -476,6 +534,14 @@ input[type="radio"]:checked + label {
   text-align: center;
   min-height: 22px;
   letter-spacing: 0.03em;
+  opacity: 0;
+  padding: 10px 14px;
+  border-radius: 8px;
+  transition: background 0.3s, color 0.3s;
+}
+#rsvp-message.show {
+  animation: rsvp-msg-in 0.4s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  background: rgba(123, 31, 58, 0.07);
 }
 
 /* ══════════════════════════════════════

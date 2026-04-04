@@ -186,7 +186,7 @@
         <div class="divider"></div>
 
         <p class="title-serif reveal">Дресс-код</p>
-        <p class="text-body reveal d1">Мы будем рады, если вы поддержите праздничную атмосферу и выберете нарядный, элегантный образ. Главное — чувствовать себя комфортно и выглядеть уместно!</p>
+        <p class="text-body reveal d1">Мы будем рады, если вы поддержите праздничную атмосферу и выберете нарядный, элегантный образ. Главное — чувствовать себя <span class="red"> комфортно и выглядеть уместно</span>!</p>
 
         <div class="dresscode-palette reveal d2" aria-label="Палитра дресс-кода">
             <div class="palette-chip">
@@ -215,11 +215,20 @@
             </div>
         </div>
 
+        <button class="palette-example-btn" id="palette-example-btn" aria-expanded="false">
+            посмотреть пример <span class="palette-example-arrow">↓</span>
+        </button>
+        <div class="palette-example-wrap" id="palette-example-wrap">
+            <div class="palette-example-inner">
+                <img src="palette-example.png" alt="Пример дресс-кода" class="palette-example-img">
+            </div>
+        </div>
+
         <div class="divider"></div>
 
         <p class="title-serif reveal">Пожелания</p>
         <p class="text-body reveal d1">В качестве подарка будем благодарны за вклад в бюджет нашей молодой семьи</p>
-        <p class="text-body reveal d1">Пожалуйста не дарите нам цветы, после свадьбы мы отправляемся в свадебное путешествие и просто не успеем ими насладиться. Можете сделать выбор в пользу лотерейного билета.</p>
+        <p class="text-body reveal d1">Пожалуйста <span class="red"> не дарите нам цветы</span>, после свадьбы мы отправляемся в свадебное путешествие и просто не успеем ими насладиться. Можете сделать выбор в пользу лотерейного билета.</p>
 
 
         <div class="divider"></div>
@@ -227,7 +236,7 @@
         <!-- RSVP -->
         <div class="rsvp-box reveal d2" id="rsvp-form">
 
-            <p class="text-italic">Пожалуйста, подтвердите своё присутствие до 1 мая, чтобы мы могли планировать нашу свадьбу наилучшим образом!</p>
+            <p class="text-italic">Пожалуйста, подтвердите своё присутствие <span class="red"> до 1 мая</span>, чтобы мы могли планировать нашу свадьбу наилучшим образом!</p>
 
             <div class="rsvp-section-vertical">
                 <label class="rsvp-label" for="rsvp-name">Ваше имя</label>
@@ -315,6 +324,16 @@
     } else {
         items.forEach(el => el.classList.add('visible'));
     }
+</script>
+<script>
+    (function () {
+        var btn = document.getElementById('palette-example-btn');
+        var wrap = document.getElementById('palette-example-wrap');
+        btn.addEventListener('click', function () {
+            var isOpen = wrap.classList.toggle('open');
+            btn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+        });
+    })();
 </script>
 <script src="js/countdown.js"></script>
 <script src="js/rsvp.js"></script>
