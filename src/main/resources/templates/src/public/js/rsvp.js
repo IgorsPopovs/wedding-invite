@@ -37,7 +37,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
   document.querySelectorAll('input[name="attending"]').forEach(function(radio) {
     radio.addEventListener('change', function() {
-      plusOneSection.style.display = this.value === '1' ? 'block' : 'none';
+      plusOneSection.style.display = this.value === '1' ? 'flex' : 'none';
       if (this.value !== '1') {
         plusOneNameSection.style.display = 'none';
       } else {
@@ -65,7 +65,7 @@ document.addEventListener('DOMContentLoaded', function() {
         var attending = document.querySelector('input[name="attending"][value="' + data.attending + '"]');
         if (attending) attending.checked = true;
         if (data.attending === 1) {
-          plusOneSection.style.display = 'block';
+          plusOneSection.style.display = 'flex';
           var plusOne = document.querySelector('input[name="plus-one"][value="' + data.plus_one + '"]');
           if (plusOne) plusOne.checked = true;
           if (data.plus_one === 1) {
