@@ -405,6 +405,9 @@ body {
   object-fit: contain;
   mix-blend-mode: multiply;
   filter: hue-rotate(165deg) saturate(0.6);
+  /* force GPU layer on iOS to prevent blend-mode flicker during GIF animation */
+  transform: translateZ(0);
+  backface-visibility: hidden;
 }
 .tl-icon svg, .tl-rings {
   width: clamp(32px, 9vw, 40px);
