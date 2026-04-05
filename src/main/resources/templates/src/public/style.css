@@ -47,6 +47,8 @@ body {
   justify-content: center;
   align-items: flex-start;
   padding: clamp(16px, 4vw, 48px) clamp(0px, 2vw, 24px);
+  padding-top: 0px;
+  padding-bottom: 50px;
   background-color: #f5ece8;
   background-image: url('images/texture.png');
   background-repeat: repeat;
@@ -685,7 +687,13 @@ input[type="radio"]:checked + label {
 }
 .rsvp-btn:hover { background: var(--fig-light); box-shadow: 0 6px 20px rgba(123, 31, 58, 0.32); }
 .rsvp-btn:active { transform: scale(0.98); }
-.rsvp-btn:disabled { background: #c0a8b0; box-shadow: none; cursor: default; }
+.rsvp-btn:disabled { background: #c0a8b0; box-shadow: none; cursor: default; animation: none; }
+
+@keyframes btn-glow {
+  0%, 100% { box-shadow: 0 4px 16px rgba(123, 31, 58, 0.28); }
+  50%       { box-shadow: 0 0 0 4px rgba(123, 31, 58, 0.18), 0 4px 24px rgba(123, 31, 58, 0.45); }
+}
+button.btn-pill:not(.unmodified):not(:disabled) { animation: btn-glow 2s ease-in-out infinite; }
 
 @keyframes rsvp-msg-in {
   from { opacity: 0; transform: translateY(6px) scale(0.97); }
