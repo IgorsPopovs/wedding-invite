@@ -511,7 +511,7 @@ body {
   overflow: hidden;
   border-radius: 16px;
   box-shadow: 0 8px 32px rgba(184, 178, 142, 0.45), 0 2px 8px rgba(184, 178, 142, 0.25);
-  border: 1.5px solid rgba(184, 178, 142, 0.75);
+  border: 1px solid rgb(184 178 142 / 50%);
 }
 .map-wrap a { display: block; }
 .map-wrap a img { display: block; width: 100%; }
