@@ -163,6 +163,7 @@ document.addEventListener('DOMContentLoaded', function() {
           'var(--olive)', true);
         btn.disabled = false;
         btn.textContent = 'Подтвердить';
+        btn.classList.add('unmodified');
         if (attending === '1') launchHearts();
       }
     })

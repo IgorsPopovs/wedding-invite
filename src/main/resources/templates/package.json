@@ -4,6 +4,7 @@
   "type": "module",
   "scripts": {
     "build": "webpack",
+    "sync": "cp -r src/public/. dist/ && cp -r src/public/. dist/wedding-invite/",
     "deploy": "npm run build && npx wrangler deploy"
   },
   "devDependencies": {
