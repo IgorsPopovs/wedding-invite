@@ -1,6 +1,20 @@
 const revealItems = document.querySelectorAll('.reveal');
 const polaroidRow = document.querySelector('.polaroid-row');
 
+// Preload GIFs immediately so they're cached before the timeline wipe reveals them
+const gifUrls = [
+    'images/icons/toast_9109257.gif',
+    'images/icons/wedding_14025471.gif',
+    'images/icons/vegan-food_9529411.gif',
+    'images/icons/music_16390432.gif'
+];
+const gifPromises = gifUrls.map(url => new Promise(resolve => {
+    const img = new Image();
+    img.onload = img.onerror = resolve;
+    img.src = url;
+}));
+const gifsReady = Promise.all(gifPromises);
+
 if ('IntersectionObserver' in window) {
     // polaroid-row triggers immediately on load
     const polaroidObs = new IntersectionObserver(entries => {
@@ -12,8 +26,13 @@ if ('IntersectionObserver' in window) {
     const io = new IntersectionObserver(entries => {
         entries.forEach(e => {
             if (e.isIntersecting) {
-                e.target.classList.add('visible');
                 io.unobserve(e.target);
+                if (e.target.classList.contains('timeline')) {
+                    // wait for GIFs to be loaded before wiping open
+                    gifsReady.then(() => e.target.classList.add('visible'));
+                } else {
+                    e.target.classList.add('visible');
+                }
             }
         });
     }, { threshold: 0.08, rootMargin: '0px 0px -20px 0px' });

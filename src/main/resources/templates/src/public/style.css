@@ -753,9 +753,22 @@ input[type="radio"]:checked + label {
 .reveal { opacity: 0; transform: translateY(18px); transition: opacity 0.65s ease, transform 0.65s ease; }
 .reveal.visible { opacity: 1; transform: none; }
 
-/* timeline uses transform-only reveal to avoid mix-blend-mode white flash */
-.timeline.reveal { opacity: 1; transform: translateY(18px); }
+/* timeline wipe curtain reveal */
+.timeline { position: relative; overflow: hidden; }
+.tl-wipe {
+  position: absolute;
+  inset: -8px;
+  background: #f5ece8;
+  z-index: 10;
+  transform: translateY(0);
+  transition: transform 2.9s 0.2s cubic-bezier(0.22, 1, 0.36, 1);
+  pointer-events: none;
+  -webkit-mask-image: linear-gradient(to top, black 78%, transparent 100%);
+  mask-image: linear-gradient(to top, black 78%, transparent 100%);
+}
+.timeline.reveal { opacity: 1 !important; transform: translateY(18px); }
 .timeline.reveal.visible { transform: none; }
+.timeline.reveal.visible .tl-wipe { transform: translateY(110%); }
 .d1 { transition-delay: 0.1s; }
 .d2 { transition-delay: 0.22s; }
 .d3 { transition-delay: 0.34s; }
