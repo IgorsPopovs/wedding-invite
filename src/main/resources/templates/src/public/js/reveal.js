@@ -27,12 +27,18 @@ if ('IntersectionObserver' in window) {
         entries.forEach(e => {
             if (e.isIntersecting) {
                 io.unobserve(e.target);
-                if (e.target.classList.contains('timeline')) {
-                    // wait for GIFs to be loaded before wiping open
-                    gifsReady.then(() => e.target.classList.add('visible'));
-                } else {
-                    e.target.classList.add('visible');
-                }
+                e.target.classList.add('visible');
+            }
+        });
+    }, { threshold: 0.08, rootMargin: '0px 0px -20px 0px' });
+
+    // separate observer for timeline wipe — waits for GIFs first
+    const timeline = document.querySelector('.timeline');
+    const tlObs = new IntersectionObserver(entries => {
+        entries.forEach(e => {
+            if (e.isIntersecting) {
+                tlObs.unobserve(e.target);
+                gifsReady.then(() => e.target.classList.add('visible'));
             }
         });
     }, { threshold: 0.08, rootMargin: '0px 0px -20px 0px' });
@@ -45,6 +51,7 @@ if ('IntersectionObserver' in window) {
         scrolled = true;
         if (scrollHint) scrollHint.classList.add('hidden');
         revealItems.forEach(el => io.observe(el));
+        if (timeline) tlObs.observe(timeline);
         window.removeEventListener('scroll', startReveal);
     }
 
