@@ -151,6 +151,7 @@ body {
 }
 
 .red { color: var(--fig); }
+.wishes-heart { color: var(--fig); font-size: 18px; text-align: center; margin: -6px 0; }
 
 /* ══════════════════════════════════════
    PALETTE EXAMPLE
