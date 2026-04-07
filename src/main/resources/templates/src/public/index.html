@@ -251,7 +251,19 @@
         <div class="divider"></div>
 
         <p class="title-serif reveal">Дресс-код</p>
-        <p class="text-body reveal d1">Мы будем рады, если вы поддержите праздничную атмосферу и выберете нарядный, элегантный образ. Главное — чувствовать себя <span class="red"> комфортно и выглядеть уместно</span>!</p>
+        <p class="text-body reveal d1">Мы будем рады, если вы поддержите атмосферу нашего праздника, выбрав элегантные образы в благородных оттенках.</p>
+        <div class="dresscode-cols reveal d2">
+            <div class="dresscode-col">
+                <div class="dresscode-col-title"><i class="fa-solid fa-venus"></i> Девушки</div>
+                <div class="dresscode-col-text">Ориентир — палитра ниже</div>
+            </div>
+            <div class="dresscode-col-divider"></div>
+            <div class="dresscode-col">
+                <div class="dresscode-col-title"><i class="fa-solid fa-mars"></i> Мужчины</div>
+                <div class="dresscode-col-text">Тёмный классический костюм или лёгкий летний стиль</div>
+            </div>
+        </div>
+        <p class="text-body reveal d3">Главное — чувствовать себя комфортно и гармонично.</p>
 
         <div class="dresscode-palette reveal d2" aria-label="Палитра дресс-кода">
             <div class="palette-chip">
@@ -284,8 +296,15 @@
             посмотреть пример <span class="palette-example-arrow">↓</span>
         </button>
         <div class="palette-example-wrap" id="palette-example-wrap">
-            <div class="palette-example-inner">
-                <img src="images/palette-example.png" alt="Пример дресс-кода" class="palette-example-img">
+            <div class="palette-example-curtain" id="palette-example-curtain">
+                <div class="palette-example-inner" id="palette-example-inner">
+                    <img src="images/palette-example_2.png" alt="Пример дресс-кода 2" class="palette-example-img">
+                    <img src="images/palette-example.png" alt="Пример дресс-кода" class="palette-example-img">
+                </div>
+                <div class="palette-dots">
+                    <span class="palette-dot active"></span>
+                    <span class="palette-dot"></span>
+                </div>
             </div>
         </div>
 
@@ -372,7 +391,11 @@
         <div class="divider"></div>
     </div><!-- /page 2 -->
 
-    <p class="footer-line reveal d1">До встречи на нашем торжестве ♥</p>
+    <div class="info-update-block reveal d1">
+        <p>Вся актуальная информация — адрес, дресс-код, детали вечера — будет появляться здесь. Сохраните эту страницу, чтобы ничего не пропустить.</p>
+    </div>
+
+    <p class="footer-line reveal d2">До встречи на нашем торжестве ♥</p>
 
 </div><!-- /card -->
 
@@ -383,10 +406,20 @@
 <script>
     (function () {
         var btn = document.getElementById('palette-example-btn');
-        var wrap = document.getElementById('palette-example-wrap');
+        var curtain = document.getElementById('palette-example-curtain');
+        var inner = document.getElementById('palette-example-inner');
+        var dots = document.querySelectorAll('.palette-dot');
+        var isOpen = false;
+
         btn.addEventListener('click', function () {
-            var isOpen = wrap.classList.toggle('open');
+            isOpen = !isOpen;
+            curtain.style.height = isOpen ? curtain.scrollHeight + 'px' : '0';
             btn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+        });
+
+        inner.addEventListener('scroll', function () {
+            var idx = Math.round(inner.scrollLeft / inner.clientWidth);
+            dots.forEach(function (d, i) { d.classList.toggle('active', i === idx); });
         });
     })();
 </script>

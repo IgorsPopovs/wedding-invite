@@ -185,22 +185,47 @@ body {
 }
 
 .palette-example-wrap {
-  display: grid;
-  grid-template-rows: 0fr;
-  transition: grid-template-rows 0.4s ease;
   width: 100%;
 }
-.palette-example-wrap.open {
-  grid-template-rows: 1fr;
+.palette-example-curtain {
+  height: 0;
+  overflow: hidden;
+  transition: height 0.45s ease;
 }
 .palette-example-inner {
-  overflow: hidden;
-  min-height: 0;
+  overflow-x: auto;
+  overflow-y: hidden;
+  display: flex;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+.palette-example-inner::-webkit-scrollbar {
+  display: none;
 }
 .palette-example-img {
+  flex: 0 0 100%;
   width: 100%;
   border-radius: 8px;
   display: block;
+  scroll-snap-align: start;
+}
+.palette-dots {
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+  padding: 8px 0 2px;
+}
+.palette-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--fig);
+  opacity: 0.25;
+  transition: opacity 0.3s;
+}
+.palette-dot.active {
+  opacity: 1;
 }
 
 /* ══════════════════════════════════════
@@ -448,6 +473,49 @@ body {
   height: 1px;
   background: linear-gradient(to right, transparent, var(--champagne), transparent);
   flex-shrink: 0;
+}
+
+/* ══════════════════════════════════════
+   DRESSCODE COLS
+══════════════════════════════════════ */
+.dresscode-cols {
+  display: flex;
+  align-items: stretch;
+  gap: 0;
+  margin: var(--sp-sm) 0;
+  border: 1px solid rgba(123, 31, 58, 0.15);
+  border-radius: 12px;
+  overflow: hidden;
+}
+.dresscode-col {
+  flex: 1;
+  padding: var(--sp-sm) var(--sp-md);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 6px;
+}
+.dresscode-col-title {
+  font-family: 'Jost', sans-serif;
+  font-weight: 500;
+  font-size: var(--fs-xs);
+  letter-spacing: 0.08em;
+  color: var(--fig);
+}
+.dresscode-col-text {
+  font-family: 'Jost', sans-serif;
+  font-weight: 300;
+  font-size: var(--fs-xs);
+  letter-spacing: 0.04em;
+  color: var(--fig-light);
+  line-height: 1.5;
+}
+.dresscode-col-divider {
+  width: 1px;
+  align-self: stretch;
+  background: rgba(123, 31, 58, 0.15);
 }
 
 /* ══════════════════════════════════════
@@ -772,6 +840,27 @@ button.btn-pill:not(.unmodified):not(:disabled) { animation: btn-glow 2s ease-in
 @keyframes scrollWave {
   0%, 100% { transform: translateY(0); }
   50%       { transform: translateY(6px); }
+}
+
+/* ══════════════════════════════════════
+   INFO UPDATE BLOCK
+══════════════════════════════════════ */
+.info-update-block {
+  margin: var(--sp-md) var(--sp-sm) 0;
+  padding: var(--sp-sm) var(--sp-md);
+  background: rgba(123, 31, 58, 0.05);
+  border: 1px solid rgba(123, 31, 58, 0.15);
+  border-radius: 12px;
+  text-align: center;
+}
+.info-update-block p {
+  font-family: 'Jost', sans-serif;
+  font-weight: 300;
+  font-size: var(--fs-xs);
+  color: var(--fig-light);
+  line-height: 1.7;
+  letter-spacing: 0.04em;
+  margin: 0;
 }
 
 /* ══════════════════════════════════════
