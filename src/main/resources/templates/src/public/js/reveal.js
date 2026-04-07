@@ -6,7 +6,8 @@ const gifUrls = [
     'images/icons/toast_9109257.gif',
     'images/icons/wedding_14025471.gif',
     'images/icons/vegan-food_9529411.gif',
-    'images/icons/finish-line_17904550.gif'
+    'images/icons/music_16390432.gif',
+    'images/icons/flags_11019486.gif'
 ];
 const gifPromises = gifUrls.map(url => new Promise(resolve => {
     const img = new Image();
