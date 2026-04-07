@@ -20,7 +20,6 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   } else {
     localStorage.setItem('anon_invite_code', inviteCode);
-    history.replaceState(null, '', window.location.pathname);
   }
 
   fetch('/wedding-invite/api/visit', {
