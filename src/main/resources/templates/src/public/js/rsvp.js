@@ -122,6 +122,13 @@ document.addEventListener('DOMContentLoaded', function() {
             }
             visited.add(nextIdx);
             next.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            // highlight after scroll completes
+            var elToHighlight = next;
+            setTimeout(function() {
+              elToHighlight.classList.remove('section-highlight');
+              void elToHighlight.offsetWidth; // reflow to restart animation
+              elToHighlight.classList.add('section-highlight');
+            }, 600);
             // hide if all visited
             if (visited.size === updatedEls.length) {
               setTimeout(function() {
