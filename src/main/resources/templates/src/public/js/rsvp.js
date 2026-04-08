@@ -122,10 +122,19 @@ document.addEventListener('DOMContentLoaded', function() {
             }
             visited.add(nextIdx);
             next.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            // hide if all visited
+            if (visited.size === updatedEls.length) {
+              setTimeout(function() {
+                banner.style.transition = 'opacity 0.4s ease';
+                banner.style.opacity = '0';
+                setTimeout(function() { banner.remove(); }, 400);
+              }, 800);
+              return;
+            }
             // update arrow if multiple sections
             var arrow = banner.querySelector('.update-banner-arrow');
             if (updatedEls.length > 1) {
-              arrow.textContent = (visited.size === updatedEls.length) ? '✓' : '↓';
+              arrow.textContent = '↓';
             }
           });
         }

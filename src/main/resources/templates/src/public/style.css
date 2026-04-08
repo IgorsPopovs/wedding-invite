@@ -908,12 +908,21 @@ button.btn-pill:not(.unmodified):not(:disabled) { animation: btn-glow 2s ease-in
    INFO UPDATE BLOCK
 ══════════════════════════════════════ */
 .info-update-block {
+  position: relative;
   margin: var(--sp-md) var(--sp-sm) 0;
   padding: var(--sp-sm) var(--sp-md);
   background: rgba(234, 179, 8, 0.12);
   border: 1px solid rgba(234, 179, 8, 0.4);
   border-radius: 12px;
   text-align: center;
+}
+.info-update-star {
+  position: absolute;
+  top: 8px;
+  left: 10px;
+  font-size: 10px;
+  color: #8a6200;
+  opacity: 0.7;
 }
 .info-update-block p {
   font-family: 'Jost', sans-serif;
