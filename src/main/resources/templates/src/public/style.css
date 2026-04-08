@@ -846,13 +846,14 @@ button.btn-pill:not(.unmodified):not(:disabled) { animation: btn-glow 2s ease-in
    UPDATED BADGE
 ══════════════════════════════════════ */
 @keyframes highlight-section {
-  0%   { background: transparent; }
-  20%  { background: rgba(234, 179, 8, 0.15); border-radius: 8px; }
-  80%  { background: rgba(234, 179, 8, 0.15); border-radius: 8px; }
-  100% { background: transparent; }
+  0%   { background: transparent; outline: 2px solid transparent; }
+  15%  { background: rgba(234, 179, 8, 0.35); outline: 2px solid rgba(234, 179, 8, 0.6); border-radius: 8px; }
+  75%  { background: rgba(234, 179, 8, 0.35); outline: 2px solid rgba(234, 179, 8, 0.6); border-radius: 8px; }
+  100% { background: transparent; outline: 2px solid transparent; }
 }
 .section-highlight {
-  animation: highlight-section 2.5s ease forwards;
+  animation: highlight-section 2.8s ease forwards;
+  border-radius: 8px;
 }
 
 .updated-badge {
