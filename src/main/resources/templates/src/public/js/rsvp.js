@@ -1,3 +1,5 @@
+var LAST_UPDATED = '2026-04-09 10:00:00';
+
 document.addEventListener('DOMContentLoaded', function() {
 
   function showMessage(text, color, success) {
@@ -21,12 +23,6 @@ document.addEventListener('DOMContentLoaded', function() {
   } else {
     localStorage.setItem('anon_invite_code', inviteCode);
   }
-
-  fetch('/wedding-invite/api/visit', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ invite_code: inviteCode, user_agent: navigator.userAgent })
-  });
 
   var plusOneSection = document.getElementById('plus-one-section');
   var plusOneNameSection = document.getElementById('plus-one-name-section');
@@ -71,6 +67,58 @@ document.addEventListener('DOMContentLoaded', function() {
     .then(function(data) {
       if (!data) return;
 
+      if (data.last_visit && LAST_UPDATED > data.last_visit) {
+        var updatedEls = [];
+        document.querySelectorAll('[data-updated]').forEach(function(el) {
+          var elUpdated = el.getAttribute('data-updated') || LAST_UPDATED;
+          if (elUpdated > (data.last_visit || '')) {
+            var badge = document.createElement('span');
+            badge.className = 'updated-badge';
+            var d = new Date(elUpdated.replace(' ', 'T'));
+            var months = ['янв','фев','мар','апр','май','июн','июл','авг','сен','окт','ноя','дек'];
+            var dateStr = d.getDate() + ' ' + months[d.getMonth()] + ', ' + String(d.getHours()).padStart(2,'0') + ':' + String(d.getMinutes()).padStart(2,'0');
+            badge.textContent = 'обновлено ' + dateStr;
+            el.appendChild(badge);
+            updatedEls.push(el);
+          }
+        });
+
+        if (updatedEls.length > 0) {
+          var banner = document.createElement('div');
+          banner.className = 'update-banner';
+          banner.innerHTML = '<span class="update-banner-icon">✦</span> есть обновления <span class="update-banner-arrow">↓</span>';
+          document.body.appendChild(banner);
+
+          var currentIdx = -1;
+          banner.addEventListener('click', function() {
+            // find next updated element below current viewport center
+            var viewportCenter = window.scrollY + window.innerHeight / 2;
+            var next = null;
+            var nextIdx = -1;
+            for (var i = 0; i < updatedEls.length; i++) {
+              var top = updatedEls[i].getBoundingClientRect().top + window.scrollY;
+              if (top > viewportCenter + 10) {
+                next = updatedEls[i];
+                nextIdx = i;
+                break;
+              }
+            }
+            // wrap around
+            if (!next) {
+              next = updatedEls[0];
+              nextIdx = 0;
+            }
+            currentIdx = nextIdx;
+            next.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            // update arrow if multiple sections
+            var arrow = banner.querySelector('.update-banner-arrow');
+            if (updatedEls.length > 1) {
+              arrow.textContent = (currentIdx === updatedEls.length - 1) ? '↑' : '↓';
+            }
+          });
+        }
+      }
+
       if (data.name) {
         var nameParts = data.name.trim().split(/\s+/).filter(function(p) { return p.replace(/[^а-яёa-z]/gi, '').length > 1; });
         var baseName = nameParts.length ? nameParts[0] : data.name.trim();
@@ -104,6 +152,13 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         showMessage('Вы уже подтвердили своё присутствие — можете изменить ответ ❤️', 'var(--olive)', true);
       }
+
+      // Record visit AFTER reading last_visit to avoid race condition
+      fetch('/wedding-invite/api/visit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ invite_code: inviteCode, user_agent: navigator.userAgent })
+      });
     });
 
   function launchHearts() {

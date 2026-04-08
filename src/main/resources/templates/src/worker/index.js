@@ -17,6 +17,15 @@ export default {
       var row = await env.DB_BINDING.prepare(
         'SELECT name, attending, plus_one, plus_one_name FROM rsvp WHERE invite_code = ?'
       ).bind(code).first();
+      var visitRow = await env.DB_BINDING.prepare(
+        'SELECT MAX(visited_at) as last_visit FROM visits WHERE invite_code = ?'
+      ).bind(code).first();
+      var lastVisit = visitRow ? visitRow.last_visit : null;
+      if (row) {
+        row.last_visit = lastVisit;
+      } else if (lastVisit) {
+        row = { last_visit: lastVisit };
+      }
       return new Response(JSON.stringify(row || null), {
         headers: { 'Content-Type': 'application/json', ...corsHeaders }
       });

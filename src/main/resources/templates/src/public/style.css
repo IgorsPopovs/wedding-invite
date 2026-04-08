@@ -843,13 +843,76 @@ button.btn-pill:not(.unmodified):not(:disabled) { animation: btn-glow 2s ease-in
 }
 
 /* ══════════════════════════════════════
+   UPDATED BADGE
+══════════════════════════════════════ */
+.updated-badge {
+  float: right;
+  margin-right: 40px;
+  padding: 3px 10px;
+  border-radius: 20px;
+  background: rgba(234, 179, 8, 0.18);
+  border: 1px solid rgba(234, 179, 8, 0.5);
+  color: #8a6200;
+  font-family: 'Jost', sans-serif;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  vertical-align: middle;
+  position: relative;
+  top: 2px;
+}
+
+/* ══════════════════════════════════════
+   UPDATE BANNER
+══════════════════════════════════════ */
+.update-banner {
+  position: fixed;
+  bottom: 28px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(234, 179, 8, 0.92);
+  color: #5a3e00;
+  font-family: 'Jost', sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 10px 22px;
+  border-radius: 30px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+  z-index: 1000;
+  backdrop-filter: blur(4px);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  white-space: nowrap;
+}
+.update-banner:hover {
+  transform: translateX(-50%) translateY(-2px);
+  box-shadow: 0 6px 24px rgba(0,0,0,0.2);
+}
+.update-banner:active {
+  transform: translateX(-50%) translateY(0px);
+}
+.update-banner-icon {
+  font-size: 10px;
+  opacity: 0.7;
+}
+.update-banner-arrow {
+  font-size: 14px;
+}
+
+/* ══════════════════════════════════════
    INFO UPDATE BLOCK
 ══════════════════════════════════════ */
 .info-update-block {
   margin: var(--sp-md) var(--sp-sm) 0;
   padding: var(--sp-sm) var(--sp-md);
-  background: rgba(123, 31, 58, 0.05);
-  border: 1px solid rgba(123, 31, 58, 0.15);
+  background: rgba(234, 179, 8, 0.12);
+  border: 1px solid rgba(234, 179, 8, 0.4);
   border-radius: 12px;
   text-align: center;
 }
@@ -857,7 +920,7 @@ button.btn-pill:not(.unmodified):not(:disabled) { animation: btn-glow 2s ease-in
   font-family: 'Jost', sans-serif;
   font-weight: 300;
   font-size: var(--fs-xs);
-  color: var(--fig-light);
+  color: #5a3e00;
   line-height: 1.7;
   letter-spacing: 0.04em;
   margin: 0;
