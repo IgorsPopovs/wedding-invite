@@ -122,8 +122,12 @@ document.addEventListener('DOMContentLoaded', function() {
             }
             visited.add(nextIdx);
             next.scrollIntoView({ behavior: 'smooth', block: 'center' });
-            // highlight after scroll completes
-            var elToHighlight = next;
+            // highlight after scroll — find .highlight-target inside data-highlight sibling, or fallback
+            var highlightSibling = next.nextElementSibling && next.nextElementSibling.hasAttribute('data-highlight')
+              ? next.nextElementSibling : null;
+            var elToHighlight = highlightSibling
+              ? (highlightSibling.querySelector('.highlight-target') || highlightSibling)
+              : next;
             setTimeout(function() {
               elToHighlight.classList.remove('section-highlight');
               void elToHighlight.offsetWidth; // reflow to restart animation
