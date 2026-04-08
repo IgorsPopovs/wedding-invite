@@ -916,16 +916,6 @@ button.btn-pill:not(.unmodified):not(:disabled) { animation: btn-glow 2s ease-in
   border-radius: 12px;
   text-align: center;
 }
-.info-update-star {
-  position: absolute;
-  font-size: 10px;
-  color: #8a6200;
-  opacity: 0.7;
-}
-.info-update-star.top-left     { top: 8px;    left: 10px;  }
-.info-update-star.top-right    { top: 8px;    right: 10px; }
-.info-update-star.bottom-left  { bottom: 8px; left: 10px;  }
-.info-update-star.bottom-right { bottom: 8px; right: 10px; }
 .info-update-block p {
   font-family: 'Jost', sans-serif;
   font-weight: 300;
