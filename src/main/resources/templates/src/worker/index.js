@@ -65,6 +65,13 @@ export default {
       });
     }
 
-    return env.ASSETS.fetch(request);
+    var response = await env.ASSETS.fetch(request);
+    var contentType = response.headers.get('Content-Type') || '';
+    if (contentType.includes('text/html')) {
+      var newHeaders = new Headers(response.headers);
+      newHeaders.set('Cache-Control', 'no-cache, no-store, must-revalidate');
+      return new Response(response.body, { status: response.status, headers: newHeaders });
+    }
+    return response;
   }
 };
