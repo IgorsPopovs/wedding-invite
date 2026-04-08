@@ -846,9 +846,11 @@ button.btn-pill:not(.unmodified):not(:disabled) { animation: btn-glow 2s ease-in
    UPDATED BADGE
 ══════════════════════════════════════ */
 .updated-badge {
-  float: right;
-  margin-right: 40px;
-  padding: 3px 10px;
+  display: block;
+  text-align: center;
+  margin: 6px auto 0;
+  width: fit-content;
+  padding: 3px 12px;
   border-radius: 20px;
   background: rgba(234, 179, 8, 0.18);
   border: 1px solid rgba(234, 179, 8, 0.5);
@@ -858,9 +860,6 @@ button.btn-pill:not(.unmodified):not(:disabled) { animation: btn-glow 2s ease-in
   font-weight: 500;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  vertical-align: middle;
-  position: relative;
-  top: 2px;
 }
 
 /* ══════════════════════════════════════

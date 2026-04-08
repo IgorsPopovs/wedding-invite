@@ -77,7 +77,7 @@ document.addEventListener('DOMContentLoaded', function() {
             var d = new Date(elUpdated.replace(' ', 'T'));
             var months = ['янв','фев','мар','апр','май','июн','июл','авг','сен','окт','ноя','дек'];
             var dateStr = d.getDate() + ' ' + months[d.getMonth()] + ', ' + String(d.getHours()).padStart(2,'0') + ':' + String(d.getMinutes()).padStart(2,'0');
-            badge.textContent = 'обновлено ' + dateStr;
+            badge.textContent = '✦ обновлено ' + dateStr;
             el.appendChild(badge);
             updatedEls.push(el);
           }
@@ -89,7 +89,7 @@ document.addEventListener('DOMContentLoaded', function() {
           banner.innerHTML = '<span class="update-banner-icon">✦</span> есть обновления <span class="update-banner-arrow">↓</span>';
           document.body.appendChild(banner);
 
-          var currentIdx = -1;
+          var visited = new Set();
           banner.addEventListener('click', function() {
             // find next updated element below current viewport center
             var viewportCenter = window.scrollY + window.innerHeight / 2;
@@ -103,17 +103,29 @@ document.addEventListener('DOMContentLoaded', function() {
                 break;
               }
             }
-            // wrap around
+            // if no next below — find first unvisited, else hide
             if (!next) {
-              next = updatedEls[0];
-              nextIdx = 0;
+              var firstUnvisited = null;
+              for (var j = 0; j < updatedEls.length; j++) {
+                if (!visited.has(j)) { firstUnvisited = j; break; }
+              }
+              if (firstUnvisited !== null) {
+                next = updatedEls[firstUnvisited];
+                nextIdx = firstUnvisited;
+              } else {
+                // all visited — hide banner
+                banner.style.transition = 'opacity 0.4s ease';
+                banner.style.opacity = '0';
+                setTimeout(function() { banner.remove(); }, 400);
+                return;
+              }
             }
-            currentIdx = nextIdx;
+            visited.add(nextIdx);
             next.scrollIntoView({ behavior: 'smooth', block: 'center' });
             // update arrow if multiple sections
             var arrow = banner.querySelector('.update-banner-arrow');
             if (updatedEls.length > 1) {
-              arrow.textContent = (currentIdx === updatedEls.length - 1) ? '↑' : '↓';
+              arrow.textContent = (visited.size === updatedEls.length) ? '✓' : '↓';
             }
           });
         }
